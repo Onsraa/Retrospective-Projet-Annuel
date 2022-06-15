@@ -8,7 +8,7 @@ $results = $req->fetchAll();
 $c = 'SELECT * FROM USER_AVATAR';
 $req = $bdd->prepare($c);
 $req->execute();
-$results_avatar = $req->fetchAll();
+$results_avatar= $req->fetchAll();
 ?>
 
 <div class="row">
@@ -32,19 +32,17 @@ $results_avatar = $req->fetchAll();
                 </tr>
             </thead>
 
-            <?php
-            foreach ($results as $key => $value) {
-                $date = explode('-', $value['creation_date']);
-                echo
-                '<tr class="row' . $value['id'] . '">
+        <?php
+        foreach($results as $key => $value){
+            $date = explode('-', $value['creation_date']);
+            echo 
+            '<tr class="row' . $value['id'] . '">
                 <th scope="row">' . $value['id'] . '</td>
                 <td class="col emailtd">' . $value['email'] . '</td>
                 <td class="col">' . $value['nickname'] . '</td>';
-                foreach ($results_avatar as $key2 => $value2) {
-                    if ($value2['users'] == $value['id']) {
-                        echo '<td class="avatar"><img class="img-in" src="uploads/' . $value2['avatar_assets'] . '.png"></td>';
-                    } else {
-                        echo '<td class="col avatar"><img class="img-in" src=""></td>';
+                foreach($results_avatar as $key2 => $value2){
+                    if ($value2['users']==$value['id']) {
+                    echo '<td class="avatar"><img class="img-in" src="uploads/'. $value2['avatar_assets'] . '.png"></td>';
                     }
                 }
                 echo
@@ -62,8 +60,8 @@ $results_avatar = $req->fetchAll();
                     <button type="button" class="btn btn-outline-info btn-sm" onclick="admin_edit(\'.row' . $value['id'] . '\')">Edit</button> 
                 </td>
             </tr>';
-            }
-            ?>
+        }
+        ?>
 
         </table>
     </form>

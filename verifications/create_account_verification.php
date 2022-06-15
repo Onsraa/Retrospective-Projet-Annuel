@@ -32,6 +32,10 @@ if($_POST['password'] != $_POST['repassword']){
     exit;
 }
 
+/* GENERATE A TOKEN*/
+$randomToken = rand(500000, 999999);
+
+
 include('../includes/db.php');
 
 $q = 'SELECT email FROM users WHERE email = ?';

@@ -49,6 +49,7 @@ function createAccount() {
   passwordAccountEl.removeAttribute("style");
   createAccountEl.style.display = "block";
   generatePuzzle();
+  has_right = false;
 }
 
 function passwordAccount() {
@@ -129,7 +130,8 @@ function cleanPuzzle() {
 //----------------------FRONT-END VERIFICATIONS----------------------//
 
 //regex//
-const mail_format = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+const mail_format =
+  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const password_format =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,}$/;
 
@@ -141,7 +143,10 @@ inputs.addEventListener("change", function () {
 
 function verificationAll() {
   if (loginAccountEl.hasAttribute("style")) {
-    if (emailVerification("login") && passwordVerification("login")) {
+    if (
+      emailVerification("login") &&
+      document.querySelector(".password-el-login").value != ""
+    ) {
       isValidate("login");
     } else {
       isNotValidate("login");
@@ -219,6 +224,7 @@ function captchaVerification() {
     document.getElementById("2-2").src ==
       "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/9.png"
   ) {
+    has_right = true;
     return true;
   }
   return false;
@@ -248,9 +254,10 @@ function isNotValidate(classInput) {
   }
   document.getElementById("submit-button-" + classInput).className =
     "form-submit-no";
-
-  document.getElementById("submit-button-" + classInput).style.transform =
-    "rotate(-360deg)";
+  if (has_right) {
+    document.getElementById("submit-button-" + classInput).style.transform =
+      "rotate(-360deg)";
+  }
 
   setTimeout(function () {
     document.getElementById("submit-icon-" + classInput).className =
