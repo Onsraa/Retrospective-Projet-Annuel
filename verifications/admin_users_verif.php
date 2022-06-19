@@ -2,6 +2,9 @@
 
 var_dump($_POST);
 
+$title = 'Admin_users_verif';
+include('../includes/logging.php');
+
 include('../includes/db.php');
 
 $q = 'UPDATE USERS SET email = :mail, nickname = :nickname, phone = :phone, first_name = :first_name, last_name = :last_name, birth_date = :birth_date, status = :status, region = :region, gender = :gender, creation_date = :creation_date WHERE id = :id';

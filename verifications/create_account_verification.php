@@ -1,5 +1,8 @@
 <?php
 
+$title = 'Inscription';
+include('../includes/logging.php');
+
 if (isset($_POST['nickname']) && !empty($_POST['nickname'])) {
     setcookie('nickname', $_POST['nickname'], time() + 3600 * 24);
 }
@@ -31,6 +34,10 @@ if($_POST['password'] != $_POST['repassword']){
     header('location: ../index.php?message_createAccount=Les mots de passe ne sont pas identiques.&type=alert');
     exit;
 }
+
+/* GENERATE A TOKEN*/
+$randomToken = rand(500000, 999999);
+
 
 include('../includes/db.php');
 

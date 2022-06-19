@@ -1,5 +1,9 @@
 <?php
 
+    $title = 'Connexion';
+    include('../includes/logging.php');
+    exit;
+
     if(isset($_POST['email']) && !empty($_POST['email'])){
         setcookie('email', $_POST['email'], time() + 3600 * 24);
     }
