@@ -135,18 +135,19 @@ const mail_format =
 const password_format =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,}$/;
 
-const inputs = document.querySelector(".input-verification");
+const inputsEl = document.querySelectorAll(".input-verification");
 
-inputs.addEventListener("change", function () {
-  verificationAll();
+inputsEl.forEach((e) => {
+  e.addEventListener("change", verificationAll)
 });
 
-function verificationAll() {
+function verificationAll(){
   if (loginAccountEl.hasAttribute("style")) {
     if (
       emailVerification("login") &&
       document.querySelector(".password-el-login").value != ""
     ) {
+      has_right = true;
       isValidate("login");
     } else {
       isNotValidate("login");
@@ -159,6 +160,7 @@ function verificationAll() {
       rePasswordVerification() &&
       captchaVerification()
     ) {
+      has_right = true;
       isValidate("create");
     } else {
       isNotValidate("create");
@@ -166,13 +168,13 @@ function verificationAll() {
   }
   if (passwordAccountEl.hasAttribute("style")) {
     if (emailVerification("password")) {
+      has_right = true;
       isValidate("password");
     } else {
       isNotValidate("password");
     }
   }
 }
-
 function emailVerification(classInput) {
   if (
     mail_format.test(document.querySelector(".email-el-" + classInput).value)
@@ -196,7 +198,7 @@ function passwordVerification(classInput) {
 function rePasswordVerification() {
   if (
     document.querySelector(".password-el-create").value !=
-    document.querySelector(".rePassword-el-create").Value
+    document.querySelector(".rePassword-el-create").value
   ) {
     return false;
   }
@@ -224,13 +226,13 @@ function captchaVerification() {
     document.getElementById("2-2").src ==
       "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/9.png"
   ) {
-    has_right = true;
     return true;
   }
   return false;
 }
 
 function isValidate(classInput) {
+
   document
     .getElementById("submit-button-" + classInput)
     .setAttribute("type", "submit");
