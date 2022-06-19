@@ -32,23 +32,31 @@ if($_POST['password'] != $_POST['repassword']){
     exit;
 }
 
-/* GENERATE A TOKEN*/
-$randomToken = rand(500000, 999999);
 
+require('../includes/db.php');
 
-include('../includes/db.php');
+$q = 'SELECT id FROM users WHERE email = ? AND is_banned = ?';
+$req = $bdd -> prepare($q);
+$req -> execute([$_POST['email'],1]);
 
-$q = 'SELECT email FROM users WHERE email = ?';
+$result = $req -> fetchAll(PDO::FETCH_ASSOC);
+
+if(!empty($result)){
+    header('location: ../index.php?message_createAccount=Le compte associé à cet email est banni.?type=alert');
+    exit;
+}
+
+$q = 'SELECT id FROM users WHERE email = ?';
 $req = $bdd->prepare($q);
 $req->execute([$_POST['email']]);
-$res = $req->fetchAll();
+$res = $req->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($res)) {
     header('location: ../index.php?message_createAccount=Email déjà utilisé.&type=alert');
     exit;
 }
 
-$q = 'SELECT nickname FROM users WHERE nickname = ?';
+$q = 'SELECT id FROM users WHERE nickname = ?';
 $req = $bdd->prepare($q);
 $req->execute([$_POST['nickname']]);
 $res = $req->fetchAll();
@@ -58,26 +66,4 @@ if (!empty($res)) {
     exit;
 }
 
-
-$salt = '$c53.*?é';
-$salted_password = hash('sha256', $_POST['password'] . $salt);
-
-$q = 'INSERT INTO users(nickname, email, password) VALUES (:nickname, :email,:password)';
-$req = $bdd->prepare($q);
-$result = $req->execute(['nickname' => $_POST['nickname'], 'email' => $_POST['email'], 'password' => $salted_password]);
-
-if (!$result) {
-    header('location: ../index.php?message_createAccount=Création du compte échouée.&type=alert');
-    exit;
-};
-
-$q = 'SELECT email FROM users WHERE email = :email AND password = :password';
-    $req = $bdd -> prepare($q);
-    $req -> execute(['email' => $_POST['email'], 'password' => $salted_password]);
-    $res = $req -> fetch(PDO::FETCH_ASSOC);
-
-session_start();
-$_SESSION['email'] = $_POST['email'];
-$_SESSION['id'] =  $res['id'];
-header('location: ../index.php');
-exit;
+?>

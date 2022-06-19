@@ -85,12 +85,13 @@
           VALUES(:first_name,:last_name,:email,:phone,:cv,:experience_redaction,:comfortable_redaction,:linkedIn_url,:portfolio_url,:user)';
     $req = $bdd -> prepare($q);
     $result = $req -> execute([
-        'first_name' => $_POST['first_name'],
-        'last_name' => $_POST['last_name'],
+        'first_name' => $_POST['firstName'],
+        'last_name' => $_POST['lastName'],
         'email' => $_POST['email'],
+        'phone' => $_POST['phone'],
         'cv' => $filename,
-        'experience_redaction' => $_POST['experience_redaction'],
-        'comfortable_redaction' => $_POST['comfortable_redaction'],
+        'experience_redaction' => $_POST['area'],
+        'comfortable_redaction' => $_POST['area2'],
         'linkedIn_url' => (!empty($_POST['linkedIn']) && isset($_POST['linkedIn']) ? $_POST['linkedIn'] : ''),
         'portfolio_url' => (!empty($_POST['portflio']) && isset($_POST['portflio']) ? $_POST['portflio'] : '')
     ]);

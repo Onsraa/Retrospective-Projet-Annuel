@@ -293,6 +293,48 @@
 
 /*---------------------------------------------FORMULAIRES---------------------------------------*/
 
+/*---------------------------------------------TOKEN---------------------------------------*/
+
+.token-el, .tokenIsValid-el{
+  background-color: #19215e;
+  color : white;
+  text-align: center;
+  width: 40rem;
+  padding: 4rem;
+  border: none;
+  border-radius: 1.5rem;
+  display: grid;
+  grid-row-gap: 3rem;
+  margin : 10rem auto;
+}
+
+.token-el h1, .tokenIsValid-el h1{
+  font-size: 2.6rem;
+}
+
+.token-el form{
+  display: grid;
+  grid-row-gap: 1rem;
+}
+.token-emailEl, .token-buttonEl{
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  text-align: center;
+  height: 6rem;
+  font-size: 2rem;
+}
+
+.tokenIsValid-el button{
+  width: 50%;
+  margin: auto;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.6rem;
+}
+
+/*---------------------------------------------TOKEN---------------------------------------*/
+
 /*---------------------------------------------HEADER & FOOTER---------------------------------------*/
 .logo {
   width: 5rem;
