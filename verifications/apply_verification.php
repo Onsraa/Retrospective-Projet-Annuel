@@ -80,7 +80,7 @@
         move_uploaded_file($_FILES['cv']['tmp_name'], $destination);
     }   
 
-    include('includes/db.php');
+    include('../includes/db.php');
     $q = 'INSERT INTO apply_form(first_name,last_name,email,phone,cv,experience_redaction,comfortable_redaction,linkedIn_url,portfolio_url,user)
           VALUES(:first_name,:last_name,:email,:phone,:cv,:experience_redaction,:comfortable_redaction,:linkedIn_url,:portfolio_url,:user)';
     $req = $bdd -> prepare($q);
@@ -90,17 +90,18 @@
         'email' => $_POST['email'],
         'phone' => $_POST['phone'],
         'cv' => $filename,
-        'experience_redaction' => $_POST['area'],
+        'experience_redaction' => $_POST['area1'],
         'comfortable_redaction' => $_POST['area2'],
-        'linkedIn_url' => (!empty($_POST['linkedIn']) && isset($_POST['linkedIn']) ? $_POST['linkedIn'] : ''),
-        'portfolio_url' => (!empty($_POST['portflio']) && isset($_POST['portflio']) ? $_POST['portflio'] : '')
+        'linkedIn_url' => (!empty($_POST['linkedIn']) ? $_POST['linkedIn'] : NULL),
+        'portfolio_url' => (!empty($_POST['portflio']) ? $_POST['portflio'] : NULL),
+        'user' => (isset($_SESSION['email']) ? isset($_SESSION['email']) : NULL)
     ]);
 
     if (!$result) {
-        header('location: ../apply.php.php?message=Le cv n\'a pas été envoyé suite à une erreur.&type=alert');
+        header('location: ../apply.php?message=Le cv n\'a pas été envoyé suite à une erreur.&type=alert');
         exit;
     } else {
-        header('location: ../apply.php.php?message=CV envoyé avec succès.&type=success');
+        header('location: ../apply.php?message=CV envoyé avec succès.&type=success');
         exit;
     }
 ?>
