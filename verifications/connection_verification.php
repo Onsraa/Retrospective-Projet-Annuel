@@ -1,52 +1,60 @@
 <?php
 
-if (isset($_POST['email']) && !empty($_POST['email'])) {
-    setcookie('email', $_POST['email'], time() + 3600 * 24);
-}
-
-if (!isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['password']) || empty($_POST['password'])) {
-    header('location: ../index.php?message_connection=Veuillez remplir les deux champs.&type=alert');
+    $title = 'Connexion';
+    include('../includes/logging.php');
     exit;
-}
 
-if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    header('location: ../index.php?message_connection=Email invalide.&type=alert');
-    exit;
-}
+    if(isset($_POST['email']) && !empty($_POST['email'])){
+        setcookie('email', $_POST['email'], time() + 3600 * 24);
+    }
 
-require('../includes/db.php');
+    if (isset($_POST['email']) && !empty($_POST['email'])) {
+        setcookie('email', $_POST['email'], time() + 3600 * 24);
+    }
 
-$q = 'SELECT id FROM users WHERE email = ? AND is_banned = ?';
-$req = $bdd->prepare($q);
-$req->execute([$_POST['email'], 1]);
+    if (!isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['password']) || empty($_POST['password'])) {
+        header('location: ../index.php?message_connection=Veuillez remplir les deux champs.&type=alert');
+        exit;
+    }
 
-$result = $req->fetchAll(PDO::FETCH_ASSOC);
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        header('location: ../index.php?message_connection=Email invalide.&type=alert');
+        exit;
+    }
 
-if (!empty($result)) {
-    header('location: ../index.php?message_connection= Le compte associé à cet email est banni.?type=alert');
-    exit;
-}
+    require('../includes/db.php');
+
+    $q = 'SELECT id FROM users WHERE email = ? AND is_banned = ?';
+    $req = $bdd->prepare($q);
+    $req->execute([$_POST['email'], 1]);
+
+    $result = $req->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!empty($result)) {
+        header('location: ../index.php?message_connection= Le compte associé à cet email est banni.?type=alert');
+        exit;
+    }
 
 
 
-$salt = '$c53.*?é';
-$salted_password = hash('sha256', $_POST['password'] . $salt);
+    $salt = '$c53.*?é';
+    $salted_password = hash('sha256', $_POST['password'] . $salt);
 
 
-$q = 'SELECT email FROM users WHERE email = :email AND password = :password';
-$req = $bdd->prepare($q);
-$req->execute(['email' => $_POST['email'], 'password' => $salted_password]);
-$res = $req->fetch(PDO::FETCH_ASSOC);
+    $q = 'SELECT email FROM users WHERE email = :email AND password = :password';
+    $req = $bdd->prepare($q);
+    $req->execute(['email' => $_POST['email'], 'password' => $salted_password]);
+    $res = $req->fetch(PDO::FETCH_ASSOC);
 
-if (empty($res)) {
-    header('location: ../index.php?message_connection=Identifiants incorrects.&typeConnection=alert');
-    exit;
-}
+    if (empty($res)) {
+        header('location: ../index.php?message_connection=Identifiants incorrects.&typeConnection=alert');
+        exit;
+    }
 
-$q = 'SELECT id FROM users WHERE email = ? AND status = ?';
-$req = $bdd->prepare($q);
-$req->execute([$_POST['email'], 'not_verified']);
-$result = $req->fetchAll(PDO::FETCH_ASSOC);
+    $q = 'SELECT id FROM users WHERE email = ? AND status = ?';
+    $req = $bdd->prepare($q);
+    $req->execute([$_POST['email'], 'not_verified']);
+    $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($result)) {
 
