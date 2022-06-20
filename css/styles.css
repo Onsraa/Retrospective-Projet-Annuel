@@ -316,13 +316,18 @@
   display: grid;
   grid-row-gap: 1rem;
 }
-.token-emailEl, .token-buttonEl{
+.token-codeEl, .token-buttonEl{
   padding: 1rem;
   border-radius: 0.5rem;
   width: 100%;
   text-align: center;
   height: 6rem;
   font-size: 2rem;
+}
+
+.token-buttonEl a{
+  text-decoration: none;
+  color: white;
 }
 
 .tokenIsValid-el button{
