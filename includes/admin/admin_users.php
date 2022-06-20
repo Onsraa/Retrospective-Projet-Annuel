@@ -9,6 +9,10 @@ $c = 'SELECT * FROM USER_AVATAR';
 $req = $bdd->prepare($c);
 $req->execute();
 $results_avatar= $req->fetchAll();
+
+$title = 'Admin_users';
+include('includes/logging.php');
+
 ?>
 
 <div class="row">

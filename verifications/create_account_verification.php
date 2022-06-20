@@ -1,5 +1,8 @@
 <?php
 
+$title = 'Inscription';
+include('../includes/logging.php');
+
 if (isset($_POST['nickname']) && !empty($_POST['nickname'])) {
     setcookie('nickname', $_POST['nickname'], time() + 3600 * 24);
 }
@@ -32,6 +35,12 @@ if($_POST['password'] != $_POST['repassword']){
     exit;
 }
 
+
+/* GENERATE A TOKEN*/
+$randomToken = rand(500000, 999999);
+
+
+include('../includes/db.php');
 
 require('../includes/db.php');
 

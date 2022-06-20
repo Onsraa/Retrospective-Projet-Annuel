@@ -11,6 +11,7 @@ include('includes/head.php');
     if (!isset($_SESSION['email'])) {
         include("includes/log_forms.php");
     }
+    
     ?>
     <main onclick="fermer()" class="blur-el">
         <?php
