@@ -49,6 +49,7 @@ function createAccount() {
   passwordAccountEl.removeAttribute("style");
   createAccountEl.style.display = "block";
   generatePuzzle();
+  has_right = false;
 }
 
 function passwordAccount() {
@@ -129,19 +130,24 @@ function cleanPuzzle() {
 //----------------------FRONT-END VERIFICATIONS----------------------//
 
 //regex//
-const mail_format = /^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/;
+const mail_format =
+  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const password_format =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,}$/;
 
-const inputs = document.querySelector(".input-verification");
+const inputsEl = document.querySelectorAll(".input-verification");
 
-inputs.addEventListener("change", function () {
-  verificationAll();
+inputsEl.forEach((e) => {
+  e.addEventListener("change", verificationAll)
 });
 
-function verificationAll() {
+function verificationAll(){
   if (loginAccountEl.hasAttribute("style")) {
-    if (emailVerification("login") && passwordVerification("login")) {
+    if (
+      emailVerification("login") &&
+      document.querySelector(".password-el-login").value != ""
+    ) {
+      has_right = true;
       isValidate("login");
     } else {
       isNotValidate("login");
@@ -154,6 +160,7 @@ function verificationAll() {
       rePasswordVerification() &&
       captchaVerification()
     ) {
+      has_right = true;
       isValidate("create");
     } else {
       isNotValidate("create");
@@ -161,13 +168,13 @@ function verificationAll() {
   }
   if (passwordAccountEl.hasAttribute("style")) {
     if (emailVerification("password")) {
+      has_right = true;
       isValidate("password");
     } else {
       isNotValidate("password");
     }
   }
 }
-
 function emailVerification(classInput) {
   if (
     mail_format.test(document.querySelector(".email-el-" + classInput).value)
@@ -191,7 +198,7 @@ function passwordVerification(classInput) {
 function rePasswordVerification() {
   if (
     document.querySelector(".password-el-create").value !=
-    document.querySelector(".rePassword-el-create").Value
+    document.querySelector(".rePassword-el-create").value
   ) {
     return false;
   }
@@ -225,6 +232,7 @@ function captchaVerification() {
 }
 
 function isValidate(classInput) {
+
   document
     .getElementById("submit-button-" + classInput)
     .setAttribute("type", "submit");
@@ -248,9 +256,10 @@ function isNotValidate(classInput) {
   }
   document.getElementById("submit-button-" + classInput).className =
     "form-submit-no";
-
-  document.getElementById("submit-button-" + classInput).style.transform =
-    "rotate(-360deg)";
+  if (has_right) {
+    document.getElementById("submit-button-" + classInput).style.transform =
+      "rotate(-360deg)";
+  }
 
   setTimeout(function () {
     document.getElementById("submit-icon-" + classInput).className =

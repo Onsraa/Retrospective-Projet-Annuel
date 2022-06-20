@@ -12,6 +12,7 @@ $results_avatar= $req->fetchAll();
 
 $title = 'Admin_users';
 include('includes/logging.php');
+
 ?>
 
 <div class="row">
