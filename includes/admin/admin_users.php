@@ -1,6 +1,9 @@
 <?php
 
-$q = 'SELECT * FROM USERS';
+$sort = (isset($_GET['sort']) && !empty($_GET['sort']) ? $_GET['sort'] : 'id');
+$order = (isset($_GET['order']) && !empty($_GET['order']) ? $_GET['order'] : 'ASC');
+
+$q = 'SELECT id, email, nickname, phone, first_name, last_name, birth_date, status, region, gender, creation_date, is_banned FROM USERS';
 $req = $bdd->prepare($q);
 $req->execute();
 $results = $req->fetchAll();
@@ -8,7 +11,7 @@ $results = $req->fetchAll();
 $c = 'SELECT * FROM USER_AVATAR';
 $req = $bdd->prepare($c);
 $req->execute();
-$results_avatar= $req->fetchAll();
+$results_avatar = $req->fetchAll();
 
 $title = 'Admin_users';
 include('includes/logging.php');
@@ -40,7 +43,7 @@ include('includes/logging.php');
         foreach($results as $key => $value){
             $date = explode('-', $value['creation_date']);
             echo 
-            '<tr class="row' . $value['id'] . '">
+            '<tr class="row' . $value['id'] . ' row-' . (($value['is_banned'] == 0) ? $value['status'] : "banned") . '">
                 <th scope="row">' . $value['id'] . '</td>
                 <td class="col emailtd">' . $value['email'] . '</td>
                 <td class="col">' . $value['nickname'] . '</td>';
@@ -60,7 +63,7 @@ include('includes/logging.php');
                 <td class="col">' . $value['creation_date'] . '</td>
                 <td class="col-1">
                     <button type="button" class="btn btn-outline-warning btn-sm">Warn</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm">Ban</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="admin_ban(\'.row' . $value['id'] . '\')">Ban</button>
                     <button type="button" class="btn btn-outline-info btn-sm" onclick="admin_edit(\'.row' . $value['id'] . '\')">Edit</button> 
                 </td>
             </tr>';

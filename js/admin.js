@@ -4,9 +4,8 @@ function admin_edit(rowClass)
     const cells = row.querySelectorAll('td');       // On stocke chaque cellule de cette ligne
     const id = row.querySelector('th');
 
-    const buttons = document.querySelectorAll('tr button');
+    const buttons = document.querySelectorAll('tr button'); // On fait disparaitre les boutons des autres lignes
     buttons.forEach(element => {
-        console.log(element);
         element.style.display = 'none';
     });
 
@@ -22,7 +21,7 @@ function admin_edit(rowClass)
     id.innerText = "";
     id.appendChild(newInput);
 
-    for (i = 0; i < cells.length-1; i++){           // On parcourt chaque cellule de la ligne à modifier       
+    for (i = 0; i < cells.length-1; i++){                 // On parcourt chaque cellule de la ligne à modifier       
         const tag = cellHTML(i);                    
         const newInput = document.createElement(tag);     // Création de la balise qui remplacera la cellule (type 'input' ou 'select')
 
@@ -32,7 +31,7 @@ function admin_edit(rowClass)
 
         if (tag === 'select'){
             if (i == 7){
-                options = ['User', 'Admin', 'Dev'];
+                options = ['user', 'admin', 'dev'];
             } else {
                 options = ['Europe', 'N-America', 'S-America', 'Asia', 'Oceania', 'Africa'];
             }
@@ -88,4 +87,39 @@ function cellType(i)
         case 10: return "date";
         default: return "";
     }
+}
+
+
+
+function admin_ban(rowClass)
+{
+    const row = document.querySelector(rowClass);   // On stocke la ligne du tableau à modifier
+    const cells = row.querySelectorAll('td');       // On stocke chaque cellule de cette ligne
+    const id = row.querySelector('th');
+
+    const buttons = document.querySelectorAll('tr button'); // On fait disparaitre les boutons des autres lignes
+    buttons.forEach(element => {
+        element.style.display = 'none';
+    });
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "verifications/admin_users_ban.php";
+    cells[cells.length-1].appendChild(form);
+
+    cells[cells.length-1].querySelector('form').innerHTML = 'Bannir ' + cells[1].innerText + ' ? <input type="hidden" name="id" value="' + id.innerText + '"><button class="btn btn-outline-danger btn-sm" type="submit">Bannir</button>';
+    cells[cells.length-1].style = "font-size: 0.8rem;text-align: center;";
+
+    const cancel = document.createElement("button");
+    cancel.innerHTML = "Annuler";
+    cancel.classList.add("btn", "btn-outline-info", "btn-sm");
+    cancel.type = "button";
+    cancel.style = "width: auto;";
+    cancel.onclick = function() {
+        cells[cells.length-1].removeChild(cells[cells.length-1].querySelector('form'));
+        buttons.forEach(element => {
+            element.style.display = 'inline';
+        });
+    }
+    cells[cells.length-1].querySelector('form').appendChild(cancel);
 }
