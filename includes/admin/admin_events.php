@@ -1,5 +1,8 @@
 <?php
 
+$title = 'Admin_events';
+include('includes/logging.php');
+
 echo
 '
     <div class="container-fluid">

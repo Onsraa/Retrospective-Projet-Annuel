@@ -7,6 +7,9 @@ $q = 'SELECT
 $req = $bdd->prepare($q);
 $req->execute();
 $results = $req->fetchAll();
+
+$title = 'Admin_resume';
+include('includes/logging.php');
 ?>
 
 <table class="table table-dark align-middle">

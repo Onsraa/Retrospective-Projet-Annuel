@@ -6,7 +6,7 @@ if($title == 'Connexion') {
 } else if ($title == 'Inscription') {
     $path = "../logs";
     $line = date('Y/m/d - H:i:s') . ' - Tentative d\'inscription ' . (isset($_SESSION['email']) ? 'réussie' : 'échouée') . ' de : ' . (empty($_POST['email']) ? 'utilisateur non connecté (' . $_SERVER['REMOTE_ADDR'] . ').' : $_POST['email']);
-} else if (preg_match('/^Admin_/', $title))
+} else if (preg_match('/^Admin_[a-z]+$/', $title))
 {
     $path = "logs";
     $line = date('Y/m/d - H:i:s') . ' - Tentative d\'accès aux fonctions admin ' . (isset($_SESSION['email']) ? 'réussie' : 'échouée') . ' de : ' . (isset($_SESSION['email']) ? $_SESSION['email'] : 'utilisateur non connecté (' . $_SERVER['REMOTE_ADDR'] . ').');
