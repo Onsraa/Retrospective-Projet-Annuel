@@ -4,9 +4,7 @@
 <html>
 <?php
 $title = "Apply for Retrospective";
-include("includes/head.php");
-include('includes/logging.php');
-?>
+include("includes/head.php") ?>
 
 <body>
     <?php
