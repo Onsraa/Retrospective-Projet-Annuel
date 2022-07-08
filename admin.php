@@ -24,7 +24,7 @@ include('includes/head.php');
             echo '<h2 class="alerte text-' . $_GET['type'] . '">' . $_GET['msg'] . '</h2>';
         }
 
-        $resume = ($_GET['page'] == 'resume') ? 'active' : '';
+        $resume = ($_GET['page'] == 'summary') ? 'active' : '';
         $users = ($_GET['page'] == 'users') ? 'active' : '';
         $posts = ($_GET['page'] == 'posts') ? 'active' : '';
         $medias = ($_GET['page'] == 'medias') ? 'active' : '';
@@ -38,7 +38,7 @@ include('includes/head.php');
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center rounded">
                         <ul class="nav nav-pills flex-lg-column nav-fill admin-nav">
                             <li class="nav-item">
-                                <a class="nav-link text-light <?= $resume ?>" href="admin.php?page=resume">Resume</a>
+                                <a class="nav-link text-light <?= $resume ?>" href="admin.php?page=summary">Summary</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light <?= $users ?>" href="admin.php?page=users">Users</a>

@@ -3,8 +3,13 @@
 if($title == 'Connexion') {
     $path = "../logs";
     $line = date('Y/m/d - H:i:s') . ' - Tentative de connexion ' . (isset($_SESSION['email']) ? 'réussie' : 'échouée') . ' de : ' . (empty($_POST['email']) ? 'utilisateur non connecté (' . $_SERVER['REMOTE_ADDR'] . ').' : $_POST['email']);
+} else if($title == 'Deconnexion') {
+    $path = "../logs";
+    $line = date('Y/m/d - H:i:s') . ' - Déconnexion de : ' . $_SESSION['email'];
 } else if ($title == 'Inscription') {
     $path = "../logs";
+    $stat = "users";
+    include('stats.php');
     $line = date('Y/m/d - H:i:s') . ' - Tentative d\'inscription ' . (isset($_SESSION['email']) ? 'réussie' : 'échouée') . ' de : ' . (empty($_POST['email']) ? 'utilisateur non connecté (' . $_SERVER['REMOTE_ADDR'] . ').' : $_POST['email']);
 } else if (preg_match('/^Admin_[a-z]+$/', $title))
 {
