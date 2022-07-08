@@ -3,8 +3,16 @@
 $sort = (isset($_GET['sort']) && !empty($_GET['sort']) ? $_GET['sort'] : 'id');
 $order = (isset($_GET['order']) && !empty($_GET['order']) ? $_GET['order'] : 'ASC');
 
-$q = 'SELECT id, email, nickname, phone, first_name, last_name, birth_date, status, region, gender, creation_date, is_banned FROM USERS';
+$q = 'SELECT id, email, nickname, phone, first_name, last_name, birth_date, status, region, gender, creation_date, is_banned FROM USERS ORDER BY :sort';
 $req = $bdd->prepare($q);
+if (isset($_GET['sort']) && !empty($_GET['sort'])){
+    $req->execute(['sort' => $_GET['sort']]);
+} else {
+    $req->execute([
+        'sort' => 'email'
+    ]);
+}
+
 $req->execute();
 $results = $req->fetchAll();
 
@@ -23,18 +31,18 @@ include('includes/logging.php');
         <table class="table table-striped table-dark table-hover table-sm align-middle table-responsive">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Mail</th>
-                    <th scope="col">Nickname</th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=id&order=asc">Id</a></th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=email&order=asc">Mail</th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=nickname&order=asc">Nickname</th>
                     <th scope="col">Avatar</th>
                     <th scope="col">Phone</th>
-                    <th scope="col">First name</th>
-                    <th scope="col">Last name</th>
-                    <th scope="col">Birth date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Region</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Creation date</th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=first_name&order=asc">First name</th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=last_name&order=asc">Last name</th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=birth_date&order=asc">Birth date</th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=status&order=asc">Status</th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=region&order=asc">Region</th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=gender&order=asc">Gender</th>
+                    <th scope="col"><a href="http://localhost/Retrospective%20GIT/admin.php?page=users&sort=creation_date&order=asc">Creation date</th>
                     <th scope="col">Options</th>
                 </tr>
             </thead>
@@ -62,9 +70,14 @@ include('includes/logging.php');
                 <td class="col">' . $value['gender'] . '</td>
                 <td class="col">' . $value['creation_date'] . '</td>
                 <td class="col-1">
-                    <button type="button" class="btn btn-outline-warning btn-sm">Warn</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="admin_ban(\'.row' . $value['id'] . '\')">Ban</button>
-                    <button type="button" class="btn btn-outline-info btn-sm" onclick="admin_edit(\'.row' . $value['id'] . '\')">Edit</button> 
+                    <button type="button" class="btn btn-outline-warning btn-sm">Warn</button>';
+                    if ($value['is_banned'])
+                    {
+                        echo '<button type="button" class="btn btn-outline-secondary btn-sm" onclick="admin_ban(\'.row' . $value['id'] . '\')">Unban</button>';
+                    } else {
+                        echo '<button type="button" class="btn btn-outline-danger btn-sm" onclick="admin_ban(\'.row' . $value['id'] . '\')">Ban</button>';
+                    }
+                    echo '<button type="button" class="btn btn-outline-info btn-sm" onclick="admin_edit(\'.row' . $value['id'] . '\')">Edit</button>
                 </td>
             </tr>';
         }

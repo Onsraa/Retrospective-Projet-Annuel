@@ -1,0 +1,27 @@
+Nombre de lignes - 0
+
+
+
+Logs pour le 2022/06/24:
+
+2022/06/24 - 09:39:49 - Tentative d'inscription échouée de : geageahe@yo.com
+
+Logs pour le 2022/07/08:
+
+2022/07/08 - 16:30:22 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:30:42 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:32:02 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:32:12 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:32:20 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:32:50 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:34:52 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:35:17 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:35:42 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:36:06 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:36:28 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:37:05 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:37:53 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:38:15 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:38:56 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:39:05 - Tentative d'inscription échouée de : test@yo.com
+2022/07/08 - 16:39:37 - Tentative d'inscription échouée de : test@yo.com

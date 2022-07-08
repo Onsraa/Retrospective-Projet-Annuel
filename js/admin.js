@@ -123,3 +123,11 @@ function admin_ban(rowClass)
     }
     cells[cells.length-1].querySelector('form').appendChild(cancel);
 }
+
+
+function admin_sort(sort, order)
+{
+    let rows = document.querySelectorAll('tbody tr');
+    let cells = document.querySelectorAll('td');
+    console.log(rows);
+}
