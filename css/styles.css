@@ -723,6 +723,26 @@ footer {
   color: rgb(255, 30, 0) !important;
 }
 
+.admin .graph{
+  height: 24rem;
+  width: 100%;
+}
+
+.admin label{
+  font-size: 1.2rem;
+}
+
+.admin .sum thead{
+  font-size: 2rem;
+}
+
+.admin .sum td{
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 /*---------------------------------------------ADMINISTRATION---------------------------------------*/
 
 
