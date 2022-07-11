@@ -80,7 +80,8 @@
         move_uploaded_file($_FILES['cv']['tmp_name'], $destination);
     }   
 
-    include('../includes/db.php');
+    require('../includes/servers/db.php');
+    
     $q = 'INSERT INTO apply_form(first_name,last_name,email,phone,cv,experience_redaction,comfortable_redaction,linkedIn_url,portfolio_url,user)
           VALUES(:first_name,:last_name,:email,:phone,:cv,:experience_redaction,:comfortable_redaction,:linkedIn_url,:portfolio_url,:user)';
     $req = $bdd -> prepare($q);
@@ -88,7 +89,7 @@
         'first_name' => $_POST['firstName'],
         'last_name' => $_POST['lastName'],
         'email' => $_POST['email'],
-        'phone' => $_POST['phone'],
+        'phone' => $_POST['phone'], 
         'cv' => $filename,
         'experience_redaction' => $_POST['area1'],
         'comfortable_redaction' => $_POST['area2'],

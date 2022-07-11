@@ -13,7 +13,7 @@ include("includes/head.php") ?>
         include("includes/log_forms.php");
     }
     ?>
-    <main onclick="fermer()" class="blur-el">
+    <main <?php echo !isset($_SESSION['email']) ? 'onclick="fermer()" class="blur-el"' : ''; ?>>
         <div class="apply-div-el">
             <h1>JOIN THE TEAM</h1>
             <h1>...</h1>

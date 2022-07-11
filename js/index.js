@@ -1,6 +1,6 @@
 //----------------------BACKGROUND PARALLAXE----------------------//
 
-if ((document.querySelector("title").innerHTML = "Accueil")) {
+if (document.querySelector("title").innerHTML == "Accueil") {
   const image2El = document.querySelector(".image2");
   const image3El = document.querySelector(".image3");
   const image4El = document.querySelector(".image4");
@@ -142,7 +142,7 @@ const password_format =
 const inputsEl = document.querySelectorAll(".input-verification");
 
 inputsEl.forEach((e) => {
-  e.addEventListener("change", verificationAll);
+  e.addEventListener("keyup", verificationAll);
 });
 
 function verificationAll() {
@@ -212,26 +212,28 @@ function rePasswordVerification() {
 function captchaVerification() {
   if (
     document.getElementById("0-0").src ==
-      "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/1.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/1.png" &&
     document.getElementById("0-1").src ==
-      "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/2.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/2.png" &&
     document.getElementById("0-2").src ==
-      "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/3.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/3.png" &&
     document.getElementById("1-0").src ==
-      "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/4.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/4.png" &&
     document.getElementById("1-1").src ==
-      "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/5.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/5.png" &&
     document.getElementById("1-2").src ==
-      "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/6.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/6.png" &&
     document.getElementById("2-0").src ==
-      "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/7.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/7.png" &&
     document.getElementById("2-1").src ==
-      "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/8.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/8.png" &&
     document.getElementById("2-2").src ==
-      "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/9.png"
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/9.png"
   ) {
+    document.querySelector("#board").style.borderColor = "green";
     return true;
   }
+  document.querySelector("#board").style.borderColor = "red";
   return false;
 }
 
@@ -278,163 +280,330 @@ function isNotValidate(classInput) {
 
 //----------------------FRONT-END VERIFICATIONS----------------------//
 
+//-------------------------INDICATIONS PASSWORD-------------------------//
+
+//VARIABLES//
+
+const constatEl = document.querySelector("#constat");
+const constatUpperEl = document.querySelector("#constat_upper");
+const constatLowerEl = document.querySelector("#constat_lower");
+const constatNumberEl = document.querySelector("#constat_number");
+const constatSpecialEl = document.querySelector("#constat_special");
+const constatFiveEl = document.querySelector("#constat_five");
+const searchEl = document.querySelector("#searchUser-bar");
+
+const id_start = "constat";
+
+let validated_once = [];
+
+//REGEX/
+
+const has_uppercase = /[A-Z]{1,}/;
+const has_lowercase = /[a-z]{1,}/;
+const has_number = /[0-9]{1,}/;
+const has_special = /[$&+,:;=?@#|/\\'<>.^*()%!-]{1,}/;
+const has_five = /[\s\S]{5,}/;
+
+// VERIFICATIONS FUNCTIONS //
+
+function is_valid(e) {
+  const temp = document.querySelector("#" + id_start + e);
+  const temp_status = document.querySelector("#" + id_start + e + "_status");
+
+  if (!validated_once.includes(e)) {
+    validated_once.push(e);
+  }
+
+  temp_status.style.transform = "rotate(360deg)";
+  setTimeout(function () {
+    temp.setAttribute("class", "is_valid");
+    temp_status.setAttribute("class", "fa-solid fa-check");
+  }, 200);
+}
+
+function is_not_valid(e) {
+  const temp = document.querySelector("#" + id_start + e);
+  const temp_status = document.querySelector("#" + id_start + e + "_status");
+
+  if (validated_once.includes(e)) {
+    temp_status.style.transform = "rotate(-360deg)";
+  }
+
+  setTimeout(function () {
+    temp.setAttribute("class", "is_not_valid");
+    temp_status.setAttribute("class", "fa-solid fa-xmark");
+  }, 200);
+}
+
+function verifyPassword(e) {
+  if (has_uppercase.test(e)) {
+    is_valid("_upper");
+  } else {
+    is_not_valid("_upper");
+  }
+  if (has_lowercase.test(e)) {
+    is_valid("_lower");
+  } else {
+    is_not_valid("_lower");
+  }
+  if (has_number.test(e)) {
+    is_valid("_number");
+  } else {
+    is_not_valid("_number");
+  }
+  if (has_special.test(e)) {
+    is_valid("_special");
+  } else {
+    is_not_valid("_special");
+  }
+  if (has_five.test(e)) {
+    is_valid("_five");
+  } else {
+    is_not_valid("_five");
+  }
+  if (
+    document.querySelector(".password-el-create").value ==
+      document.querySelector(".rePassword-el-create").value &&
+    document.querySelector(".password-el-create").value != ""
+  ) {
+    is_valid("_identical");
+  } else {
+    is_not_valid("_identical");
+  }
+}
+
+function verifyRePassword() {
+  if (
+    document.querySelector(".password-el-create").value ==
+      document.querySelector(".rePassword-el-create").value &&
+    document.querySelector(".password-el-create").value != ""
+  ) {
+    is_valid("_identical");
+  } else {
+    is_not_valid("_identical");
+  }
+}
+
+//-------------------------INDICATIONS PASSWORD-------------------------//
+
 //----------------------CONTACT US----------------------//
 
-const contactForm = document.querySelector(".contact-us-form");
-const requestList = document.querySelector(".reqList-el");
-const regexText = /[a-zA-Z0-9]{50,300}/;
+if (document.querySelector("title").innerHTML == "Contact Us") {
+  const contactForm = document.querySelector(".contact-us-form");
+  const requestList = document.querySelector(".reqList-el");
+  const regexText = /[a-zA-Z0-9]{50,300}/;
 
-let contactQuestionsCounter = 1;
-let textAreaHasPopped = false;
-let buttonHasPopped = false;
+  let contactQuestionsCounter = 1;
+  let textAreaHasPopped = false;
+  let buttonHasPopped = false;
 
-if ((document.querySelector("title").innerHTML = "Contact Us")) {
-  requestList.addEventListener("change", function () {
-    if (document.getElementsByClassName("contact-userReport").length != 0) {
-      document.querySelectorAll(".contact-userReport").forEach(function (e) {
-        e.remove();
-        contactQuestionsCounter--;
-        textAreaHasPopped = false;
-        if (document.querySelector(".contact-us-form button") != null) {
-          document.querySelector(".contact-us-form button").remove();
-          buttonHasPopped = false;
-        }
-      });
-    }
-
-    if (requestList.value == "1") {
-      addElementToForm(
-        "contactUs-label-username",
-        "L'utilisateur mentionné",
-        "userReport",
-        "input",
-        "text",
-        "username",
-        "contactUs-input-username",
-        contactForm
-      );
-
-      document.getElementsByName("username").forEach(function (e) {
-        e.addEventListener("change", function (e) {
-          if (e.value != "" && !textAreaHasPopped) {
-            textAreaToForm("Qu'a t-il fait ?");
-          }
-        });
-      });
-    }
-    if (requestList.value == "2") {
-      addElementToForm(
-        "contactUs-label-username",
-        "Votre pseudo ou email",
-        "userReport",
-        "input",
-        "text",
-        "username",
-        "contactUs-input-username",
-        contactForm
-      );
-
-      document.getElementsByName("username").forEach(function (e) {
-        e.addEventListener("change", function (e) {
-          if (e.value != "" && !textAreaHasPopped) {
-            textAreaToForm("Expliquez-nous tout");
-          }
-        });
-      });
-    }
-    if (requestList.value == "3") {
-      textAreaToForm(
-        "Décrivez-nous le problème",
-        "Je n'ai plus le temps d'utiliser cet incroyable site depuis que je suis à l'ESGI, j'aimerais donc que vous me le supprimiez définitivement, si possible. Merci, vous êtes incroyables."
-      );
-    }
-    if (requestList.value == "4") {
-      textAreaToForm(
-        "Décrivez votre problème",
-        "Un erreur sur la page : easteregg.php est apparue soudainement."
-      );
-    }
-    if (requestList.value == "5") {
-      textAreaToForm("Allez-y", "Et bien, je trouve Teddy vachement mignon..");
-    }
-  });
-
-  function textAreaToForm(label, placeholder) {
-    addElementToForm(
-      "contactUs-label-report",
-      label,
-      "userReport",
-      "textarea",
-      "text",
-      "report",
-      "contactUs-textarea-report",
-      contactForm
-    );
-    document
-      .querySelector("#contactUs-textarea-report")
-      .setAttribute("minlength", "50");
-    document
-      .querySelector("#contactUs-textarea-report")
-      .setAttribute("maxlength", "300");
-    document
-      .querySelector("#contactUs-textarea-report")
-      .setAttribute(
-        "placeholder",
-        placeholder + " (Minimum 50 caractères, Maximum 300)"
-      );
-
-    textAreaHasPopped = true;
-
-    document.getElementsByName("report").forEach(function (e) {
-      e.addEventListener("change", function () {
-        if (
-          regexText.test(document.getElementsByName("report")[0].value) &&
-          !buttonHasPopped
-        ) {
-          addButtonToForm("Envoyer ma demande", contactForm);
-          buttonHasPopped = true;
-        } else {
+  if (document.querySelector("title").innerHTML == "Contact Us") {
+    requestList.addEventListener("change", function () {
+      if (document.getElementsByClassName("contact-userReport").length != 0) {
+        document.querySelectorAll(".contact-userReport").forEach(function (e) {
+          e.remove();
+          contactQuestionsCounter--;
+          textAreaHasPopped = false;
           if (document.querySelector(".contact-us-form button") != null) {
             document.querySelector(".contact-us-form button").remove();
             buttonHasPopped = false;
           }
-        }
-      });
+        });
+      }
+
+      if (requestList.value == "1") {
+        addElementToForm(
+          "contactUs-label-username",
+          "L'utilisateur mentionné",
+          "userReport",
+          "input",
+          "text",
+          "username",
+          "contactUs-input-username",
+          contactForm
+        );
+
+        document.getElementsByName("username").forEach(function (e) {
+          e.addEventListener("keyup", function (e) {
+            if (e.value != "" && !textAreaHasPopped) {
+              textAreaToForm("Qu'a t-il fait ?", "Il m'a volé mon goûter.");
+            }
+          });
+        });
+      }
+      if (requestList.value == "2") {
+        addElementToForm(
+          "contactUs-label-username",
+          "Votre pseudo ou email",
+          "userReport",
+          "input",
+          "text",
+          "username",
+          "contactUs-input-username",
+          contactForm
+        );
+        document.getElementsByName("username").forEach(function (e) {
+          e.addEventListener("keyup", function (e) {
+            if (e.value != "" && !textAreaHasPopped) {
+              textAreaToForm(
+                "Expliquez-nous tout",
+                "M Delon a piraté mon compte et m'a fait dire des choses bizarres."
+              );
+            }
+          });
+        });
+      }
+      if (requestList.value == "3") {
+        textAreaToForm(
+          "Décrivez-nous le problème",
+          "Je n'ai plus le temps d'utiliser cet incroyable site depuis que je suis à l'ESGI, j'aimerais donc que vous me le supprimiez définitivement, si possible. Merci, vous êtes incroyables."
+        );
+      }
+      if (requestList.value == "4") {
+        textAreaToForm(
+          "Décrivez votre problème",
+          "Un erreur sur la page : easteregg.php est apparue soudainement."
+        );
+      }
+      if (requestList.value == "5") {
+        textAreaToForm(
+          "Allez-y",
+          "Et bien, je trouve Teddy vachement mignon.."
+        );
+      }
     });
+
+    function textAreaToForm(label, placeholder) {
+      addElementToForm(
+        "contactUs-label-report",
+        label,
+        "userReport",
+        "textarea",
+        "text",
+        "report",
+        "contactUs-textarea-report",
+        contactForm
+      );
+      document
+        .querySelector("#contactUs-textarea-report")
+        .setAttribute("minlength", "50");
+      document
+        .querySelector("#contactUs-textarea-report")
+        .setAttribute("maxlength", "300");
+      document
+        .querySelector("#contactUs-textarea-report")
+        .setAttribute(
+          "placeholder",
+          placeholder + " (Minimum 50 caractères, Maximum 300)"
+        );
+
+      textAreaHasPopped = true;
+
+      document.getElementsByName("report").forEach(function (e) {
+        e.addEventListener("change", function () {
+          if (
+            regexText.test(document.getElementsByName("report")[0].value) &&
+            !buttonHasPopped
+          ) {
+            addButtonToForm("Envoyer ma demande", contactForm);
+            buttonHasPopped = true;
+          } else {
+            if (document.querySelector(".contact-us-form button") != null) {
+              document.querySelector(".contact-us-form button").remove();
+              buttonHasPopped = false;
+            }
+          }
+        });
+      });
+    }
+
+    function addButtonToForm(content, insertedInto) {
+      const buttonEl = document.createElement("button");
+      buttonEl.setAttribute("type", "submit");
+      buttonEl.innerHTML = content;
+      insertedInto.appendChild(buttonEl);
+    }
+
+    function addElementToForm(
+      labelId,
+      labelContent,
+      divClass,
+      element,
+      elementType,
+      elementName,
+      elementId,
+      insertedInto
+    ) {
+      contactQuestionsCounter++;
+
+      const div = document.createElement("div");
+      div.setAttribute("class", "contact-us-form-div contact-" + divClass);
+      const labelEl = document.createElement("label");
+      labelEl.setAttribute("id", labelId);
+      labelEl.innerHTML = contactQuestionsCounter + ". " + labelContent;
+      div.appendChild(labelEl);
+
+      const elementEl = document.createElement(element);
+      elementEl.setAttribute("type", elementType);
+      elementEl.setAttribute("name", elementName);
+      elementEl.setAttribute("id", elementId);
+      div.appendChild(elementEl);
+
+      insertedInto.appendChild(div);
+    }
+  }
+}
+
+//POST WITH SORT AJAX FUNCTIONS AND LIKES/DISLIKES SYSTEM//
+
+if (document.querySelector("title").innerHTML == "Lounge") {
+  const searchPostEl = document.querySelector(".search-bar input");
+  const categoryPostEl = document.getElementById("categories-select");
+  const sortPostEl = document.getElementById("sort-select");
+
+  postAjax(sortPost, 1);
+
+  function postAjax(cFunction, page_number) {
+    let xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        cFunction(this);
+      }
+    };
+    xhttp.open("POST", "includes/servers/sortPost.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(
+      "search=" +
+        searchPostEl.value +
+        "&category=" +
+        categoryPostEl.value +
+        "&sort=" +
+        sortPostEl.value +
+        "&page=" +
+        page_number
+    );
   }
 
-  function addButtonToForm(content, insertedInto) {
-    const buttonEl = document.createElement("button");
-    buttonEl.setAttribute("type", "submit");
-    buttonEl.innerHTML = content;
-    insertedInto.appendChild(buttonEl);
+  function sortPost(xhttp) {
+    document.querySelector(".users-posts-main").innerHTML = xhttp.responseText;
   }
 
-  function addElementToForm(
-    labelId,
-    labelContent,
-    divClass,
-    element,
-    elementType,
-    elementName,
-    elementId,
-    insertedInto
-  ) {
-    contactQuestionsCounter++;
+  function likePost(cFunction, option, id) {
+    let xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        cFunction(this, id);
+      }
+    };
+    xhttp.open("POST", "includes/servers/likePost.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("q=" + option + "&id=" + id);
+  }
 
-    const div = document.createElement("div");
-    div.setAttribute("class", "contact-us-form-div contact-" + divClass);
-    const labelEl = document.createElement("label");
-    labelEl.setAttribute("id", labelId);
-    labelEl.innerHTML = contactQuestionsCounter + ". " + labelContent;
-    div.appendChild(labelEl);
-
-    const elementEl = document.createElement(element);
-    elementEl.setAttribute("type", elementType);
-    elementEl.setAttribute("name", elementName);
-    elementEl.setAttribute("id", elementId);
-    div.appendChild(elementEl);
-
-    insertedInto.appendChild(div);
+  function likeCheck(xhttp, id) {
+    document.querySelector("#like-dislike-post-" + id).innerHTML =
+      xhttp.responseText;
   }
 }

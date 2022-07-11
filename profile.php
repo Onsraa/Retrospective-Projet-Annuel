@@ -2,7 +2,6 @@
 <html>
 <?php $title = 'Profil';
 include("includes/head.php");
-include('includes/logging.php');
 ?>
 
 <body>
