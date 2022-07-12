@@ -22,10 +22,10 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">LOUNGE</a>
+                                <a class="nav-link" href="lounge.php">LOUNGE</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">EVENTS</a>
+                                <a class="nav-link" href="events.php">EVENTS</a>
                             </li>
                         </div>
 
