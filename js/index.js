@@ -241,23 +241,23 @@ function rePasswordVerification() {
 function captchaVerification() {
   if (
     document.getElementById("0-0").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/1.png" &&
+      "http://152.228.217.209/puzzle/1.png" &&
     document.getElementById("0-1").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/2.png" &&
+      "http://152.228.217.209/puzzle/2.png" &&
     document.getElementById("0-2").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/3.png" &&
+      "http://152.228.217.209/puzzle/3.png" &&
     document.getElementById("1-0").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/4.png" &&
+      "http://152.228.217.209/puzzle/4.png" &&
     document.getElementById("1-1").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/5.png" &&
+      "http://152.228.217.209/puzzle/5.png" &&
     document.getElementById("1-2").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/6.png" &&
+      "http://152.228.217.209/puzzle/6.png" &&
     document.getElementById("2-0").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/7.png" &&
+      "http://152.228.217.209/puzzle/7.png" &&
     document.getElementById("2-1").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/8.png" &&
+      "http://152.228.217.209/puzzle/8.png" &&
     document.getElementById("2-2").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/9.png"
+      "http://152.228.217.209/puzzle/9.png"
   ) {
     document.querySelector("#board").style.borderColor = "#3bac29";
     return true;
