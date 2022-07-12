@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require("../functions/like_dislike.php");
 
 if(isset($_SESSION['id'])){
@@ -23,13 +25,9 @@ if(isset($_SESSION['id'])){
     $res = $bdd -> query($q);
     $result = $res -> fetch(PDO::FETCH_ASSOC);
 
-    echo '<button class="like" onclick="likePost(likeCheck, \'like\',' . $post_id . ')">';
-    echo    '<i class="fa-solid fa-thumbs-up"></i>';
-    echo '</button>';
+    echo '<i class="fa-solid fa-thumbs-up" onclick="likePost(likeCheck, \'like\',' . $post_id . ')"></i>';
     echo '<p id="count-like-' . $post_id  . '">' . $result['likes'] . '</p>';
-    echo '<button class="dislike" onclick="likePost(likeCheck, \'dislike\',' . $post_id . ')">';
-    echo    '<i class="fa-solid fa-thumbs-down"></i>';
-    echo '</button>';
+    echo '<i class="fa-solid fa-thumbs-down" onclick="likePost(likeCheck, \'dislike\',' . $post_id . ')"></i>';
     echo '<p id="count-dislike-' . $post_id . '">' . $result['dislikes'] . '</p>';
 }
 ?>

@@ -14,9 +14,9 @@ function generatePost($limitedPost, $allPost, $number_of_post_per_page){
         echo            '<p>' . $post['date'] . '</p>';
         echo            '<p>' . $post['category'] . '</p>';
         echo            '<div class ="like-dislike-post" id="like-dislike-post-' . (int)$post['id'] . '">';
-        echo                '<i class="fa-solid fa-thumbs-up" onclick="likePost(likeCheck, "like", ' . (int)$post['id'] . ')"></i>';
+        echo                '<i class="fa-solid fa-thumbs-up" onclick="likePost(likeCheck,\'like\',' . (int)$post['id'] . ')"></i>';
         echo                '<p id="count-like-' . $post['id'] . '">' . $post['likes'] . '</p>';
-        echo                '<i class="fa-solid fa-thumbs-down" onclick="likePost(likeCheck, "like", ' . (int)$post['id'] . ')"></i>';
+        echo                '<i class="fa-solid fa-thumbs-down" onclick="likePost(likeCheck,\'like\',' . (int)$post['id'] . ')"></i>';
         echo                '<p id="count-dislike-' . $post['id'] . '">' . $post['dislikes'] . '</p>';
         echo            '</div>';
         echo            '<a href=""><i class="fa-solid fa-eye"></i></a>';
@@ -36,7 +36,7 @@ function generatePost($limitedPost, $allPost, $number_of_post_per_page){
                 echo 'right"';
             }
         }
-        echo ' src="img/post/image-' . $post['image'] . '">';
+        echo ' src="uploads/post/image-' . $post['image'] .'">';
         echo                '<div class="post-body-description">';
         echo                    '<h2 class="post-title">' . $post['title'] . '</h2>';
         echo                    '<p class="post-description">' . $post['description'] . '</p>';
@@ -46,7 +46,6 @@ function generatePost($limitedPost, $allPost, $number_of_post_per_page){
         echo  '</div>';
     }
     echo '</div>';
-
     echo '<div class="pages-numbers-post">';
 
     $number_of_post = count($allPost);

@@ -48,6 +48,7 @@ function createAccount() {
   loginAccountEl.removeAttribute("style");
   passwordAccountEl.removeAttribute("style");
   createAccountEl.style.display = "block";
+  cleanPuzzle();
   generatePuzzle();
   has_right = false;
 }
@@ -66,6 +67,31 @@ function fermer() {
   blurEl.style.filter = "blur(0)";
   cleanPuzzle();
 }
+
+if((window.location.href).indexOf('?') != -1) {
+  let queryString = (window.location.href).substr((window.location.href).indexOf('?') + 1); 
+
+  let value = (queryString.split('&'))[0];
+
+  value = decodeURIComponent(value);
+  
+  if(
+    value == "message_connection=Identifiants incorrects." ||
+    value == "message_connection=Le compte associé à cet email est banni."){
+    login();
+  }
+  if(
+    value == "message_createAccount=Email invalide." || 
+    value == "message_createAccount=Le compte associé à cet email est banni." || 
+    value == "message_createAccount=Email déjà utilisé." ||
+    value == "message_createAccount=Pseudo déjà utilisé"){
+    createAccount;
+  }
+  if(value == "message_password=Identifiants incorrects."){
+    login();
+  }
+  
+}
 //----------------------CONNEXION AFFICHAGE----------------------//
 
 //----------------------CAPTCHA PUZZLE----------------------//
@@ -74,6 +100,7 @@ function shuffleArray(arr) {
 }
 
 if (createAccountEl != null) {
+  cleanPuzzle();
   generatePuzzle();
 }
 
