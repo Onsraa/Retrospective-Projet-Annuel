@@ -54,7 +54,7 @@
         ];
 
         if(!in_array($_FILES['cv']['type'], $acceptable)){
-            header('location: ../apply.php?message= Format de cv invalide.&type= alert');
+            header('location: ../apply.php?message= Format de cv invalide.&type=alert');
             exit;
         }
 

@@ -172,9 +172,20 @@ footer {
 }
 
 .alert {
-  color: #bf0000;
+  color: #ff1515;
 }
 
+.success-apply{
+  color: #3bac29;
+  padding: 0;
+  margin-bottom: 3rem;
+}
+
+.alert-apply {
+  color: #ff1515;
+  padding: 0;
+  margin-bottom: 3rem;
+}
 /* --------------------------------------------ALERTS-------------------------------------------- */
 
 /*---------------------------------------------FORMULAIRES---------------------------------------*/
@@ -196,7 +207,6 @@ footer {
   padding: 5rem 2rem;
   align-content: center;
   justify-content: center;
-  transition: all 0.2s ease-out;
   border-radius: 2rem;
   box-shadow: 1px 1px 7px rgb(39, 39, 39);
   z-index: 5000;
@@ -244,6 +254,7 @@ footer {
 }
 
 .login-form,
+.login2-form,
 .passwordAccount-form {
   display: flex;
   width: 25rem;
@@ -264,6 +275,16 @@ footer {
   margin-top: 2rem;
 }
 
+.login2-form {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin: 10rem auto 4rem;
+  height: 30%;
+  width: 50%;
+}
+
 .createAccount-form {
   display: grid;
   width: 25rem;
@@ -279,7 +300,7 @@ footer {
     "password repassword"
     "labelEmail labelEmail"
     "email email"
-    "board board"
+    "verify verify"
     "submit submit";
 }
 
@@ -349,6 +370,46 @@ footer {
   grid-area: repassword;
 }
 
+.verify-division{
+  grid-area: verify;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.verify-division > #regex {
+  text-align: start;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+}
+.createAccount-form #regex p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+#regex .is_not_valid {
+  color: rgb(158, 158, 158);
+}
+
+#regex .is_valid {
+  color: green;
+}
+
+#regex .fa-xmark {
+  color: red;
+}
+
+#regex .fa-check {
+  color: green;
+}
+
+#regex .fa-solid {
+  transition: transform 0.2s ease-out 0.2s;
+}
+
 .button-reSubmit-el {
   position: relative;
   top: 2.2rem;
@@ -373,7 +434,6 @@ footer {
 }
 
 #board {
-  grid-area: board;
   width: 150px;
   height: 150px;
   border: 2px solid #19215e;
@@ -382,7 +442,8 @@ footer {
   justify-content: center;
   align-content: center;
   border-collapse: collapse;
-  margin: 1.5rem auto 0;
+  margin: 0 auto 0 0;
+  transition: border-color 0.2s ease-out 0.2s;
 }
 
 #board img {
@@ -448,7 +509,6 @@ footer {
 .forget-password-el {
   margin-top: 2rem;
 }
-
 /*---------------------------------------------FORMULAIRES---------------------------------------*/
 
 /*---------------------------------------------TOKEN---------------------------------------*/

@@ -123,6 +123,7 @@ function dragEnd() {
   currentTile.src = otherImg;
   otherTile.src = currentImg;
 
+  captchaVerification();
   verificationAll();
 }
 
@@ -159,6 +160,7 @@ function verificationAll() {
   }
   if (createAccountEl.hasAttribute("style")) {
     if (
+      document.querySelector(".nickname-el-create").value !== "" &&
       emailVerification("create") &&
       passwordVerification("create") &&
       rePasswordVerification() &&
@@ -230,10 +232,10 @@ function captchaVerification() {
     document.getElementById("2-2").src ==
       "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/9.png"
   ) {
-    document.querySelector("#board").style.borderColor = "green";
+    document.querySelector("#board").style.borderColor = "#3bac29";
     return true;
   }
-  document.querySelector("#board").style.borderColor = "red";
+  document.querySelector("#board").style.borderColor = "#ff1515";
   return false;
 }
 
