@@ -17,7 +17,7 @@ include('includes/head.php');
         <?php
 
         if (!isset($_GET['page']) || empty($_GET['page'])) {
-            $_GET['page'] = 'resume';
+            $_GET['page'] = 'summary';
         }
 
         if (isset($_GET['msg']) && !empty($_GET['msg'])) {
@@ -62,7 +62,7 @@ include('includes/head.php');
                 <div class="col-lg-10">
                     <h1 class="bg-primary row rounded no-gutters "><?= ucfirst($_GET['page']) ?></h1>
                     <?php
-                    include('includes/db.php');
+                    include('includes/servers/db.php');
                     include('includes/admin/admin_' . $_GET['page'] . '.php');
                     ?>
                 </div>
