@@ -26,7 +26,7 @@ $req->execute([$_POST['email'], 1]);
 $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
 if (!empty($result)) {
-    header('location: ../index.php?message_connection= Le compte associé à cet email est banni.?type_connection=alert');
+    header('location: ../index.php?message_connection=Le compte associé à cet email est banni.?type_connection=alert');
     exit;
 }
 

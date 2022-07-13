@@ -14,7 +14,7 @@ $mainQuery = 'SELECT
             media_post.src as image,
             (SELECT COUNT(user) FROM user_post_like WHERE user_post_like.post = post.id) as likes,
             (SELECT COUNT(user) FROM user_post_dislike WHERE user_post_dislike.post = post.id) as dislikes,
-            (SELECT users.nickname FROM users WHERE users.id = post.user) as author
+            (SELECT USERS.nickname FROM USERS WHERE USERS.id = post.user) as author
             FROM post 
             INNER JOIN media_post ON post.id = media_post.post';
 

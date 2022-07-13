@@ -36,8 +36,15 @@ const passwordAccountEl = document.querySelector(".passwordAccount-el");
 const backgroundEl = document.querySelector(".background");
 const bodyEl = document.querySelector("body");
 
+const changedPassword = document.querySelector(".changePassword-el");
+const changedRepassword = document.querySelector(".changeRepassword-el");
+
 function login() {
   blurEl.style.filter = "blur(5px)";
+  inputsEl.forEach((e) => {
+    e.value = "";
+  });
+  verificationAll();
   createAccountEl.removeAttribute("style");
   passwordAccountEl.removeAttribute("style");
   loginAccountEl.style.display = "block";
@@ -45,6 +52,10 @@ function login() {
 }
 
 function createAccount() {
+  inputsEl.forEach((e) => {
+    e.value = "";
+  });
+  verificationAll();
   loginAccountEl.removeAttribute("style");
   passwordAccountEl.removeAttribute("style");
   createAccountEl.style.display = "block";
@@ -54,6 +65,10 @@ function createAccount() {
 }
 
 function passwordAccount() {
+  inputsEl.forEach((e) => {
+    e.value = "";
+  });
+  verificationAll();
   loginAccountEl.removeAttribute("style");
   createAccountEl.removeAttribute("style");
   passwordAccountEl.style.display = "block";
@@ -61,6 +76,10 @@ function passwordAccount() {
 }
 
 function fermer() {
+  inputsEl.forEach((e) => {
+    e.value = "";
+  });
+  verificationAll();
   loginAccountEl.removeAttribute("style");
   createAccountEl.removeAttribute("style");
   passwordAccountEl.removeAttribute("style");
@@ -68,29 +87,32 @@ function fermer() {
   cleanPuzzle();
 }
 
-if((window.location.href).indexOf('?') != -1) {
-  let queryString = (window.location.href).substr((window.location.href).indexOf('?') + 1); 
+if (window.location.href.indexOf("?") != -1) {
+  let queryString = window.location.href.substr(
+    window.location.href.indexOf("?") + 1
+  );
 
-  let value = (queryString.split('&'))[0];
+  let value = queryString.split("&")[0];
 
   value = decodeURIComponent(value);
-  
-  if(
+
+  if (
     value == "message_connection=Identifiants incorrects." ||
-    value == "message_connection=Le compte associé à cet email est banni."){
+    value == "message_connection=Le compte associé à cet email est banni."
+  ) {
     login();
   }
-  if(
-    value == "message_createAccount=Email invalide." || 
-    value == "message_createAccount=Le compte associé à cet email est banni." || 
+  if (
+    value == "message_createAccount=Email invalide." ||
+    value == "message_createAccount=Le compte associé à cet email est banni." ||
     value == "message_createAccount=Email déjà utilisé." ||
-    value == "message_createAccount=Pseudo déjà utilisé"){
+    value == "message_createAccount=Pseudo déjà utilisé"
+  ) {
     createAccount;
   }
-  if(value == "message_password=Identifiants incorrects."){
+  if (value == "message_password=Identifiants incorrects.") {
     login();
   }
-  
 }
 //----------------------CONNEXION AFFICHAGE----------------------//
 
@@ -165,7 +187,7 @@ function cleanPuzzle() {
 const mail_format =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const password_format =
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,}$/;
+  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ /\%^&*-]).{5,}$/;
 
 const inputsEl = document.querySelectorAll(".input-verification");
 
@@ -180,7 +202,7 @@ function verificationAll() {
       document.querySelector(".password-el-login").value != ""
     ) {
       has_right = true;
-      isValidate("login");
+      isValidate("login", "submit");
     } else {
       isNotValidate("login");
     }
@@ -194,7 +216,7 @@ function verificationAll() {
       captchaVerification()
     ) {
       has_right = true;
-      isValidate("create");
+      isValidate("create", "submit");
     } else {
       isNotValidate("create");
     }
@@ -202,12 +224,13 @@ function verificationAll() {
   if (passwordAccountEl.hasAttribute("style")) {
     if (emailVerification("password")) {
       has_right = true;
-      isValidate("password");
+      isValidate("password", "button");
     } else {
       isNotValidate("password");
     }
   }
 }
+
 function emailVerification(classInput) {
   if (
     mail_format.test(document.querySelector(".email-el-" + classInput).value)
@@ -241,23 +264,23 @@ function rePasswordVerification() {
 function captchaVerification() {
   if (
     document.getElementById("0-0").src ==
-      "http://152.228.217.209/puzzle/1.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/1.png" &&
     document.getElementById("0-1").src ==
-      "http://152.228.217.209/puzzle/2.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/2.png" &&
     document.getElementById("0-2").src ==
-      "http://152.228.217.209/puzzle/3.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/3.png" &&
     document.getElementById("1-0").src ==
-      "http://152.228.217.209/puzzle/4.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/4.png" &&
     document.getElementById("1-1").src ==
-      "http://152.228.217.209/puzzle/5.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/5.png" &&
     document.getElementById("1-2").src ==
-      "http://152.228.217.209/puzzle/6.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/6.png" &&
     document.getElementById("2-0").src ==
-      "http://152.228.217.209/puzzle/7.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/7.png" &&
     document.getElementById("2-1").src ==
-      "http://152.228.217.209/puzzle/8.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/8.png" &&
     document.getElementById("2-2").src ==
-      "http://152.228.217.209/puzzle/9.png"
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/9.png"
   ) {
     document.querySelector("#board").style.borderColor = "#3bac29";
     return true;
@@ -266,10 +289,10 @@ function captchaVerification() {
   return false;
 }
 
-function isValidate(classInput) {
+function isValidate(classInput, type) {
   document
     .getElementById("submit-button-" + classInput)
-    .setAttribute("type", "submit");
+    .setAttribute("type", type);
   document.getElementById("submit-button-" + classInput).className =
     "form-submit-yes";
   document
@@ -311,8 +334,9 @@ function isNotValidate(classInput) {
 
 //-------------------------INDICATIONS PASSWORD-------------------------//
 
-//VARIABLES//
+//-----VARIABLES-----//
 
+//CREATE ACCOUNT
 const constatEl = document.querySelector("#constat");
 const constatUpperEl = document.querySelector("#constat_upper");
 const constatLowerEl = document.querySelector("#constat_lower");
@@ -320,6 +344,8 @@ const constatNumberEl = document.querySelector("#constat_number");
 const constatSpecialEl = document.querySelector("#constat_special");
 const constatFiveEl = document.querySelector("#constat_five");
 const searchEl = document.querySelector("#searchUser-bar");
+
+//CHANGE PASSWORD
 
 const id_start = "constat";
 
@@ -390,10 +416,19 @@ function verifyPassword(e) {
   } else {
     is_not_valid("_five");
   }
+  if (document.querySelector(".password-el-create") !== null) {
+    verifyIdenticalPassword();
+  }
+  if(document.getElementById("changePassword") !== null) {
+    verifyChangedRepassword();
+  }
+}
+
+function verifyIdenticalPassword(){  
   if (
     document.querySelector(".password-el-create").value ==
       document.querySelector(".rePassword-el-create").value &&
-    document.querySelector(".password-el-create").value != ""
+    document.querySelector(".password-el-create").value !== ""
   ) {
     is_valid("_identical");
   } else {
@@ -401,12 +436,8 @@ function verifyPassword(e) {
   }
 }
 
-function verifyRePassword() {
-  if (
-    document.querySelector(".password-el-create").value ==
-      document.querySelector(".rePassword-el-create").value &&
-    document.querySelector(".password-el-create").value != ""
-  ) {
+function verifyChangedRepassword() {
+  if (changedPassword.value == changedRepassword.value && changedPassword.Value !== "") {
     is_valid("_identical");
   } else {
     is_not_valid("_identical");
@@ -636,3 +667,44 @@ if (document.querySelector("title").innerHTML == "Lounge") {
       xhttp.responseText;
   }
 }
+
+//CHANGE PASSWORD AJAX//
+
+function sendLinkPassword(cFunction, input) {
+  let xhttp;
+  let email = document.querySelector("." + input).value;
+
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      cFunction(this);
+    }
+  }
+  xhttp.open("POST", "includes/servers/new_password.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("email=" + email);
+}
+
+function sendLinkPasswordCheck(xhttp) {
+  document.querySelector(".passwordAccount-status").innerHTML =
+    xhttp.responseText;
+  document.querySelector(".passwordAccountTitle-el").style.display = "none";
+  document.getElementById("submit-button-password").marginBottom ="4rem!important";
+}
+
+function passwordChange(token, password, repassword){
+  let xhttp;
+  const passwordValue = document.getElementById(password).value;
+  const repasswordValue = document.getElementById(repassword).value;
+
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if(this.readyState == 4 && this.status == 200){
+      document.querySelector(".change-password-div").innerHTML = this.responseText;
+    }
+  }
+  xhttp.open("POST", "verifications/change_password_verification.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("q=" + token + "&password=" + passwordValue + "&repassword=" + repasswordValue);
+}
+

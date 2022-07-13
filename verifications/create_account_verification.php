@@ -26,9 +26,19 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 }
 
 if (strlen($_POST['password']) < 5 || !preg_match('/[A-Z]/', $_POST['password']) || !preg_match('/[0-9]/', $_POST['password'])) {
-    header('location: ../index.php?message_createAccount=Veuillez entrer un mot de passe avec au moins 8 caractères dont une majuscule, une minuscule et un chiffre.&type_createAccount=alert');
+    header('location: ../index.php?message_createAccount=Veuillez entrer un mot de passe avec au moins 5 caractères dont une majuscule, une minuscule et un chiffre.&type_createAccount=alert');
     exit;
 }
+
+$pwdVerif =  "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ /\%^&*-]).{5,}$/";
+
+
+if(!preg_match($pwdVerif, $_POST['password'])){
+    header('location: ../index.php?message_createAccount=Veuillez entrer un mot de passe avec au moins 5 caractères dont une majuscule, une minuscule et un chiffre.&type_createAccount=alert');
+    exit;
+}
+
+
 
 if($_POST['password'] != $_POST['repassword']){
     header('location: ../index.php?message_createAccount=Les mots de passe ne sont pas identiques.&type_createAccount=alert');
