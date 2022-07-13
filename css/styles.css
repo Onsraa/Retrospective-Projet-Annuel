@@ -167,25 +167,26 @@ footer {
 
 /* --------------------------------------------ALERTS-------------------------------------------- */
 
-.success {
-  color: #3bac29;
-}
 
-.alert {
-  color: #ff1515;
-}
 
-.success-apply{
+.success-apply, .success-password{
   color: #3bac29;
   padding: 0;
+}
+
+.alert-apply, .alert-password {
+  color: #ff1515;
+  padding: 0;
+}
+
+.success-apply, .alert-apply{
   margin-bottom: 3rem;
 }
 
-.alert-apply {
-  color: #ff1515;
-  padding: 0;
-  margin-bottom: 3rem;
+.success-password, .alert-password{
+  margin: 3rem auto;
 }
+
 /* --------------------------------------------ALERTS-------------------------------------------- */
 
 /*---------------------------------------------FORMULAIRES---------------------------------------*/
@@ -313,11 +314,12 @@ footer {
 }
 
 .passwordAccount-form {
-  margin: 0 auto;
-  grid-template-areas:
-    "title"
-    "email"
-    "submit";
+  flex-direction: column;
+  margin: auto;
+}
+
+.email-el-password{
+  margin-bottom: 3rem;
 }
 
 .input-el,
@@ -410,18 +412,24 @@ footer {
   transition: transform 0.2s ease-out 0.2s;
 }
 
-.button-reSubmit-el {
-  position: relative;
-  top: 2.2rem;
-}
 
 .passwordAccountContact-el {
   text-decoration: underline;
   cursor: pointer;
 }
+
 .passwordAccountTitle-el {
-  grid-area: title;
   margin-bottom: 4.5rem;
+}
+
+#submit-button-password{
+  margin-bottom: 9rem;
+}
+
+.contact-us-link{
+  border: none;
+  padding: 0;
+  background: none;
 }
 
 .button-submit-el {
@@ -519,8 +527,8 @@ footer {
   background-color: #19215e;
   color: white;
   text-align: center;
-  width: 40rem;
-  padding: 4rem;
+  width: 35rem;
+  padding: 3rem;
   border: none;
   border-radius: 1.5rem;
   display: grid;
@@ -528,13 +536,13 @@ footer {
   margin: 10rem auto;
 }
 
-.tokenIsValid-el{
+.tokenIsValid-el {
   background-color: #3bac29;
 }
 
-.token-el h1,
-.tokenIsValid-el h1 {
-  font-size: 2.6rem;
+.token-el h2,
+.tokenIsValid-el h2 {
+  font-size: 2rem;
 }
 
 .token-el form {
@@ -545,10 +553,11 @@ footer {
 .token-buttonEl {
   padding: 1rem;
   border-radius: 0.5rem;
-  width: 100%;
+  width: 80%;
   text-align: center;
-  height: 6rem;
-  font-size: 2rem;
+  height: 3.5rem;
+  font-size: 1rem;
+  margin: 0 auto;
 }
 
 .token-buttonEl a {
@@ -570,7 +579,7 @@ footer {
 }
 
 .tokenIsValid-el p {
-  color: rgb(201, 201, 201);
+  color: rgb(243, 243, 243);
   font-size: 1.3rem;
 }
 
@@ -1016,22 +1025,6 @@ footer {
   padding-left: 30px;
   border: none;
 }
-/* ----------------------------------------------LOUNGE 1 PROFIL---------------------------------------------*/
-
-.banner {
-  height: 1000px;
-  background-image: url("../img/lounge.png");
-  background-size: cover;
-}
-
-.filtre {
-  background-color: white;
-  width: 250px;
-  height: 45px;
-  border-radius: 30px;
-  padding-left: 30px;
-  border: none;
-}
 
 /*------------------------------------------------------PROFIL----------------------------------------------*/
 
@@ -1107,7 +1100,7 @@ footer {
   background-color: rgba(0, 0, 0, 0.36);
 }
 
-/*------------------------------------------------------POST----------------------------------------------*/
+/*------------------------------------------------------POST POPUP----------------------------------------------*/
 
 .commenter input,
 .commenter button {
@@ -1157,71 +1150,68 @@ div.post {
   font-size: 40px;
   border-radius: 1rem;
   background-color: grey;
-  border : none;
-  color : white;
+  border: none;
+  color: white;
   font-weight: bolder;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
 }
 
-#show-login{
+#show-login {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   padding: 10px 20px;
   font-size: 15px;
-  color:#222;
+  color: #222;
   background: #f5f5f5;
-  border : none;
+  border: none;
   outline: none;
   cursor: pointer;
-  border-radius : 5px;
+  border-radius: 5px;
 }
 .popup {
   position: absolute;
   top: -150%;
-  left :50%;
+  left: 50%;
   opacity: 0;
-  transform: translate(-50%,-50%) scale(1.25);
+  transform: translate(-50%, -50%) scale(1.25);
   width: 600px;
   padding: 20px 30px;
   background: #fff;
-  box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.15);
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  transition: top 0ms ease-in-out 200ms,
-              opacity 200ms ease-in-out 0ms,
-              transform 20ms ease-in-out 0ms;
+  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
+    transform 20ms ease-in-out 0ms;
   z-index: 99999;
 }
-.popup.active{
+.popup.active {
   position: fixed;
   top: 50%;
   opacity: 1;
-  transform: translate(-50%,-50%) scale(1);
-  transition: top 0ms ease-in-out 200ms,
-              opacity 200ms ease-in-out 0ms,
-              transform 20ms ease-in-out 0ms;
-z-index: 99999;
-
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
+    transform 20ms ease-in-out 0ms;
+  z-index: 99999;
 }
 
 main.is-blurred {
-  filter: blur(8px)!important;
+  filter: blur(8px) !important;
 }
 
-.popup .close-btn{
+.popup .close-btn {
   position: absolute;
-  top : 10px;
-  right :10px;
+  top: 10px;
+  right: 10px;
   width: 20px;
   height: 20px;
   background: #888;
-  color : #eee;
-  text-align:center;
+  color: #eee;
+  text-align: center;
   line-height: 20px;
-  border-radius:15px;
-  cursor:  pointer;
+  border-radius: 15px;
+  cursor: pointer;
 }
 
 .popup form h2 {
@@ -1234,46 +1224,44 @@ main.is-blurred {
   margin: 15px 0px;
 }
 .popup form .form-element label {
-  font-size :20px;
-  color:#222;
+  font-size: 20px;
+  color: #222;
 }
-.popup form .form-element input[type="text"]{
+.popup form .form-element input[type="text"] {
   margin-top: 5px;
   display: block;
   width: 100%;
   padding: 10px;
   outline: none;
-  border : 1px solid #aaa;
-  border-radius:5px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }
 
-.popup form .form-element textarea{
+.popup form .form-element textarea {
   margin-top: 5px;
   display: block;
   width: 100%;
   padding: 10px;
   outline: none;
-  border : 1px solid #aaa;
-  border-radius:5px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }
 
 #content {
-  height : 150px;
+  height: 150px;
 }
 
 .popup form .form-element button {
   width: 100%;
   height: 40px;
-  border:none;
-  outline:none;
+  border: none;
+  outline: none;
   font-size: 15px;
   background: #222;
   color: #f5f5f5;
   border-radius: 10px;
   cursor: pointer;
 }
-
-
 
 /*------------------------------------------------------CONTACT US----------------------------------------------*/
 
@@ -1302,6 +1290,7 @@ main.is-blurred {
   width: 70%;
   margin: 4rem auto;
   border-radius: 3rem;
+  transition: 0.2s ease-out 0.2s;
 }
 
 .contact-us-div > p:nth-child(1) {
@@ -1334,7 +1323,7 @@ main.is-blurred {
   resize: vertical;
 }
 
-.contact-us-form textarea{
+.contact-us-form textarea {
   height: 10rem;
 }
 
@@ -1348,16 +1337,19 @@ main.is-blurred {
   border: none;
   border-radius: 10px;
   margin: 2rem auto 0;
+  box-shadow: 1px 1px 5px;
 }
 
-.contact-us-form button:hover{
+.contact-us-form button:hover {
   bottom: 1px;
   right: 1px;
+  box-shadow: 2px 2px 5px;
 }
 
-.contact-us-form button:active{
+.contact-us-form button:active {
   bottom: 0;
   right: 0;
+  box-shadow: 1px 1px 5px;
 }
 
 .contact-us-form label {
@@ -1365,3 +1357,80 @@ main.is-blurred {
 }
 
 
+/* FORGET PASSWORD */
+
+.change-password-body{
+  background: linear-gradient(#101d80, #5b64ac);
+  color: rgb(214, 214, 214);
+}
+
+.change-password-div{
+  text-align: center;
+  margin: 12rem 0;
+}
+
+.change-password-div form{
+  display: grid;
+  grid-template-areas: 
+            "changePassword changeRepassword"
+            "regex regex"
+            "changePasswordBtn changePasswordBtn";
+  width: 40%;
+  text-align: left;      
+  column-gap: 2rem;
+  row-gap: 3rem;
+  margin: 3rem auto 0;
+  padding: 3rem;
+  background-color: #101d80;
+  color: rgb(224, 224, 224);
+  border: none;
+  border-radius: 3rem;
+}
+
+.changePassword{
+  grid-area: changePassword;
+  display: flex;
+  flex-direction: column;
+}
+
+.changeRepassword{
+  grid-area: changeRepassword;
+  display: flex;
+  flex-direction: column;
+}
+
+.change-password-div form #regex{
+  grid-area: regex;
+  text-align: left;
+  width: 50%;
+  margin: 0 auto;      
+  padding: 1rem;
+  border: 2px dashed #080f46;
+  border-radius: 1rem;
+}
+
+.change-password-div form #regex p{
+  margin: 0;
+  color: white;
+}
+
+.changePassword-el{
+  padding: 1rem;
+  border: 2px solid #101d80;
+  border-radius: 1rem;
+}
+
+.changeRepassword-el{
+  padding: 1rem;
+  border: 2px solid #101d80;
+  border-radius: 1rem;
+}
+
+.changePasswordBtn{
+  grid-area: changePasswordBtn;
+  padding: 1rem;
+  width: 30%;
+  border: 2px solid #101d80;
+  border-radius: 1rem;
+  margin: 0 auto;
+}
