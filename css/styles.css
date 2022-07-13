@@ -802,16 +802,25 @@ footer {
   padding: 0.1rem;
   font-size: 1rem;
 }
-.admin tr td:last-child button {
-  width: 48%;
+.admin .options_buttons button {
+  width: 47%;
   height: 1.5rem;
   text-align: center;
   padding: 0;
+  margin: 0.1rem;
 }
 
-.admin tr td:last-child button:last-child {
+.admin .options_buttons button:last-child {
   width: 100%;
 }
+
+.admin .options_buttons{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .admin td img {
   height: 4rem;
   width: 4rem;

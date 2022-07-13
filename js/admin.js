@@ -48,14 +48,16 @@ function admin_edit(rowClass)
         
         row.removeChild(cells[i]);
         
-
         newInput.classList.add("form-control");
         newInput.classList.add("form-control-lg");
         newInput.setAttribute("form", "admin-user-form");
-        newInput.setAttribute("name", i);
+        newInput.setAttribute("name", inputName(i+1));
         
         row.insertBefore(td, cells[cells.length-1]);
         td.appendChild(newInput);
+
+        console.log(i);
+        console.log(newInput.value);
     }
 
     // cells[cells.length-1].innerHTML = '<button type="button" class="btn btn-outline-success btn-sm">Validate</button> <button type="button" class="btn btn-outline-danger btn-sm">Dismiss</button>';
@@ -89,9 +91,26 @@ function cellType(i)
     }
 }
 
+function inputName(i)
+{
+    switch(i)
+    {
+        case 0: return "id";
+        case 1: return "email";
+        case 2: return "nickname";
+        case 3: return "avatar";
+        case 4: return "phone";
+        case 5: return "first_name";
+        case 6: return "last_name";
+        case 7: return "birth_date";
+        case 8: return "status";
+        case 9: return "region";
+        case 10: return "gender";
+        case 11: return "creation_date";
+    }
+}
 
-
-function admin_ban(rowClass)
+function admin_ban(rowClass, is_banned)
 {
     const row = document.querySelector(rowClass);   // On stocke la ligne du tableau à modifier
     const cells = row.querySelectorAll('td');       // On stocke chaque cellule de cette ligne
@@ -107,7 +126,7 @@ function admin_ban(rowClass)
     form.action = "verifications/admin_users_ban.php";
     cells[cells.length-1].appendChild(form);
 
-    cells[cells.length-1].querySelector('form').innerHTML = 'Bannir ' + cells[1].innerText + ' ? <input type="hidden" name="id" value="' + id.innerText + '"><button class="btn btn-outline-danger btn-sm" type="submit">Bannir</button>';
+    cells[cells.length-1].querySelector('form').innerHTML = ((is_banned) ? 'Unban ' : 'Ban ') + cells[1].innerText + ' ? <input type="hidden" name="id" value="' + id.innerText + '"><button class="btn btn-outline-danger btn-sm" type="submit">' + ((is_banned) ? 'Unban' : 'Ban') + '</button>';
     cells[cells.length-1].style = "font-size: 0.8rem;text-align: center;";
 
     const cancel = document.createElement("button");
@@ -122,12 +141,4 @@ function admin_ban(rowClass)
         });
     }
     cells[cells.length-1].querySelector('form').appendChild(cancel);
-}
-
-
-function admin_sort(sort, order)
-{
-    let rows = document.querySelectorAll('tbody tr');
-    let cells = document.querySelectorAll('td');
-    console.log(rows);
 }
