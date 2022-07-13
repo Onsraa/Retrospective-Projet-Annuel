@@ -84,8 +84,9 @@
   <i onclick="login()" class="fa-2xl fa-solid fa-angle-left"></i>
   <form class="passwordAccount-form">
     <h1 class="passwordAccountTitle-el">Récupération de mot de passe</h1>
+    <div class="passwordAccount-status"></div>
     <input class="input-verification input-el email-el-password" name="email" type="email" placeholder="Saisissez votre email de récupération" />
-    <button disabled class="form-submit-no" id="submit-button-password"><i id="submit-icon-password" class="fa-solid fa-xmark"></i></button>
-    <p class="contact-us-el">Contacter le support</p>
+    <button type="button" onclick="sendLinkPassword(sendLinkPasswordCheck, 'email-el-password')" class="form-submit-yes" id="submit-button-password"><i id="submit-icon-password" class="fa-solid fa-check"></i></button>
+    <p class="contact-us-link"><a href="contactUs.php">Contacter le support</a></p>
   </form>
 </div>
