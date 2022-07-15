@@ -39,6 +39,8 @@ const bodyEl = document.querySelector("body");
 const changedPassword = document.querySelector(".changePassword-el");
 const changedRepassword = document.querySelector(".changeRepassword-el");
 
+const addPostEl = document.querySelector(".add-post-div");
+
 function login() {
   blurEl.style.filter = "blur(5px)";
   inputsEl.forEach((e) => {
@@ -76,16 +78,32 @@ function passwordAccount() {
 }
 
 function fermer() {
-  inputsEl.forEach((e) => {
+  if(loginAccountEl !== null){
+    inputsEl.forEach((e) => {
     e.value = "";
-  });
-  verificationAll();
-  loginAccountEl.removeAttribute("style");
-  createAccountEl.removeAttribute("style");
-  passwordAccountEl.removeAttribute("style");
+    });
+    verificationAll();
+    loginAccountEl.removeAttribute("style");
+    createAccountEl.removeAttribute("style");
+    passwordAccountEl.removeAttribute("style");  
+    cleanPuzzle();
+  }
   blurEl.style.filter = "blur(0)";
-  cleanPuzzle();
 }
+
+// ADD POST //
+
+function addPost(){
+  addPostEl.style.display="block";
+  blurEl.style.filter = "blur(5px)";
+}
+
+function removeAddPost(){
+  addPostEl.style.display="none";
+  blurEl.style.filter = "blur(0)";
+}
+
+// ADD POST //
 
 if (window.location.href.indexOf("?") != -1) {
   let queryString = window.location.href.substr(

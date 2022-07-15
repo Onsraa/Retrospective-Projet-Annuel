@@ -1,33 +1,40 @@
 <?php
 
+session_start();
+
 if( !isset($_POST['title']) || empty($_POST['content']) || !isset($_POST['content']) || empty($_POST['title'])) {
-  header('location:../lounge.php?message=Veuillez remplir les champs obligatoires&type=alert');
+  header('location:../lounge.php?message_post=Veuillez remplir les champs obligatoires&type_post=alert-post');
   exit;
 }
 
-// si une image est postée
-if(!empty($_FILES['file'])){
+if(
+  $_POST['category'] !== 'gaming' &&
+  $_POST['category'] !== 'fun' &&
+  $_POST['category'] !== 'chat' &&
+  $_POST['category'] !== 'other'){
+  header('location:../lounge.php?message_post=Erreur au niveau de la catégorie du post.&type_post=alert-post');
+  exit;
+  }
 
-      // vérifier que le fichier est de type jpg, png ou gif : sinon redirection
+if(!empty($_FILES['image'])){
       $acceptable = [
       				'image/jpeg',
       				'image/png'
       			];
-      // Si le type de fichier n'est pas dans $acceptable : redirection
-      if(!in_array($_FILES['file']['type'], $acceptable)){
-      	header('location:../lounge.php?message=Type de fichier incorrect.&type=danger');
+      if(!in_array($_FILES['image']['type'], $acceptable)){
+      	header('location:../lounge.php?message_post=Type de fichier incorrect.&type_post=alert-post');
       	exit;
       }
 
       // Si le fichier fait plus de 2Mo : redirection
       $maxSize = 2 * 1024 * 1024; // 2Mo
-      if($_FILES['file']['size'] > $maxSize){
-        header('location:../lounge.php?message=Fichier trop lourd (2Mo max).&type=danger');
+      if($_FILES['image']['size'] > $maxSize){
+        header('location:../lounge.php?message_post=Fichier trop lourd (2Mo max).&type_post=alert-post');
         exit;
       }
 
       // Si le dossier uploads n'existe pas, le créer
-      $chemin = 'uploads';
+      $chemin = 'uploads/post';
       if(!file_exists($chemin)){
         mkdir($chemin);
       }
@@ -36,33 +43,17 @@ if(!empty($_FILES['file'])){
       $array = explode('.', $filename);
       $extension = end($array);
 
-      $filename = 'file-' . time() . '.' . $extension;
+      $filename = 'post-' . time() . '.' . $extension;
 
 
       $destination = $chemin . '/' . $filename;
 
       // Déplacer le fichier vers son emplacement définitif
-      move_uploaded_file($_FILES['file']['tmp_name'], $destination);
+      move_uploaded_file($_FILES['image']['tmp_name'], $destination);
 
+}else{
+  $filename = 'default_post.png';
 }
 
-// Insérer un nouveau Post
 require('../includes/servers/db.php');
 
-$q = 'INSERT INTO  POST(title,content) VALUES (:title, :content)';
-$req = $bdd->prepare($q); // Préparation de la requete
-$result = $req->execute([
-						'title' => $_POST['title'],
-						'content' => $_POST['content'],
-						]);
-
-
-
-if(!$result){
-	header('location: ../lounge.php?message=Erreur lors du poste.&type=danger');
-	exit;
-}
-else{
-	header('location: ../lounge.php?message=Votre poste a bien été ajouté.&type=success');
-	exit;
-}

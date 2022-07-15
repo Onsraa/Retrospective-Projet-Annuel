@@ -44,7 +44,7 @@
     <label class="password-label">Mot de passe</label>
     <input class="input-verification input-create-el password-el-create" name="password" type="password" onkeyup="verifyPassword(this.value)" value="<?php echo isset($_COOKIE['password']) ? $_COOKIE['password'] : '' ?>" />
     <label class="repassword-label">Vérifier le mot de passe</label>
-    <input class="input-verification input-create-el rePassword-el-create" name="repassword" type="password" onkeyup="verifyRePassword()" value="<?php echo isset($_COOKIE['repassword']) ? $_COOKIE['repassword'] : '' ?>" />
+    <input class="input-verification input-create-el rePassword-el-create" name="repassword" type="password" onkeyup="verifyIdenticalPassword()" value="<?php echo isset($_COOKIE['repassword']) ? $_COOKIE['repassword'] : '' ?>" />
     <label class="email-label">Email</label>
     <input class="input-verification input-create-el email-el-create" name="email" type="email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : '' ?>" placeholder="sananes_champagne@esgi.fr" />
     <div class="verify-division">
