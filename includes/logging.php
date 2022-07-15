@@ -14,10 +14,10 @@ if($title == 'Connexion') {
 } else if (preg_match('/^Admin_[a-z]+$/', $title))
 {
     $path = "logs";
-    $line = date('Y/m/d - H:i:s') . ' - Tentative d\'accès aux fonctions admin ' . (isset($_SESSION['email']) ? 'réussie' : 'échouée') . ' de : ' . (isset($_SESSION['email']) ? $_SESSION['email'] : 'utilisateur non connecté (' . $_SERVER['REMOTE_ADDR'] . ').');
+    $line = date('Y/m/d - H:i:s') . ' - Tentative d\'accès aux fonctions admin de : ' . (isset($_SESSION['email']) ? $_SESSION['email'] : 'utilisateur non connecté (' . $_SERVER['REMOTE_ADDR'] . ').');
 } else if ($title == 'Admin_users_verif') {
     $path = "../logs";
-    $line = date('Y/m/d - H:i:s') . ' - Tentative de modification de ' . $_POST[0] . ' par ' . (isset($_SESSION['email']) ? $_SESSION['email'] : 'utilisateur non connecté (' . $_SERVER['REMOTE_ADDR'] . ').');
+    $line = date('Y/m/d - H:i:s') . ' - Tentative de modification de ' . $_POST['email'] . ' par ' . (isset($_SESSION['email']) ? $_SESSION['email'] : 'utilisateur non connecté (' . $_SERVER['REMOTE_ADDR'] . ').');
 } else { 
     $path = "logs";
     $line = date('Y/m/d - H:i:s') . ' - Chargement de la page ' . $title . ' par ' . (isset($_SESSION['email']) ? $_SESSION['email'] : 'utilisateur non connecté (' . $_SERVER['REMOTE_ADDR'] . ').');

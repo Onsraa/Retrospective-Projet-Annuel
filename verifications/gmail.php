@@ -1,5 +1,5 @@
 <?php
-ini_set("display_errors", "1");
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
@@ -16,7 +16,7 @@ function sendMail($subject, $message, $altMessage, $to){
 
     $mail->isSMTP();
 
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->SMTPDebug = 0;
     
     $mail->Host = 'smtp.gmail.com';
     $mail->Port = 465;

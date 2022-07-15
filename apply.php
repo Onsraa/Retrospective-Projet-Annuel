@@ -13,13 +13,13 @@ include("includes/head.php") ?>
         include("includes/log_forms.php");
     }
     ?>
-    <main onclick="fermer()" class="blur-el">
+    <main <?php echo !isset($_SESSION['email']) ? 'onclick="fermer()" class="blur-el"' : ''; ?>>
         <div class="apply-div-el">
             <h1>JOIN THE TEAM</h1>
             <h1>...</h1>
             <div class="apply-form-el">
                 <h2>Apply for Retrospective</h2>
-                <?php echo isset($_GET['message']) ? '<p class="' . $_GET['type'] . '">' . $_GET['message'] . '<p>' : '' ?>
+                <?php echo isset($_GET['message']) ? '<p class="' . $_GET['type'] . '-apply">' . $_GET['message'] . '<p>' : '' ?>
                 <form action="verifications/apply_verification.php" method="post" enctype="multipart/form-data" id="letter_form">
                     <label>First name <span class="champ_obligatoire">*</span></label>
                     <input type="text" name="firstName" value="<?php echo isset($_COOKIE['firstName']) ? $_COOKIE['firstName'] : ''; ?>" placeholder="Frédéric">

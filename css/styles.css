@@ -167,12 +167,24 @@ footer {
 
 /* --------------------------------------------ALERTS-------------------------------------------- */
 
-.success {
+
+
+.success-apply, .success-password{
   color: #3bac29;
+  padding: 0;
 }
 
-.alert {
-  color: #bf0000;
+.alert-apply, .alert-password {
+  color: #ff1515;
+  padding: 0;
+}
+
+.success-apply, .alert-apply{
+  margin-bottom: 3rem;
+}
+
+.success-password, .alert-password{
+  margin: 3rem auto;
 }
 
 /* --------------------------------------------ALERTS-------------------------------------------- */
@@ -196,7 +208,6 @@ footer {
   padding: 5rem 2rem;
   align-content: center;
   justify-content: center;
-  transition: all 0.2s ease-out;
   border-radius: 2rem;
   box-shadow: 1px 1px 7px rgb(39, 39, 39);
   z-index: 5000;
@@ -244,6 +255,7 @@ footer {
 }
 
 .login-form,
+.login2-form,
 .passwordAccount-form {
   display: flex;
   width: 25rem;
@@ -264,6 +276,16 @@ footer {
   margin-top: 2rem;
 }
 
+.login2-form {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin: 10rem auto 4rem;
+  height: 30%;
+  width: 50%;
+}
+
 .createAccount-form {
   display: grid;
   width: 25rem;
@@ -279,7 +301,7 @@ footer {
     "password repassword"
     "labelEmail labelEmail"
     "email email"
-    "board board"
+    "verify verify"
     "submit submit";
 }
 
@@ -292,11 +314,12 @@ footer {
 }
 
 .passwordAccount-form {
-  margin: 0 auto;
-  grid-template-areas:
-    "title"
-    "email"
-    "submit";
+  flex-direction: column;
+  margin: auto;
+}
+
+.email-el-password{
+  margin-bottom: 3rem;
 }
 
 .input-el,
@@ -349,18 +372,64 @@ footer {
   grid-area: repassword;
 }
 
-.button-reSubmit-el {
-  position: relative;
-  top: 2.2rem;
+.verify-division{
+  grid-area: verify;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.verify-division > #regex {
+  text-align: start;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+}
+.createAccount-form #regex p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+#regex .is_not_valid {
+  color: rgb(158, 158, 158);
+}
+
+#regex .is_valid {
+  color: green;
+}
+
+#regex .fa-xmark {
+  color: red;
+}
+
+#regex .fa-check {
+  color: green;
+}
+
+#regex .fa-solid {
+  transition: transform 0.2s ease-out 0.2s;
+}
+
 
 .passwordAccountContact-el {
   text-decoration: underline;
   cursor: pointer;
 }
+
 .passwordAccountTitle-el {
-  grid-area: title;
   margin-bottom: 4.5rem;
+}
+
+#submit-button-password{
+  margin-bottom: 9rem;
+}
+
+.contact-us-link{
+  border: none;
+  padding: 0;
+  background: none;
 }
 
 .button-submit-el {
@@ -373,7 +442,6 @@ footer {
 }
 
 #board {
-  grid-area: board;
   width: 150px;
   height: 150px;
   border: 2px solid #19215e;
@@ -382,7 +450,8 @@ footer {
   justify-content: center;
   align-content: center;
   border-collapse: collapse;
-  margin: 1.5rem auto 0;
+  margin: 0 auto 0 0;
+  transition: border-color 0.2s ease-out 0.2s;
 }
 
 #board img {
@@ -458,8 +527,8 @@ footer {
   background-color: #19215e;
   color: white;
   text-align: center;
-  width: 40rem;
-  padding: 4rem;
+  width: 35rem;
+  padding: 3rem;
   border: none;
   border-radius: 1.5rem;
   display: grid;
@@ -467,13 +536,13 @@ footer {
   margin: 10rem auto;
 }
 
-.tokenIsValid-el{
+.tokenIsValid-el {
   background-color: #3bac29;
 }
 
-.token-el h1,
-.tokenIsValid-el h1 {
-  font-size: 2.6rem;
+.token-el h2,
+.tokenIsValid-el h2 {
+  font-size: 2rem;
 }
 
 .token-el form {
@@ -484,10 +553,11 @@ footer {
 .token-buttonEl {
   padding: 1rem;
   border-radius: 0.5rem;
-  width: 100%;
+  width: 80%;
   text-align: center;
-  height: 6rem;
-  font-size: 2rem;
+  height: 3.5rem;
+  font-size: 1rem;
+  margin: 0 auto;
 }
 
 .token-buttonEl a {
@@ -509,7 +579,7 @@ footer {
 }
 
 .tokenIsValid-el p {
-  color: rgb(201, 201, 201);
+  color: rgb(243, 243, 243);
   font-size: 1.3rem;
 }
 
@@ -741,16 +811,25 @@ footer {
   padding: 0.1rem;
   font-size: 1rem;
 }
-.admin tr td:last-child button {
-  width: 48%;
+.admin .options_buttons button {
+  width: 47%;
   height: 1.5rem;
   text-align: center;
   padding: 0;
+  margin: 0.1rem;
 }
 
-.admin tr td:last-child button:last-child {
+.admin .options_buttons button:last-child {
   width: 100%;
 }
+
+.admin .options_buttons{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .admin td img {
   height: 4rem;
   width: 4rem;
@@ -810,80 +889,124 @@ footer {
 
 /*---------------------------------------------LOUNGE---------------------------------------*/
 
-.div_centered {
-  max-width: 90%;
+.post-section{
+  padding: 3rem 15rem;
+  width: 120rem;
+  background: linear-gradient(#101d80,#00595f);
 }
 
-.filtre_div {
-  font-family: "Neon";
-  font-size: 2rem;
-  height: 200px;
-  margin-top: 80px;
-  margin-bottom: 80px;
-  background-color: rgba(6, 6, 6, 0.1);
-  border-radius: 2rem;
+.sort-bar{
+  background-color: #5664cf;
+  width: 100%;
+  margin: 0;
+  padding: 2rem 4rem;
+  border: none;
+  border-radius: 1.5rem;
+  font-size: 1.4rem;
 }
 
-.filtre_div .row {
-  flex: 1;
-  flex-wrap: nowrap;
-  justify-content: space-around;
+.sort-bar button{
+  border: none;
+  border-radius: 1.4rem;
 }
 
-.en_tete {
-  height: 52px;
-  background-color: rgba(6, 6, 6, 0.1);
-  border-radius: 1rem;
-  font-size: 2rem;
-  padding: 0 1rem;
-  padding-top: 3px;
+.sort-bar *{
+  justify-content: center;
 }
 
-.en_tete p {
+.user-post{
+  margin: 3rem 0;
+}
+
+.post-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  background-color: #5664cf;
+  padding: 2rem 4rem;
+  border: none;
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.post-header p{
   margin: 0;
 }
 
-.img_txt_post {
-  font-family: "Neon";
-  font-size: 30px;
+.like-dislike-post{
   display: flex;
-  flex-wrap: nowrap;
 }
 
-img.img_txt_post {
-  max-width: 450px;
-  max-height: 335px;
-  border-radius: 20px;
+.like-dislike-post > *{
+  margin-left: 2rem;
+  display: flex;
 }
 
-div.img_txt_post {
-  margin-top: 50px;
-  margin-bottom: 100px;
+.like-dislike-post i{
+  margin-top: 0.5rem;
+  margin-right: 0.3rem;
 }
 
-.img_txt_post .col > p {
-  font-size: 52px;
+.post-body{
+  display: flex;
+  background-color: rgb(207, 207, 207);
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+
+.post-body img{
+  width: 35rem;
+  height: 22rem;
+}
+
+.post-image-left{
+  border-radius: 0 0 0 1.5rem;
+  order: -1;
+}
+
+.post-image-right{
+  border-radius: 0 0 1.5rem 0;
+  order: 2;
+}
+
+.post-body-description{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.post-title{
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+}
+
+.post-description{
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.post-user{
   font-weight: bold;
-  text-align: center;
+  text-align: end;
+  margin: 0;
+  margin-top: auto;
+  align-self: flex-end;
 }
 
-#neon_font {
-  font-family: "Neon";
+.pages-numbers-post{
+  display: flex;
+  justify-content: center;
 }
 
-div.posts:hover {
-  background-color: #dae5ff;
-  transition: 0.5s;
-}
-
-div.posts {
-  transition: 0.5s;
-  border-radius: 1rem;
-}
-
-.div_centered a {
-  text-decoration: none !important;
-  color: black !important;
+.page-number-post{
+  border: 1px solid black;
+  border-radius: 9px;
+  margin: 0 1rem;
+  width: 3rem;
+  height: 3rem;
+  padding: 1rem;
+  color: white;
+  background-color: black;
 }
 
 /* ----------------------------------------------LOUNGE 1 PROFIL---------------------------------------------*/
@@ -977,7 +1100,7 @@ div.posts {
   background-color: rgba(0, 0, 0, 0.36);
 }
 
-/*------------------------------------------------------POST----------------------------------------------*/
+/*------------------------------------------------------POST POPUP----------------------------------------------*/
 
 .commenter input,
 .commenter button {
@@ -1027,71 +1150,68 @@ div.post {
   font-size: 40px;
   border-radius: 1rem;
   background-color: grey;
-  border : none;
-  color : white;
+  border: none;
+  color: white;
   font-weight: bolder;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
 }
 
-#show-login{
+#show-login {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   padding: 10px 20px;
   font-size: 15px;
-  color:#222;
+  color: #222;
   background: #f5f5f5;
-  border : none;
+  border: none;
   outline: none;
   cursor: pointer;
-  border-radius : 5px;
+  border-radius: 5px;
 }
 .popup {
   position: absolute;
   top: -150%;
-  left :50%;
+  left: 50%;
   opacity: 0;
-  transform: translate(-50%,-50%) scale(1.25);
+  transform: translate(-50%, -50%) scale(1.25);
   width: 600px;
   padding: 20px 30px;
   background: #fff;
-  box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.15);
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  transition: top 0ms ease-in-out 200ms,
-              opacity 200ms ease-in-out 0ms,
-              transform 20ms ease-in-out 0ms;
+  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
+    transform 20ms ease-in-out 0ms;
   z-index: 99999;
 }
-.popup.active{
+.popup.active {
   position: fixed;
   top: 50%;
   opacity: 1;
-  transform: translate(-50%,-50%) scale(1);
-  transition: top 0ms ease-in-out 200ms,
-              opacity 200ms ease-in-out 0ms,
-              transform 20ms ease-in-out 0ms;
-z-index: 99999;
-
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
+    transform 20ms ease-in-out 0ms;
+  z-index: 99999;
 }
 
 main.is-blurred {
-  filter: blur(8px)!important;
+  filter: blur(8px) !important;
 }
 
-.popup .close-btn{
+.popup .close-btn {
   position: absolute;
-  top : 10px;
-  right :10px;
+  top: 10px;
+  right: 10px;
   width: 20px;
   height: 20px;
   background: #888;
-  color : #eee;
-  text-align:center;
+  color: #eee;
+  text-align: center;
   line-height: 20px;
-  border-radius:15px;
-  cursor:  pointer;
+  border-radius: 15px;
+  cursor: pointer;
 }
 
 .popup form h2 {
@@ -1104,46 +1224,44 @@ main.is-blurred {
   margin: 15px 0px;
 }
 .popup form .form-element label {
-  font-size :20px;
-  color:#222;
+  font-size: 20px;
+  color: #222;
 }
-.popup form .form-element input[type="text"]{
+.popup form .form-element input[type="text"] {
   margin-top: 5px;
   display: block;
   width: 100%;
   padding: 10px;
   outline: none;
-  border : 1px solid #aaa;
-  border-radius:5px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }
 
-.popup form .form-element textarea{
+.popup form .form-element textarea {
   margin-top: 5px;
   display: block;
   width: 100%;
   padding: 10px;
   outline: none;
-  border : 1px solid #aaa;
-  border-radius:5px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
 }
 
 #content {
-  height : 150px;
+  height: 150px;
 }
 
 .popup form .form-element button {
   width: 100%;
   height: 40px;
-  border:none;
-  outline:none;
+  border: none;
+  outline: none;
   font-size: 15px;
   background: #222;
   color: #f5f5f5;
   border-radius: 10px;
   cursor: pointer;
 }
-
-
 
 /*------------------------------------------------------CONTACT US----------------------------------------------*/
 
@@ -1172,6 +1290,7 @@ main.is-blurred {
   width: 70%;
   margin: 4rem auto;
   border-radius: 3rem;
+  transition: 0.2s ease-out 0.2s;
 }
 
 .contact-us-div > p:nth-child(1) {
@@ -1204,7 +1323,7 @@ main.is-blurred {
   resize: vertical;
 }
 
-.contact-us-form textarea{
+.contact-us-form textarea {
   height: 10rem;
 }
 
@@ -1218,16 +1337,19 @@ main.is-blurred {
   border: none;
   border-radius: 10px;
   margin: 2rem auto 0;
+  box-shadow: 1px 1px 5px;
 }
 
-.contact-us-form button:hover{
+.contact-us-form button:hover {
   bottom: 1px;
   right: 1px;
+  box-shadow: 2px 2px 5px;
 }
 
-.contact-us-form button:active{
+.contact-us-form button:active {
   bottom: 0;
   right: 0;
+  box-shadow: 1px 1px 5px;
 }
 
 .contact-us-form label {
@@ -1235,3 +1357,80 @@ main.is-blurred {
 }
 
 
+/* FORGET PASSWORD */
+
+.change-password-body{
+  background: linear-gradient(#101d80, #5b64ac);
+  color: rgb(214, 214, 214);
+}
+
+.change-password-div{
+  text-align: center;
+  margin: 12rem 0;
+}
+
+.change-password-div form{
+  display: grid;
+  grid-template-areas: 
+            "changePassword changeRepassword"
+            "regex regex"
+            "changePasswordBtn changePasswordBtn";
+  width: 40%;
+  text-align: left;      
+  column-gap: 2rem;
+  row-gap: 3rem;
+  margin: 3rem auto 0;
+  padding: 3rem;
+  background-color: #101d80;
+  color: rgb(224, 224, 224);
+  border: none;
+  border-radius: 3rem;
+}
+
+.changePassword{
+  grid-area: changePassword;
+  display: flex;
+  flex-direction: column;
+}
+
+.changeRepassword{
+  grid-area: changeRepassword;
+  display: flex;
+  flex-direction: column;
+}
+
+.change-password-div form #regex{
+  grid-area: regex;
+  text-align: left;
+  width: 50%;
+  margin: 0 auto;      
+  padding: 1rem;
+  border: 2px dashed #080f46;
+  border-radius: 1rem;
+}
+
+.change-password-div form #regex p{
+  margin: 0;
+  color: white;
+}
+
+.changePassword-el{
+  padding: 1rem;
+  border: 2px solid #101d80;
+  border-radius: 1rem;
+}
+
+.changeRepassword-el{
+  padding: 1rem;
+  border: 2px solid #101d80;
+  border-radius: 1rem;
+}
+
+.changePasswordBtn{
+  grid-area: changePasswordBtn;
+  padding: 1rem;
+  width: 30%;
+  border: 2px solid #101d80;
+  border-radius: 1rem;
+  margin: 0 auto;
+}
