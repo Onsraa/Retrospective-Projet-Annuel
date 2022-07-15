@@ -14,7 +14,7 @@ include("includes/head.php") ?>
     <main class="blur-el" id="neon_font">
 
         <?
-        require("includes/servers/db.php");
+        include('includes/db.php');
 
         //récupere l'id de l'user
         $qF = 'SELECT * FROM users';
@@ -22,13 +22,13 @@ include("includes/head.php") ?>
         $resultsF = $reqF->fetchAll(PDO::FETCH_ASSOC);
 
 
-        foreach ($resultsF as $user) {
-            if ($user['email'] == $_SESSION['email']) {
-                $reel['id'] = $user['id'];
-            }
+        foreach($resultsF as $user){
+          if($user['email'] == $_SESSION['email']){
+           $reel['id'] = $user['id'];
+          }
         }
 
-        $id = $reel['id'];
+          $id = $reel['id'];
 
         //récupere le nickname du user
         $qF = 'SELECT * FROM users';
@@ -37,16 +37,16 @@ include("includes/head.php") ?>
 
         //récupere la description du user
 
-        foreach ($resultsF as $user) {
-            if ($user['email'] == $_SESSION['email']) {
-                $reel['description'] = $user['description'];
-            }
+        foreach($resultsF as $user){
+          if($user['email'] == $_SESSION['email']){
+           $reel['description'] = $user['description'];
+          }
         }
 
-        foreach ($resultsF as $user) {
-            if ($user['email'] == $_SESSION['email']) {
-                $reel['nickname'] = $user['nickname'];
-            }
+        foreach($resultsF as $user){
+          if($user['email'] == $_SESSION['email']){
+           $reel['nickname'] = $user['nickname'];
+          }
         }
 
         //Récupere le nombre de posts du user
@@ -55,7 +55,7 @@ include("includes/head.php") ?>
         $resultsNbP = $reqNbP->fetchAll(PDO::FETCH_ASSOC);
         $compteur = 0;
         foreach ($resultsNbP as $key => $value) {
-            $compteur = $compteur + 1;
+          $compteur = $compteur +1;
         }
 
         //Récupere l'avatar du user
@@ -70,52 +70,52 @@ include("includes/head.php") ?>
         $compteurFollowers = 0;
 
         foreach ($resultsFollowed as $key => $value) {
-            if ($value['user_followed'] == $reel['id']) {
+          if ($value['user_followed']==$reel['id']){
 
-                $compteurFollowers = $compteurFollowers + 1;
-            }
+            $compteurFollowers = $compteurFollowers +1;
+          }
         }
 
         // Récupere le nombre de following du user
-        $qFollowing = 'SELECT follower FROM USER_FOLLOWS,USERS WHERE USER_FOLLOWS.follower = USERS.id';
+        $qFollowing= 'SELECT follower FROM USER_FOLLOWS,USERS WHERE USER_FOLLOWS.follower = USERS.id';
         $reqFollowing = $bdd->query($qFollowing);
         $resultsFollowing = $reqFollowing->fetchAll(PDO::FETCH_ASSOC);
         $compteurFollowing = 0;
 
         foreach ($resultsFollowing as $key => $value) {
-            if ($value['follower'] == $reel['id']) {
+          if ($value['follower']==$reel['id']){
 
-                $compteurFollowing = $compteurFollowing + 1;
-            }
+            $compteurFollowing = $compteurFollowing +1;
+          }
         }
         ?>
 
         <div class="banner_profil">
 
             <div class="d-flex align-items-center barre_profil">
-                <div class="container-fluid div_centered">
-                    <div class=" justify-content-end  row">
-                        <div class="col-4">
-
-                        </div>
-                        <div class="col-auto ">
-                            <p><?php echo $reel['nickname'] ?></p>
-                        </div>
-                        <div class="col-auto ">
-                            <p>posts : <?php echo $compteur ?></p>
-                        </div>
-                        <div class="col-auto ">
-                            <p>followers : <?php echo $compteurFollowers ?></p>
-                        </div>
-                        <div class="col-auto">
-                            <p>following : <?php echo $compteurFollowing ?></p>
-                        </div>
-                    </div>
+              <div class="container-fluid div_centered">
+              <div class=" justify-content-end  row">
+                <div class="col-4">
 
                 </div>
+                <div class="col-auto ">
+                    <p><?php echo $reel['nickname'] ?></p>
+                </div>
+                <div class="col-auto ">
+                    <p>posts : <?php echo $compteur ?></p>
+                </div>
+                <div class="col-auto ">
+                    <p>followers : <?php echo $compteurFollowers ?></p>
+                </div>
+                <div class="col-auto">
+                    <p>following : <?php echo $compteurFollowing ?></p>
+                </div>
+              </div>
 
             </div>
-            <?php echo '<img src="uploads/file-' . $resultsAvatar['avatar_assets'] . '.png"> ' ?>
+
+          </div>
+          <?php echo '<img src="uploads/file-' . $resultsAvatar['avatar_assets'] . '.png"> '?>
         </div>
 
         <div class="container-fluid div_centered">
@@ -131,13 +131,13 @@ include("includes/head.php") ?>
 
                             </div>
                             <div class="d-flex align-items-center justify-content-center col-4">
-                                <?php
-                                if ($user['email'] == $_SESSION['email']) {
+                              <?php
+                                if ($user['email'] == $_SESSION['email']){
                                     echo '<form action="settings.php"><button type="sumbit" class="btn btn-secondary " id="myButtonSettings"><img src="img/Settings.svg"></button></form>';
-                                } else {
-                                    echo '<button type="button" class="btn btn-secondary " id="myButtonFollow">Follow</button>';
+                                }else{
+                                  echo '<button type="button" class="btn btn-secondary " id="myButtonFollow">Follow</button>';
                                 }
-                                ?>
+                               ?>
 
                             </div>
                         </div>
