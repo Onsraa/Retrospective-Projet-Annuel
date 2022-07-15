@@ -4,14 +4,16 @@
 <html>
 <?php
 $title = 'Accueil';
-include("includes/head.php") ?>
+include("includes/head.php") ;
+include('includes/logging.php');
+?>
 
 <body>
     <?php
     include("includes/header.php");
     if (!isset($_SESSION['email'])) {
         include("includes/log_forms.php");
-    }
+    }    
     ?>
 
     <main onclick="fermer()" class="blur-el">

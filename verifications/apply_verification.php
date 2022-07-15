@@ -80,26 +80,28 @@
         move_uploaded_file($_FILES['cv']['tmp_name'], $destination);
     }   
 
-    include('includes/db.php');
+    include('../includes/db.php');
     $q = 'INSERT INTO apply_form(first_name,last_name,email,phone,cv,experience_redaction,comfortable_redaction,linkedIn_url,portfolio_url,user)
           VALUES(:first_name,:last_name,:email,:phone,:cv,:experience_redaction,:comfortable_redaction,:linkedIn_url,:portfolio_url,:user)';
     $req = $bdd -> prepare($q);
     $result = $req -> execute([
-        'first_name' => $_POST['first_name'],
-        'last_name' => $_POST['last_name'],
+        'first_name' => $_POST['firstName'],
+        'last_name' => $_POST['lastName'],
         'email' => $_POST['email'],
+        'phone' => $_POST['phone'],
         'cv' => $filename,
-        'experience_redaction' => $_POST['experience_redaction'],
-        'comfortable_redaction' => $_POST['comfortable_redaction'],
-        'linkedIn_url' => (!empty($_POST['linkedIn']) && isset($_POST['linkedIn']) ? $_POST['linkedIn'] : ''),
-        'portfolio_url' => (!empty($_POST['portflio']) && isset($_POST['portflio']) ? $_POST['portflio'] : '')
+        'experience_redaction' => $_POST['area1'],
+        'comfortable_redaction' => $_POST['area2'],
+        'linkedIn_url' => (!empty($_POST['linkedIn']) ? $_POST['linkedIn'] : NULL),
+        'portfolio_url' => (!empty($_POST['portflio']) ? $_POST['portflio'] : NULL),
+        'user' => (isset($_SESSION['email']) ? isset($_SESSION['email']) : NULL)
     ]);
 
     if (!$result) {
-        header('location: ../apply.php.php?message=Le cv n\'a pas été envoyé suite à une erreur.&type=alert');
+        header('location: ../apply.php?message=Le cv n\'a pas été envoyé suite à une erreur.&type=alert');
         exit;
     } else {
-        header('location: ../apply.php.php?message=CV envoyé avec succès.&type=success');
+        header('location: ../apply.php?message=CV envoyé avec succès.&type=success');
         exit;
     }
 ?>

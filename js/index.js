@@ -73,6 +73,10 @@ function shuffleArray(arr) {
   arr.sort(() => Math.random() - 0.5);
 }
 
+if (createAccountEl != null) {
+  generatePuzzle();
+}
+
 function generatePuzzle() {
   let arrayPuzzle = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
   shuffleArray(arrayPuzzle);
@@ -135,10 +139,10 @@ const mail_format =
 const password_format =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,}$/;
 
-const inputs = document.querySelector(".input-verification");
+const inputsEl = document.querySelectorAll(".input-verification");
 
-inputs.addEventListener("change", function () {
-  verificationAll();
+inputsEl.forEach((e) => {
+  e.addEventListener("change", verificationAll);
 });
 
 function verificationAll() {
@@ -147,6 +151,7 @@ function verificationAll() {
       emailVerification("login") &&
       document.querySelector(".password-el-login").value != ""
     ) {
+      has_right = true;
       isValidate("login");
     } else {
       isNotValidate("login");
@@ -159,6 +164,7 @@ function verificationAll() {
       rePasswordVerification() &&
       captchaVerification()
     ) {
+      has_right = true;
       isValidate("create");
     } else {
       isNotValidate("create");
@@ -166,13 +172,13 @@ function verificationAll() {
   }
   if (passwordAccountEl.hasAttribute("style")) {
     if (emailVerification("password")) {
+      has_right = true;
       isValidate("password");
     } else {
       isNotValidate("password");
     }
   }
 }
-
 function emailVerification(classInput) {
   if (
     mail_format.test(document.querySelector(".email-el-" + classInput).value)
@@ -196,7 +202,7 @@ function passwordVerification(classInput) {
 function rePasswordVerification() {
   if (
     document.querySelector(".password-el-create").value !=
-    document.querySelector(".rePassword-el-create").Value
+    document.querySelector(".rePassword-el-create").value
   ) {
     return false;
   }
@@ -224,7 +230,6 @@ function captchaVerification() {
     document.getElementById("2-2").src ==
       "http://localhost:81/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/9.png"
   ) {
-    has_right = true;
     return true;
   }
   return false;
@@ -236,6 +241,9 @@ function isValidate(classInput) {
     .setAttribute("type", "submit");
   document.getElementById("submit-button-" + classInput).className =
     "form-submit-yes";
+  document
+    .getElementById("submit-button-" + classInput)
+    .removeAttribute("disabled");
   document.getElementById("submit-button-" + classInput).style.transform =
     "rotate(360deg)";
   setTimeout(function () {
@@ -254,6 +262,9 @@ function isNotValidate(classInput) {
   }
   document.getElementById("submit-button-" + classInput).className =
     "form-submit-no";
+  document
+    .getElementById("submit-button-" + classInput)
+    .setAttribute("disabled", "");
   if (has_right) {
     document.getElementById("submit-button-" + classInput).style.transform =
       "rotate(-360deg)";
@@ -266,3 +277,164 @@ function isNotValidate(classInput) {
 }
 
 //----------------------FRONT-END VERIFICATIONS----------------------//
+
+//----------------------CONTACT US----------------------//
+
+const contactForm = document.querySelector(".contact-us-form");
+const requestList = document.querySelector(".reqList-el");
+const regexText = /[a-zA-Z0-9]{50,300}/;
+
+let contactQuestionsCounter = 1;
+let textAreaHasPopped = false;
+let buttonHasPopped = false;
+
+if ((document.querySelector("title").innerHTML = "Contact Us")) {
+  requestList.addEventListener("change", function () {
+    if (document.getElementsByClassName("contact-userReport").length != 0) {
+      document.querySelectorAll(".contact-userReport").forEach(function (e) {
+        e.remove();
+        contactQuestionsCounter--;
+        textAreaHasPopped = false;
+        if (document.querySelector(".contact-us-form button") != null) {
+          document.querySelector(".contact-us-form button").remove();
+          buttonHasPopped = false;
+        }
+      });
+    }
+
+    if (requestList.value == "1") {
+      addElementToForm(
+        "contactUs-label-username",
+        "L'utilisateur mentionné",
+        "userReport",
+        "input",
+        "text",
+        "username",
+        "contactUs-input-username",
+        contactForm
+      );
+
+      document.getElementsByName("username").forEach(function (e) {
+        e.addEventListener("change", function (e) {
+          if (e.value != "" && !textAreaHasPopped) {
+            textAreaToForm("Qu'a t-il fait ?");
+          }
+        });
+      });
+    }
+    if (requestList.value == "2") {
+      addElementToForm(
+        "contactUs-label-username",
+        "Votre pseudo ou email",
+        "userReport",
+        "input",
+        "text",
+        "username",
+        "contactUs-input-username",
+        contactForm
+      );
+
+      document.getElementsByName("username").forEach(function (e) {
+        e.addEventListener("change", function (e) {
+          if (e.value != "" && !textAreaHasPopped) {
+            textAreaToForm("Expliquez-nous tout");
+          }
+        });
+      });
+    }
+    if (requestList.value == "3") {
+      textAreaToForm(
+        "Décrivez-nous le problème",
+        "Je n'ai plus le temps d'utiliser cet incroyable site depuis que je suis à l'ESGI, j'aimerais donc que vous me le supprimiez définitivement, si possible. Merci, vous êtes incroyables."
+      );
+    }
+    if (requestList.value == "4") {
+      textAreaToForm(
+        "Décrivez votre problème",
+        "Un erreur sur la page : easteregg.php est apparue soudainement."
+      );
+    }
+    if (requestList.value == "5") {
+      textAreaToForm("Allez-y", "Et bien, je trouve Teddy vachement mignon..");
+    }
+  });
+
+  function textAreaToForm(label, placeholder) {
+    addElementToForm(
+      "contactUs-label-report",
+      label,
+      "userReport",
+      "textarea",
+      "text",
+      "report",
+      "contactUs-textarea-report",
+      contactForm
+    );
+    document
+      .querySelector("#contactUs-textarea-report")
+      .setAttribute("minlength", "50");
+    document
+      .querySelector("#contactUs-textarea-report")
+      .setAttribute("maxlength", "300");
+    document
+      .querySelector("#contactUs-textarea-report")
+      .setAttribute(
+        "placeholder",
+        placeholder + " (Minimum 50 caractères, Maximum 300)"
+      );
+
+    textAreaHasPopped = true;
+
+    document.getElementsByName("report").forEach(function (e) {
+      e.addEventListener("change", function () {
+        if (
+          regexText.test(document.getElementsByName("report")[0].value) &&
+          !buttonHasPopped
+        ) {
+          addButtonToForm("Envoyer ma demande", contactForm);
+          buttonHasPopped = true;
+        } else {
+          if (document.querySelector(".contact-us-form button") != null) {
+            document.querySelector(".contact-us-form button").remove();
+            buttonHasPopped = false;
+          }
+        }
+      });
+    });
+  }
+
+  function addButtonToForm(content, insertedInto) {
+    const buttonEl = document.createElement("button");
+    buttonEl.setAttribute("type", "submit");
+    buttonEl.innerHTML = content;
+    insertedInto.appendChild(buttonEl);
+  }
+
+  function addElementToForm(
+    labelId,
+    labelContent,
+    divClass,
+    element,
+    elementType,
+    elementName,
+    elementId,
+    insertedInto
+  ) {
+    contactQuestionsCounter++;
+
+    const div = document.createElement("div");
+    div.setAttribute("class", "contact-us-form-div contact-" + divClass);
+    const labelEl = document.createElement("label");
+    labelEl.setAttribute("id", labelId);
+    labelEl.innerHTML = contactQuestionsCounter + ". " + labelContent;
+    div.appendChild(labelEl);
+
+    const elementEl = document.createElement(element);
+    elementEl.setAttribute("type", elementType);
+    elementEl.setAttribute("name", elementName);
+    elementEl.setAttribute("id", elementId);
+    div.appendChild(elementEl);
+
+    insertedInto.appendChild(div);
+  }
+}

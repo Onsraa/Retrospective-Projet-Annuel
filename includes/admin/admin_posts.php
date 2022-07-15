@@ -4,6 +4,9 @@ $q = 'SELECT * FROM post';
 $req = $bdd->prepare($q);
 $req->execute();
 $results = $req->fetchAll();
+
+$title = 'Admin_posts';
+include('includes/logging.php');
 ?>
 
 <div class="row">
