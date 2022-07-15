@@ -169,12 +169,12 @@ footer {
 
 
 
-.success-apply, .success-password{
+.success-color, .success-apply, .success-password{
   color: #3bac29;
   padding: 0;
 }
 
-.alert-apply, .alert-password {
+.alert-color, .alert-apply, .alert-password {
   color: #ff1515;
   padding: 0;
 }
@@ -192,7 +192,8 @@ footer {
 /*---------------------------------------------FORMULAIRES---------------------------------------*/
 
 .loginAccount-el,
-.passwordAccount-el {
+.passwordAccount-el,
+.add-post-div {
   text-align: center;
   background-color: white;
   color: #19215e;
@@ -206,8 +207,6 @@ footer {
   height: 40rem;
   z-index: 1;
   padding: 5rem 2rem;
-  align-content: center;
-  justify-content: center;
   border-radius: 2rem;
   box-shadow: 1px 1px 7px rgb(39, 39, 39);
   z-index: 5000;
@@ -332,10 +331,7 @@ footer {
 }
 
 .message-el {
-  position: absolute;
-  border: none;
-  top: 8rem;
-  left: 34%;
+ text-align: center;
 }
 
 .email-label {
@@ -423,7 +419,7 @@ footer {
 }
 
 #submit-button-password{
-  margin-bottom: 9rem;
+  margin-bottom: 5rem;
 }
 
 .contact-us-link{
@@ -651,6 +647,32 @@ footer {
   line-height: 1.5;
 }
 
+.sonic {
+  width: 25rem;
+}
+@media screen and (max-width: 1280px) {
+  
+  .information-row{
+    padding: 8rem;
+  }
+
+  .information-write > h1,
+  .carousel-div h1{
+    font-size: 1.5rem;
+  }
+
+  .information-write > p,
+  .carousel-div p {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  }
+
+  .sonic {
+    width: 19rem;
+  }
+}
+
+
 .presentation-div {
   padding-top: 16rem;
   background: linear-gradient(#00595f, #101d80);
@@ -664,9 +686,7 @@ footer {
   text-align: center;
 }
 
-.sonic {
-  width: 25rem;
-}
+
 
 .games-div {
   background: linear-gradient(#101d80, #19215e);
@@ -891,16 +911,17 @@ footer {
 
 .post-section{
   padding: 3rem 15rem;
-  width: 120rem;
-  background: linear-gradient(#101d80,#00595f);
+  width: 100%;
+  background: linear-gradient(#1C1529,#4D2054);
 }
 
 .sort-bar{
-  background-color: #5664cf;
+  background-color: #28252e;
+  border: 2px solid #4D2054;
+  color: white;
   width: 100%;
   margin: 0;
   padding: 2rem 4rem;
-  border: none;
   border-radius: 1.5rem;
   font-size: 1.4rem;
 }
@@ -923,9 +944,10 @@ footer {
   justify-content: space-between;
   align-items: center;
   font-size: 1.3rem;
-  background-color: #5664cf;
+  background-color: #28252e;
+  color: white;
   padding: 2rem 4rem;
-  border: none;
+  border: 2px solid #4D2054;
   border-radius: 1.5rem 1.5rem 0 0;
 }
 
@@ -1009,259 +1031,30 @@ footer {
   background-color: black;
 }
 
-/* ----------------------------------------------LOUNGE 1 PROFIL---------------------------------------------*/
-
-.banner {
-  height: 1000px;
-  background-image: url("../img/lounge.png");
-  background-size: cover;
+#add-post{
+  position: fixed;
+  right: 4rem;
+  bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid#080f46;
+  border-radius: 1rem;
+  width: 4rem;
+  height: 4rem;
+  z-index: 1000;
 }
 
-.filtre {
-  background-color: white;
-  width: 250px;
-  height: 45px;
-  border-radius: 30px;
-  padding-left: 30px;
-  border: none;
-}
-
-/*------------------------------------------------------PROFIL----------------------------------------------*/
-
-.banner_profil {
-  position: relative;
-  height: 1000px;
-  background-image: url("../img/Fond_profil.png");
-  background-size: cover;
-  padding-top: 850px;
-}
-
-.barre_profil {
-  position: static;
-  background-color: rgba(22, 22, 22, 0.5);
-  height: 107px;
-  width: 100%;
-  font-size: 36px;
-  color: white;
-  text-shadow: 0 0 7px #fff;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.barre_profil .col-2 {
-  margin-right: 20px;
-}
-
-.barre_profil p {
-  margin-bottom: 0;
-}
-
-.banner_profil img {
-  position: absolute;
-  bottom: 0;
-  margin-left: 120px;
-}
-
-.filtre_div button {
-  color: black;
-}
-
-.filtre_div div.col-6 p {
-  margin-left: 50px;
-}
-
-.filtre_div button {
-  background-color: rgba(35, 35, 35, 0.15);
-  border: none;
-  width: 350px;
-  height: 60px;
-  font-size: 30px;
-}
-
-.barre_fine {
-  background-color: rgba(6, 6, 6, 0.1);
-  border-radius: 30px;
-  height: 16px;
-  margin-bottom: 80px;
-}
-
-/*------------------------------------------------------EVENTS----------------------------------------------*/
-
-.banner_event {
-  position: relative;
-  height: 1000px;
-  background-image: url("../img/fond_event.png");
-  background-size: cover;
-}
-
-.currently {
-  height: 150px;
-  background-color: rgba(0, 0, 0, 0.36);
-}
-
-/*------------------------------------------------------POST POPUP----------------------------------------------*/
-
-.commenter input,
-.commenter button {
-  width: 100%;
-  font-size: 30px;
-  text-align: center;
-  border-radius: 16px;
-}
-
-.commenter input {
-  height: 59px;
-  border: 3px solid black;
-}
-
-.commenter button {
-  margin-bottom: 12px;
-}
-
-.comments {
-  border: 3px solid black;
-  border-radius: 16px;
-  padding: 50px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  text-align: center;
-  font-size: 1.4rem;
-}
-
-.comments h1 {
+#add-post i{
   font-size: 1.5rem;
 }
 
-.comments img {
-  max-height: 140px;
+.banner-post{
+  background-image: url("../img/post-background.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  height: 50rem;
 }
 
-div.post {
-  position: relative;
-  top: 203.59px;
-  margin-bottom: 283.59px;
-}
-
-#Poster {
-  font-family: "AtariClassic";
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
-  border-radius: 1rem;
-  background-color: grey;
-  border: none;
-  color: white;
-  font-weight: bolder;
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-}
-
-#show-login {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  padding: 10px 20px;
-  font-size: 15px;
-  color: #222;
-  background: #f5f5f5;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.popup {
-  position: absolute;
-  top: -150%;
-  left: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(1.25);
-  width: 600px;
-  padding: 20px 30px;
-  background: #fff;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
-    transform 20ms ease-in-out 0ms;
-  z-index: 99999;
-}
-.popup.active {
-  position: fixed;
-  top: 50%;
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-  transition: top 0ms ease-in-out 200ms, opacity 200ms ease-in-out 0ms,
-    transform 20ms ease-in-out 0ms;
-  z-index: 99999;
-}
-
-main.is-blurred {
-  filter: blur(8px) !important;
-}
-
-.popup .close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  background: #888;
-  color: #eee;
-  text-align: center;
-  line-height: 20px;
-  border-radius: 15px;
-  cursor: pointer;
-}
-
-.popup form h2 {
-  text-align: center;
-  color: #222;
-  margin: 10px 0px 20px;
-  font-size: 35px;
-}
-.popup form .form-element {
-  margin: 15px 0px;
-}
-.popup form .form-element label {
-  font-size: 20px;
-  color: #222;
-}
-.popup form .form-element input[type="text"] {
-  margin-top: 5px;
-  display: block;
-  width: 100%;
-  padding: 10px;
-  outline: none;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-}
-
-.popup form .form-element textarea {
-  margin-top: 5px;
-  display: block;
-  width: 100%;
-  padding: 10px;
-  outline: none;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-}
-
-#content {
-  height: 150px;
-}
-
-.popup form .form-element button {
-  width: 100%;
-  height: 40px;
-  border: none;
-  outline: none;
-  font-size: 15px;
-  background: #222;
-  color: #f5f5f5;
-  border-radius: 10px;
-  cursor: pointer;
-}
 
 /*------------------------------------------------------CONTACT US----------------------------------------------*/
 
@@ -1433,4 +1226,64 @@ main.is-blurred {
   border: 2px solid #101d80;
   border-radius: 1rem;
   margin: 0 auto;
+}
+
+
+.add-post-div form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-post-div h1{
+  margin-bottom: 2rem;
+}
+
+.add-post-div button{
+  padding: 1rem;
+  border: 1px solid #080f46;
+  border-radius: 0.5rem;
+}
+
+.add-post-div form > div{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: start;
+  margin-bottom: 2rem;
+  width: 70%;
+}
+
+.add-post-div form div input:not(#image-file-post), .add-post-div form div textarea{
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #080f46;
+}
+
+.add-post-div .fa-xmark{
+  position: absolute;
+  right: 3rem;
+  top: 3rem;
+  font-size: 2rem;
+}
+
+.add-post-post2{
+  display: flex;
+  flex-direction: row!important;
+  justify-content: space-between!important;
+}
+
+.add-post-post2 select{
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.add-post-post2 div{
+  display: flex;
+  flex-direction: column;
+}
+
+.add-post-div p{
+  padding: 0;
 }

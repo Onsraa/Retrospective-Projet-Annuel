@@ -41,6 +41,8 @@ const changedRepassword = document.querySelector(".changeRepassword-el");
 
 const addPostEl = document.querySelector(".add-post-div");
 
+const inputsEl = document.querySelectorAll(".input-verification");
+
 function login() {
   blurEl.style.filter = "blur(5px)";
   inputsEl.forEach((e) => {
@@ -91,21 +93,12 @@ function fermer() {
   blurEl.style.filter = "blur(0)";
 }
 
-// ADD POST //
+if(loginAccountEl !== null){
 
-function addPost(){
-  addPostEl.style.display="block";
-  blurEl.style.filter = "blur(5px)";
-}
+  let connection_message = document.querySelector(".loginAccount-el .message-el");
+  let createAccount_message = document.querySelector(".createAccount-el .message-el");
 
-function removeAddPost(){
-  addPostEl.style.display="none";
-  blurEl.style.filter = "blur(0)";
-}
-
-// ADD POST //
-
-if (window.location.href.indexOf("?") != -1) {
+  if (window.location.href.indexOf("?") != -1) {
   let queryString = window.location.href.substr(
     window.location.href.indexOf("?") + 1
   );
@@ -113,25 +106,56 @@ if (window.location.href.indexOf("?") != -1) {
   let value = queryString.split("&")[0];
 
   value = decodeURIComponent(value);
-
-  if (
-    value == "message_connection=Identifiants incorrects." ||
-    value == "message_connection=Le compte associé à cet email est banni."
-  ) {
-    login();
-  }
-  if (
-    value == "message_createAccount=Email invalide." ||
-    value == "message_createAccount=Le compte associé à cet email est banni." ||
-    value == "message_createAccount=Email déjà utilisé." ||
-    value == "message_createAccount=Pseudo déjà utilisé"
-  ) {
-    createAccount;
-  }
-  if (value == "message_password=Identifiants incorrects.") {
-    login();
+  
+    if(connection_message !== null){
+      if (value == "message_connection=1"){
+          connection_message.innerHTML = "Le compte associé à cet email est banni.";
+          document.querySelector(".login-form").style.marginTop = "1.6rem";
+          login();
+          blurEl.style.filter = "blur(5px)";
+        }
+        else if (value == "message_connection=2"){
+          connection_message.innerHTML = "Identifiants incorrects.";
+          document.querySelector(".login-form").style.marginTop = "1.6rem";
+          login();
+          blurEl.style.filter = "blur(5px)";
+        }
+        else if (value == "message_connection=3"){
+          connection_message.innerHTML = "Le compte associé à cet email n\'a pas été vérifié, un code a été renvoyé.";
+          document.querySelector(".login-form").style.marginTop = "1.6rem";
+          login();
+          blurEl.style.filter = "blur(5px)";
+        }
+        else if (value == "message_connection=4"){
+          connection_message.innerHTML = "Le compte associé à cet email n\'a pas été vérifié, un code a été renvoyé.Le compte associé à cet email n\'a pas été vérifié, et un mail n\'a pas pu être renvoyé.";
+          document.querySelector(".login-form").style.marginTop = "1.6rem";
+          login();
+          blurEl.style.filter = "blur(5px)";
+        }
+    }
+    else if(createAccount_message !== null){
+      if (value = "message_createAccount=1"){
+          createAccount_message.innerHTML = "Le compte associé est banni.";
+          document.querySelector(".createAccount-form").style.marginTop = "1.5rem";
+          createAccount();
+          blurEl.style.filter = "blur(5px)";
+        }
+        else if (value = "message_createAccount=2"){
+          createAccount_message.innerHTML = "Le mail est déjà associé à un utilisateur.";
+          document.querySelector(".createAccount-form").style.marginTop = "1.5rem";
+          createAccount();
+          blurEl.style.filter = "blur(5px)";
+        }
+        else if (value = "message_createAccount=3"){
+          createAccount_message.innerHTML = "Le pseudo a déjà été pris.";
+          document.querySelector(".createAccount-form").style.marginTop = "1.5rem";
+          createAccount();
+          blurEl.style.filter = "blur(5px)";
+        }
+    }
   }
 }
+
 //----------------------CONNEXION AFFICHAGE----------------------//
 
 //----------------------CAPTCHA PUZZLE----------------------//
@@ -205,13 +229,9 @@ function cleanPuzzle() {
 const mail_format =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const password_format =
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ /\%^&*-]).{5,}$/;
+/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,}$/
 
-const inputsEl = document.querySelectorAll(".input-verification");
 
-inputsEl.forEach((e) => {
-  e.addEventListener("keyup", verificationAll);
-});
 
 function verificationAll() {
   if (loginAccountEl.hasAttribute("style")) {
@@ -278,6 +298,10 @@ function rePasswordVerification() {
   }
   return true;
 }
+
+inputsEl.forEach((e) => {
+  e.addEventListener("keyup", verificationAll);
+});
 
 function captchaVerification() {
   if (
@@ -463,6 +487,20 @@ function verifyChangedRepassword() {
 }
 
 //-------------------------INDICATIONS PASSWORD-------------------------//
+
+// ADD POST //
+
+function addPost(){
+  addPostEl.style.display="block";
+  blurEl.style.filter = "blur(5px)";
+}
+
+function removeAddPost(){
+  addPostEl.style.display="none";
+  blurEl.style.filter = "blur(0)";
+}
+
+// ADD POST //
 
 //----------------------CONTACT US----------------------//
 

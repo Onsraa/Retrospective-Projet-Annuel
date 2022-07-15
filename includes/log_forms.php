@@ -1,7 +1,7 @@
 <div class="loginAccount-el">
   <h1>Connexion</h1>
   <?php if (isset($_GET['message_connection'])) {
-    echo '<p class="message-el ' . htmlspecialchars($_GET['type_connection']) . '">' . htmlspecialchars($_GET['message_connection']) . '</p>';
+    echo '<p class="message-el ' . htmlspecialchars($_GET['type_connection']) . '"></p>';
   } ?>
 
   <?php
@@ -36,7 +36,7 @@
   <i onclick="login()" class="fa-2xl fa-solid fa-angle-left"></i>
   <h1>Inscription</h1>
   <?php if (isset($_GET['message_createAccount'])) {
-    echo '<p class="message-el ' . htmlspecialchars($_GET['type_createAccount']) . '">' . htmlspecialchars($_GET['message_createAccount']) . '</p>';
+    echo '<p class="message-el ' . htmlspecialchars($_GET['type_createAccount']) . '"></p>';
   } ?>
   <form class="createAccount-form" action="verifications/token_verification.php" method="post">
     <label class="nickname-label">Pseudo</label>

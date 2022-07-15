@@ -20,16 +20,16 @@
 
         if (isset($_GET['resend']) && !empty($_GET['resend']) && $_GET['resend'] == 1 && isset($_GET['email']) && !empty($_GET['email'])) {
 
-            $q = 'SELECT id FROM users WHERE email = ? AND token IS NOT NULL';
+            $q = 'SELECT id FROM USERS WHERE email = ? AND token IS NOT NULL';
             $req = $bdd->prepare($q);
             $req->execute([htmlspecialchars($_GET['email'])]);
             $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
-            $token = rand(222222, 999999);
+            $token = (string)(rand(222222, 999999));
 
             if (!empty($result)) {
 
-                $q = 'UPDATE users SET token = ? WHERE email = ?';
+                $q = 'UPDATE USERS SET token = ? WHERE email = ?';
                 $req = $bdd->prepare($q);
                 $result = $req->execute([$token, htmlspecialchars($_GET['email'])]);
 
@@ -51,26 +51,26 @@
 
         if (isset($_GET['token'])) { //Si le token a été envoyé en paramètre GET
 
-            $q = 'SELECT id FROM users WHERE email = ? AND is_banned = ?'; //Pour éviter qu'une personne change la valeur d'is_banned dans la BDD en insérant dans l'URL son email et un token NULL en paramètre GET.
+            $q = 'SELECT id FROM USERS WHERE email = ? AND is_banned = ?'; //Pour éviter qu'une personne change la valeur d'is_banned dans la BDD en insérant dans l'URL son email et un token NULL en paramètre GET.
             $req = $bdd->prepare($q);
             $req->execute([htmlspecialchars($_GET['email']), 1]);
             $result = $req->fetch(PDO::FETCH_ASSOC);
 
             if (empty($result)) {
 
-                $q = 'SELECT id FROM users WHERE email = ? AND token = ?'; //On regarde dans la BDD si l'email et le token correspondent aux valeurs dans la BDD.
+                $q = 'SELECT id FROM USERS WHERE email = ? AND token = ?'; //On regarde dans la BDD si l'email et le token correspondent aux valeurs dans la BDD.
                 $req = $bdd->prepare($q);
-                $req->execute([htmlspecialchars($_GET['email']), htmlspecialchars($_GET['token'])]);
-                $result = $req->fetch(PDO::FETCH_ASSOC);
+                $req -> execute([htmlspecialchars($_GET['email']), htmlspecialchars($_GET['token'])]);
+                $result = $req -> fetch(PDO::FETCH_ASSOC);
 
                 if (empty($result)) {
                     echo '<p>Le code est incorrect.</p>';
                 } else {
-                    $q = 'UPDATE users SET status = "user", token = NULL WHERE email = ?'; //Si elles correspondent alors on change le status de l'utilisateur pour qu'il puisse avoir accès aux fonctionnalités.
+                    $q = 'UPDATE USERS SET status = "user", token = NULL WHERE email = ?'; //Si elles correspondent alors on change le status de l'utilisateur pour qu'il puisse avoir accès aux fonctionnalités.
                     $req = $bdd->prepare($q);
-                    $result = $req->execute([htmlspecialchars($_GET['email'])]);
+                    $verify = $req->execute([htmlspecialchars($_GET['email'])]);
 
-                    if ($result) {
+                    if ($verify) {
 
                         session_start();
                         $_SESSION['email'] = $_GET['email'];
@@ -87,19 +87,19 @@
             }
         } else {
             if (isset($_POST['email'])) {
-                $q = 'SELECT id FROM users WHERE email = ?';
+                $q = 'SELECT id FROM USERS WHERE email = ?';
                 $req = $bdd->prepare($q);
                 $req->execute([$_POST['email']]);
                 $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
-                $token = rand(222222, 999999);
+                $token = (string)(rand(222222, 999999));
 
                 $salt = '$c53.*?é';
                 $salted_password = hash('sha256', $_POST['password'] . $salt);
 
                 if (empty($result)) {   
 
-                    $q = 'INSERT INTO users(nickname, email, password, token) VALUES(:nickname, :email, :password, :token)';
+                    $q = 'INSERT INTO USERS(nickname, email, password, token) VALUES(:nickname, :email, :password, :token)';
                     $req = $bdd->prepare($q);
                     $result = $req->execute([
                         'nickname' => $_POST['nickname'],
@@ -107,17 +107,21 @@
                         'password' => $salted_password,
                         'token' => $token
                     ]);
+
+                    $stats = 'USERS';
+                    include("../includes/stats.php");
+                    
                     if (!$result) {
                         header('location: ../index.php?message=La création du compte a échoué.');
                         exit;
                     } else {
-                        $q = 'SELECT id FROM users WHERE email = ?';
+                        $q = 'SELECT id FROM USERS WHERE email = ?';
                         $req = $bdd->prepare($q);
                         $req->execute([$_POST['email']]);
                         $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
                         if (!empty($result)) {
-                            $q = 'INSERT into user_avatar(users, avatar_assets) VALUES (:id, :asset)';
+                            $q = 'INSERT into user_avatar(USERS, avatar_assets) VALUES (:id, :asset)';
                             $req = $bdd->prepare($q);
                             $result = $req->execute(['id' => $result[0]['id'], 'asset' => 1]);
 
