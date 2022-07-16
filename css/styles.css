@@ -176,12 +176,24 @@ footer {
 
 /* --------------------------------------------ALERTS-------------------------------------------- */
 
-.success {
+
+
+.success-color, .success-apply, .success-password{
   color: #3bac29;
+  padding: 0;
 }
 
-.alert {
-  color: #bf0000;
+.alert-color, .alert-apply, .alert-password {
+  color: #ff1515;
+  padding: 0;
+}
+
+.success-apply, .alert-apply{
+  margin-bottom: 3rem;
+}
+
+.success-password, .alert-password{
+  margin: 3rem auto;
 }
 
 /* --------------------------------------------ALERTS-------------------------------------------- */
@@ -189,7 +201,8 @@ footer {
 /*---------------------------------------------FORMULAIRES---------------------------------------*/
 
 .loginAccount-el,
-.passwordAccount-el {
+.passwordAccount-el,
+.add-post-div {
   text-align: center;
   background-color: white;
   color: #19215e;
@@ -203,9 +216,6 @@ footer {
   height: 40rem;
   z-index: 1;
   padding: 5rem 2rem;
-  align-content: center;
-  justify-content: center;
-  transition: all 0.2s ease-out;
   border-radius: 2rem;
   box-shadow: 1px 1px 7px rgb(39, 39, 39);
   z-index: 5000;
@@ -253,6 +263,7 @@ footer {
 }
 
 .login-form,
+.login2-form,
 .passwordAccount-form {
   display: flex;
   width: 25rem;
@@ -273,6 +284,16 @@ footer {
   margin-top: 2rem;
 }
 
+.login2-form {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin: 10rem auto 4rem;
+  height: 30%;
+  width: 50%;
+}
+
 .createAccount-form {
   display: grid;
   width: 25rem;
@@ -288,7 +309,7 @@ footer {
     "password repassword"
     "labelEmail labelEmail"
     "email email"
-    "board board"
+    "verify verify"
     "submit submit";
 }
 
@@ -301,11 +322,12 @@ footer {
 }
 
 .passwordAccount-form {
-  margin: 0 auto;
-  grid-template-areas:
-    "title"
-    "email"
-    "submit";
+  flex-direction: column;
+  margin: auto;
+}
+
+.email-el-password{
+  margin-bottom: 3rem;
 }
 
 .input-el,
@@ -318,10 +340,7 @@ footer {
 }
 
 .message-el {
-  position: absolute;
-  border: none;
-  top: 8rem;
-  left: 34%;
+ text-align: center;
 }
 
 .email-label {
@@ -358,18 +377,64 @@ footer {
   grid-area: repassword;
 }
 
-.button-reSubmit-el {
-  position: relative;
-  top: 2.2rem;
+.verify-division{
+  grid-area: verify;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.verify-division > #regex {
+  text-align: start;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+}
+.createAccount-form #regex p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+#regex .is_not_valid {
+  color: rgb(158, 158, 158);
+}
+
+#regex .is_valid {
+  color: green;
+}
+
+#regex .fa-xmark {
+  color: red;
+}
+
+#regex .fa-check {
+  color: green;
+}
+
+#regex .fa-solid {
+  transition: transform 0.2s ease-out 0.2s;
+}
+
 
 .passwordAccountContact-el {
   text-decoration: underline;
   cursor: pointer;
 }
+
 .passwordAccountTitle-el {
-  grid-area: title;
   margin-bottom: 4.5rem;
+}
+
+#submit-button-password{
+  margin-bottom: 5rem;
+}
+
+.contact-us-link{
+  border: none;
+  padding: 0;
+  background: none;
 }
 
 .button-submit-el {
@@ -382,7 +447,6 @@ footer {
 }
 
 #board {
-  grid-area: board;
   width: 150px;
   height: 150px;
   border: 2px solid #19215e;
@@ -391,7 +455,8 @@ footer {
   justify-content: center;
   align-content: center;
   border-collapse: collapse;
-  margin: 1.5rem auto 0;
+  margin: 0 auto 0 0;
+  transition: border-color 0.2s ease-out 0.2s;
 }
 
 #board img {
@@ -467,8 +532,8 @@ footer {
   background-color: #19215e;
   color: white;
   text-align: center;
-  width: 40rem;
-  padding: 4rem;
+  width: 35rem;
+  padding: 3rem;
   border: none;
   border-radius: 1.5rem;
   display: grid;
@@ -476,13 +541,13 @@ footer {
   margin: 10rem auto;
 }
 
-.tokenIsValid-el{
+.tokenIsValid-el {
   background-color: #3bac29;
 }
 
-.token-el h1,
-.tokenIsValid-el h1 {
-  font-size: 2.6rem;
+.token-el h2,
+.tokenIsValid-el h2 {
+  font-size: 2rem;
 }
 
 .token-el form {
@@ -493,10 +558,11 @@ footer {
 .token-buttonEl {
   padding: 1rem;
   border-radius: 0.5rem;
-  width: 100%;
+  width: 80%;
   text-align: center;
-  height: 6rem;
-  font-size: 2rem;
+  height: 3.5rem;
+  font-size: 1rem;
+  margin: 0 auto;
 }
 
 .token-buttonEl a {
@@ -518,7 +584,7 @@ footer {
 }
 
 .tokenIsValid-el p {
-  color: rgb(201, 201, 201);
+  color: rgb(243, 243, 243);
   font-size: 1.3rem;
 }
 
@@ -590,6 +656,32 @@ footer {
   line-height: 1.5;
 }
 
+.sonic {
+  width: 25rem;
+}
+@media screen and (max-width: 1280px) {
+  
+  .information-row{
+    padding: 8rem;
+  }
+
+  .information-write > h1,
+  .carousel-div h1{
+    font-size: 1.5rem;
+  }
+
+  .information-write > p,
+  .carousel-div p {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  }
+
+  .sonic {
+    width: 19rem;
+  }
+}
+
+
 .presentation-div {
   padding-top: 16rem;
   background: linear-gradient(#00595f, #101d80);
@@ -603,9 +695,7 @@ footer {
   text-align: center;
 }
 
-.sonic {
-  width: 25rem;
-}
+
 
 .games-div {
   background: linear-gradient(#101d80, #19215e);
@@ -828,339 +918,151 @@ footer {
 
 /*---------------------------------------------LOUNGE---------------------------------------*/
 
-.div_centered {
-  max-width: 90%;
-}
-
-.filtre_div {
-  font-family: "Neon";
-  font-size: 2rem;
-  height: 200px;
-  margin-top: 80px;
-  margin-bottom: 80px;
-  background-color: rgba(6, 6, 6, 0.1);
-  border-radius: 2rem;
-}
-
-.filtre_div .row {
-  flex: 1;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-}
-
-.en_tete {
-  height: 52px;
-  background-color: rgba(6, 6, 6, 0.1);
-  border-radius: 1rem;
-  font-size: 2rem;
-  padding: 0 1rem;
-  padding-top: 3px;
-}
-
-.en_tete p {
-  margin: 0;
-}
-
-.img_txt_post {
-  font-family: "Neon";
-  font-size: 30px;
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-img.img_txt_post {
-  max-width: 450px;
-  max-height: 335px;
-  border-radius: 20px;
-}
-
-div.img_txt_post {
-  margin-top: 50px;
-  margin-bottom: 100px;
-}
-
-.img_txt_post .col > p {
-  font-size: 52px;
-  font-weight: bold;
-  text-align: center;
-}
-
-#neon_font {
-  font-family: "Neon";
-}
-
-div.posts:hover {
-  background-color: #dae5ff;
-  transition: 0.5s;
-}
-
-div.posts {
-  transition: 0.5s;
-  border-radius: 1rem;
-}
-
-.div_centered a {
-  text-decoration: none !important;
-  color: black !important;
-}
-
-/* ----------------------------------------------LOUNGE 1 PROFIL---------------------------------------------*/
-
-.banner {
-  height: 1000px;
-  background-image: url("../img/lounge.png");
-  background-size: cover;
-}
-
-.filtre {
-  background-color: white;
-  width: 250px;
-  height: 45px;
-  border-radius: 30px;
-  padding-left: 30px;
-  border: none;
-}
-
-/*------------------------------------------------------PROFIL----------------------------------------------*/
-
-.banner_profil {
-  position: relative;
-  height: 1000px;
-  background-image: url("../img/Fond_profil.png");
-  background-size: cover;
-  padding-top: 850px;
-}
-
-.barre_profil {
-  position: static;
-  background-color: rgba(22, 22, 22, 0.5);
-  height: 107px;
+.post-section{
+  padding: 3rem 15rem;
   width: 100%;
-  font-size: 36px;
+  background: linear-gradient(#1C1529,#4D2054);
+}
+
+.sort-bar{
+  background-color: #28252e;
+  border: 2px solid #4D2054;
   color: white;
-  text-shadow: 0 0 7px #fff;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.barre_profil .col-2 {
-  margin-right: 20px;
-}
-
-.barre_profil p {
-  margin-bottom: 0;
-}
-
-.banner_profil img {
-  position: absolute;
-  bottom: 0;
-  margin-left: 120px;
-}
-
-.filtre_div button {
-  color: black;
-}
-
-.filtre_div div.col-6 p {
-  margin-left: 50px;
-}
-
-.filtre_div button {
-  background-color: rgba(35, 35, 35, 0.15);
-  border: none;
-  width: 350px;
-  height: 60px;
-  font-size: 30px;
-}
-
-.barre_fine {
-  background-color: rgba(6, 6, 6, 0.1);
-  border-radius: 30px;
-  height: 16px;
-  margin-bottom: 80px;
-}
-
-/*------------------------------------------------------EVENTS----------------------------------------------*/
-
-.banner_event {
-  position: relative;
-  height: 1000px;
-  background-image: url("../img/fond_event.png");
-  background-size: cover;
-}
-
-.currently {
-  height: 150px;
-  background-color: rgba(0, 0, 0, 0.36);
-}
-
-/*------------------------------------------------------POST----------------------------------------------*/
-
-.commenter input,
-.commenter button {
   width: 100%;
-  font-size: 30px;
-  text-align: center;
-  border-radius: 16px;
-}
-
-.commenter input {
-  height: 59px;
-  border: 3px solid black;
-}
-
-.commenter button {
-  margin-bottom: 12px;
-}
-
-.comments {
-  border: 3px solid black;
-  border-radius: 16px;
-  padding: 50px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  text-align: center;
+  margin: 0;
+  padding: 2rem 4rem;
+  border-radius: 1.5rem;
   font-size: 1.4rem;
 }
 
-.comments h1 {
+.sort-bar button{
+  border: none;
+  border-radius: 1.4rem;
+}
+
+.sort-bar *{
+  justify-content: center;
+}
+
+.user-post{
+  margin: 3rem 0;
+}
+
+.post-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  background-color: #28252e;
+  color: white;
+  padding: 2rem 4rem;
+  border: 2px solid #4D2054;
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.post-header p{
+  margin: 0;
+}
+
+.like-dislike-post{
+  display: flex;
+}
+
+.like-dislike-post > *{
+  margin-left: 2rem;
+  display: flex;
+}
+
+.like-dislike-post i{
+  margin-top: 0.5rem;
+  margin-right: 0.3rem;
+}
+
+.post-body{
+  display: flex;
+  background-color: rgb(207, 207, 207);
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+
+.post-body img{
+  width: 35rem;
+  height: 22rem;
+}
+
+.post-image-left{
+  border-radius: 0 0 0 1.5rem;
+  order: -1;
+}
+
+.post-image-right{
+  border-radius: 0 0 1.5rem 0;
+  order: 2;
+}
+
+.post-body-description{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.post-title{
+  font-size: 2.6rem;
+  margin-bottom: 3rem;
+}
+
+.post-description{
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.post-user{
+  font-weight: bold;
+  text-align: end;
+  margin: 0;
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.pages-numbers-post{
+  display: flex;
+  justify-content: center;
+}
+
+.page-number-post{
+  border: 1px solid black;
+  border-radius: 9px;
+  margin: 0 1rem;
+  width: 3rem;
+  height: 3rem;
+  padding: 1rem;
+  color: white;
+  background-color: black;
+}
+
+#add-post{
+  position: fixed;
+  right: 4rem;
+  bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid#080f46;
+  border-radius: 1rem;
+  width: 4rem;
+  height: 4rem;
+  z-index: 1000;
+}
+
+#add-post i{
   font-size: 1.5rem;
 }
 
-.comments img {
-  max-height: 140px;
+.banner-post{
+  background-image: url("../img/post-background.png");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  height: 50rem;
 }
-
-div.post {
-  position: relative;
-  top: 203.59px;
-  margin-bottom: 283.59px;
-}
-
-#Poster {
-  font-family: "AtariClassic";
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
-  border-radius: 1rem;
-  background-color: grey;
-  border : none;
-  color : white;
-  font-weight: bolder;
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-}
-
-#show-login{
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  padding: 10px 20px;
-  font-size: 15px;
-  color:#222;
-  background: #f5f5f5;
-  border : none;
-  outline: none;
-  cursor: pointer;
-  border-radius : 5px;
-}
-.popup {
-  position: absolute;
-  top: -150%;
-  left :50%;
-  opacity: 0;
-  transform: translate(-50%,-50%) scale(1.25);
-  width: 600px;
-  padding: 20px 30px;
-  background: #fff;
-  box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.15);
-  border-radius: 10px;
-  transition: top 0ms ease-in-out 200ms,
-              opacity 200ms ease-in-out 0ms,
-              transform 20ms ease-in-out 0ms;
-  z-index: 99999;
-}
-.popup.active{
-  position: fixed;
-  top: 50%;
-  opacity: 1;
-  transform: translate(-50%,-50%) scale(1);
-  transition: top 0ms ease-in-out 200ms,
-              opacity 200ms ease-in-out 0ms,
-              transform 20ms ease-in-out 0ms;
-z-index: 99999;
-
-}
-
-main.is-blurred {
-  filter: blur(8px)!important;
-}
-
-.popup .close-btn{
-  position: absolute;
-  top : 10px;
-  right :10px;
-  width: 20px;
-  height: 20px;
-  background: #888;
-  color : #eee;
-  text-align:center;
-  line-height: 20px;
-  border-radius:15px;
-  cursor:  pointer;
-}
-
-.popup form h2 {
-  text-align: center;
-  color: #222;
-  margin: 10px 0px 20px;
-  font-size: 35px;
-}
-.popup form .form-element {
-  margin: 15px 0px;
-}
-.popup form .form-element label {
-  font-size :20px;
-  color:#222;
-}
-.popup form .form-element input[type="text"]{
-  margin-top: 5px;
-  display: block;
-  width: 100%;
-  padding: 10px;
-  outline: none;
-  border : 1px solid #aaa;
-  border-radius:5px;
-}
-
-.popup form .form-element textarea{
-  margin-top: 5px;
-  display: block;
-  width: 100%;
-  padding: 10px;
-  outline: none;
-  border : 1px solid #aaa;
-  border-radius:5px;
-}
-
-#content {
-  height : 150px;
-}
-
-.popup form .form-element button {
-  width: 100%;
-  height: 40px;
-  border:none;
-  outline:none;
-  font-size: 15px;
-  background: #222;
-  color: #f5f5f5;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
 
 
 /*------------------------------------------------------CONTACT US----------------------------------------------*/
@@ -1190,6 +1092,7 @@ main.is-blurred {
   width: 70%;
   margin: 4rem auto;
   border-radius: 3rem;
+  transition: 0.2s ease-out 0.2s;
 }
 
 .contact-us-div > p:nth-child(1) {
@@ -1222,7 +1125,7 @@ main.is-blurred {
   resize: vertical;
 }
 
-.contact-us-form textarea{
+.contact-us-form textarea {
   height: 10rem;
 }
 
@@ -1236,16 +1139,19 @@ main.is-blurred {
   border: none;
   border-radius: 10px;
   margin: 2rem auto 0;
+  box-shadow: 1px 1px 5px;
 }
 
-.contact-us-form button:hover{
+.contact-us-form button:hover {
   bottom: 1px;
   right: 1px;
+  box-shadow: 2px 2px 5px;
 }
 
-.contact-us-form button:active{
+.contact-us-form button:active {
   bottom: 0;
   right: 0;
+  box-shadow: 1px 1px 5px;
 }
 
 .contact-us-form label {
@@ -1253,8 +1159,6 @@ main.is-blurred {
 }
 
 
-<<<<<<< Updated upstream
-=======
 /* FORGET PASSWORD */
 
 .change-password-body{
@@ -1498,4 +1402,4 @@ main.is-blurred {
 }
 
 /*------------------------------------------------------ ARCADE ----------------------------------------------*/
->>>>>>> Stashed changes
+

@@ -13,7 +13,7 @@ include("includes/head.php") ?>
         include("includes/log_forms.php");
     }
     ?>
-    <main onclick="fermer()" class="blur-el">
+    <main <?php echo !isset($_SESSION['email']) ? 'onclick="fermer()" class="blur-el"' : ''; ?>>
         <div class="contact-us-el">
             <h1>CONTACT US</h1>
             <h1>...</h1>
@@ -22,29 +22,29 @@ include("includes/head.php") ?>
                 <h2>Envoyer une demande</h2>
                 <p>Quel que soit le souci, nous sommes là pour vous aider !
                     Envoyez une requête ! À moins qu'elle tombe dans un portail, nous y répondrons très vite.</p>
-                <?php if(isset($_SESSION['email'])){
+                <?php if (isset($_SESSION['email'])) {
 
                     echo '<form class="contact-us-form">';
                     echo '<div class="contact-us-form-div">';
                     echo '<label>1. Choisissez un type de requête</label>';
                     echo '<select class="reqList-el" name="problem_type">';
-    
-                            $types = [
-                                '...',
-                                'Signaler un joueur',
-                                'Récupérer mon compte',
-                                'Gestion de compte, demande de données ou suppression',
-                                'Problèmes techniques: installation, patchs, latence, plantage',
-                                'Question générale'
-                            ];
-                            foreach ($types as $key => $value) {
-                                echo '<option value="' . $key . '">' . ucfirst($value) . '</option>';
-                            }
-                            
+
+                    $types = [
+                        '...',
+                        'Signaler un joueur',
+                        'Récupérer mon compte',
+                        'Gestion de compte, demande de données ou suppression',
+                        'Problèmes techniques: installation, patchs, latence, plantage',
+                        'Question générale'
+                    ];
+                    foreach ($types as $key => $value) {
+                        echo '<option value="' . $key . '">' . ucfirst($value) . '</option>';
+                    }
+
                     echo   '</select>';
                     echo '</div>';
                     echo '</form>';
-                    }
+                }
                 ?>
             </div>
         </div>

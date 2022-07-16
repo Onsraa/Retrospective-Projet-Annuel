@@ -11,67 +11,61 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
     setcookie('email', $_POST['email'], time() + 3600 * 24);
 }
 
-if (isset($_POST['nickname']) && !empty($_POST['nickname'])) {
-    setcookie('nickname', $_POST['nickname'], time() + 3600 * 24);
-}
-
 if (!isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['password']) || empty($_POST['password'])) {
-    header('location: ../index.php?message_createAccount=Veuillez remplir les deux champs.&type=alert');
+    header('location: ../index.php?'); //error 1 : Veuillez remplir les deux champs.
     exit;
 }
 
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    header('location: ../index.php?message_createAccount=Email invalide.&type=alert');
+    header('location: ../index.php'); //error 2 : Email invalide.
     exit;
 }
 
-if (strlen($_POST['password']) < 8 || !preg_match('/[A-Z]/', $_POST['password']) || !preg_match('/[0-9]/', $_POST['password'])) {
-    header('location: ../index.php?message_createAccount=Veuillez entrer un mot de passe avec au moins 8 caractères dont une majuscule, une minuscule et un chiffre.&type=alert');
+$pwdVerif =  "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,}$/";
+
+
+if(!preg_match($pwdVerif, $_POST['password'])){
+    header('location: ../index.php?');
     exit;
 }
+
+
 
 if($_POST['password'] != $_POST['repassword']){
-    header('location: ../index.php?message_createAccount=Les mots de passe ne sont pas identiques.&type=alert');
+    header('location: ../index.php?');
     exit;
 }
 
+require('../includes/servers/db.php');
 
-/* GENERATE A TOKEN*/
-$randomToken = rand(500000, 999999);
-
-
-include('../includes/db.php');
-
-require('../includes/db.php');
-
-$q = 'SELECT id FROM users WHERE email = ? AND is_banned = ?';
+$q = 'SELECT id FROM USERS WHERE email = ? AND is_banned = ?';
 $req = $bdd -> prepare($q);
 $req -> execute([$_POST['email'],1]);
 
 $result = $req -> fetchAll(PDO::FETCH_ASSOC);
 
 if(!empty($result)){
-    header('location: ../index.php?message_createAccount=Le compte associé à cet email est banni.?type=alert');
+    header('location: ../index.php?message_createAccount=1.?type_createAccount=alert-color');
     exit;
 }
 
-$q = 'SELECT id FROM users WHERE email = ?';
+$q = 'SELECT id FROM USERS WHERE email = ?';
 $req = $bdd->prepare($q);
 $req->execute([$_POST['email']]);
-$res = $req->fetchAll(PDO::FETCH_ASSOC);
+$result = $req->fetchAll(PDO::FETCH_ASSOC);
 
-if (!empty($res)) {
-    header('location: ../index.php?message_createAccount=Email déjà utilisé.&type=alert');
+if (!empty($result)) {
+    header('location: ../index.php?message_createAccount=2.&type_createAccount=alert-color');
     exit;
 }
 
-$q = 'SELECT id FROM users WHERE nickname = ?';
+$q = 'SELECT id FROM USERS WHERE nickname = ?';
 $req = $bdd->prepare($q);
 $req->execute([$_POST['nickname']]);
-$res = $req->fetchAll();
+$result = $req->fetch(PDO::FETCH_ASSOC);
 
-if (!empty($res)) {
-    header('location: ../index.php?message_createAccount=Pseudo déjà utilisé.&type=alert');
+if (!empty($result)) {
+    header('location: ../index.php?message_createAccount=3.&type_createAccount=alert-color');
     exit;
 }
 

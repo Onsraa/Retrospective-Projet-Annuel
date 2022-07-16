@@ -3,9 +3,8 @@
 
 <html>
 <?php
-$title = 'Accueil';
-include("includes/head.php") ;
-include('includes/logging.php');
+    $title = "Accueil";
+    include("includes/head.php");
 ?>
 
 <body>
@@ -13,10 +12,10 @@ include('includes/logging.php');
     include("includes/header.php");
     if (!isset($_SESSION['email'])) {
         include("includes/log_forms.php");
-    }    
+    }
     ?>
 
-    <main onclick="fermer()" class="blur-el">
+    <main <?php echo !isset($_SESSION['email']) ? 'onclick="fermer()" class="blur-el"' : ''; ?>>
         <div class="background-index container-fluid">
             <img class="image1" src="img/retrospective-text.png" />
             <img class="image2" src="img/reflect.png" />
