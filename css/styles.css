@@ -45,6 +45,15 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: 'Vector Battle';
+  src: url('../fonts/VectorBattle.woff2') format('woff2'),
+      url('../fonts/VectorBattle.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* --------------------------------------------FONTS-------------------------------------------- */
 
 /*---------------------------------------------HEADER & FOOTER---------------------------------------*/
@@ -1287,3 +1296,110 @@ footer {
 .add-post-div p{
   padding: 0;
 }
+
+
+/*------------------------------------------------------ ARCADE ----------------------------------------------*/
+
+.arcade main{
+  background-color: black;
+}
+
+.arcade .main-roll{
+  padding: 2rem;
+  margin: 10rem 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  border-radius: 2rem;
+}
+
+.arcade .main-roll section{
+  max-width: 60rem;
+  margin: auto;
+}
+
+.arcade .main-roll .title{
+  font-family: "Vector Battle";
+}
+
+.arcade .main-roll .subtitle{
+  margin-top: 3.8rem;
+  text-align: center;
+}
+
+.arcade .main-roll{
+  font-family: "Atari Classic Smooth";
+}
+
+.arcade .main-roll h1{
+  text-align: center;
+  width: 100%;
+  font-size: 4.5rem;
+  font-weight: 800;
+  margin: 0.8rem;
+}
+
+.arcade .main-roll h2{
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0.8rem;
+}
+
+.arcade .main-roll h3{
+  text-align: center;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0.8rem;
+}
+
+.arcade .main-roll .download{
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3.5rem;
+  max-width: 100%;
+}
+
+.arcade .main-roll .download img{
+  width: 3.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.arcade #download{
+  scroll-margin-top: 14rem;
+}
+
+.arcade .main-roll a{
+  background-color: none;
+  color: white;
+  transition: 0.15s;
+}
+
+.arcade .main-roll a:hover{
+  background-color: white;
+  color: black;
+  transition: 0.15s;
+  text-decoration: none;
+}
+
+.arcade .main-roll .content img{
+  width: 100%;
+}
+
+.arcade .main-roll .content .desc p{
+  max-width: 32rem;
+}
+
+.arcade .main-roll a{
+  color: white;
+}
+
+.arcade p{
+  font-size: 0.75rem;
+}
+
+/*------------------------------------------------------ ARCADE ----------------------------------------------*/
+

@@ -3,8 +3,7 @@
 $q = 'SELECT 
     (SELECT COUNT(*) FROM USERS) AS count_users, 
     (SELECT COUNT(*) FROM POST) AS count_post, 
-    (SELECT COUNT(*) FROM MEDIA_POST) AS count_mediaP,
-    (SELECT COUNT(*) FROM MEDIA_COMMENT) AS count_mediaC;';
+    (SELECT COUNT(*) FROM MEDIA_POST) AS count_media';
 $req = $bdd->prepare($q);
 $req->execute();
 $results = $req->fetch();
@@ -16,7 +15,7 @@ include('includes/logging.php');
 $usersArray = array();
 $usersFile = fopen('logs/users.txt', 'r');
 $usersFileArray = explode("\n", fread($usersFile, filesize('logs/users.txt')));
-for($i = 0; $i < sizeof($usersFileArray); $i++)
+for($i = 0; $i < sizeof($usersFileArray)-1; $i++)
 {
     list($k, $v) = explode(" - ", $usersFileArray[$i]);
     $usersArray[$k] = intval($v);
@@ -25,7 +24,7 @@ for($i = 0; $i < sizeof($usersFileArray); $i++)
 $postsArray = array();
 $postsFile = fopen('logs/posts.txt', 'r');
 $postsFileArray = explode("\n", fread($postsFile, filesize('logs/posts.txt')));
-for($i = 0; $i < sizeof($postsFileArray); $i++)
+for($i = 0; $i < sizeof($postsFileArray)-1; $i++)
 {
     list($k, $v) = explode(" - ", $postsFileArray[$i]);
     $postsArray[$k] = intval($v);
@@ -34,7 +33,7 @@ for($i = 0; $i < sizeof($postsFileArray); $i++)
 $mediasArray = array();
 $mediasFile = fopen('logs/medias.txt', 'r');
 $mediasFileArray = explode("\n", fread($mediasFile, filesize('logs/medias.txt')));
-for($i = 0; $i < sizeof($mediasFileArray); $i++)
+for($i = 0; $i < sizeof($mediasFileArray)-1; $i++)
 {
     list($k, $v) = explode(" - ", $mediasFileArray[$i]);
     $mediasArray[$k] = intval($v);
