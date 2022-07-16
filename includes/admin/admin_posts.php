@@ -1,6 +1,6 @@
 <?php
 
-$q = 'SELECT * FROM post';
+$q = 'SELECT * FROM POST';
 $req = $bdd->prepare($q);
 $req->execute();
 $results = $req->fetchAll();

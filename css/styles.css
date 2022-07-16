@@ -45,6 +45,15 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: 'Vector Battle';
+  src: url('../fonts/VectorBattle.woff2') format('woff2'),
+      url('../fonts/VectorBattle.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* --------------------------------------------FONTS-------------------------------------------- */
 
 /*---------------------------------------------HEADER & FOOTER---------------------------------------*/
@@ -1244,3 +1253,249 @@ main.is-blurred {
 }
 
 
+<<<<<<< Updated upstream
+=======
+/* FORGET PASSWORD */
+
+.change-password-body{
+  background: linear-gradient(#101d80, #5b64ac);
+  color: rgb(214, 214, 214);
+}
+
+.change-password-div{
+  text-align: center;
+  margin: 12rem 0;
+}
+
+.change-password-div form{
+  display: grid;
+  grid-template-areas: 
+            "changePassword changeRepassword"
+            "regex regex"
+            "changePasswordBtn changePasswordBtn";
+  width: 40%;
+  text-align: left;      
+  column-gap: 2rem;
+  row-gap: 3rem;
+  margin: 3rem auto 0;
+  padding: 3rem;
+  background-color: #101d80;
+  color: rgb(224, 224, 224);
+  border: none;
+  border-radius: 3rem;
+}
+
+.changePassword{
+  grid-area: changePassword;
+  display: flex;
+  flex-direction: column;
+}
+
+.changeRepassword{
+  grid-area: changeRepassword;
+  display: flex;
+  flex-direction: column;
+}
+
+.change-password-div form #regex{
+  grid-area: regex;
+  text-align: left;
+  width: 50%;
+  margin: 0 auto;      
+  padding: 1rem;
+  border: 2px dashed #080f46;
+  border-radius: 1rem;
+}
+
+.change-password-div form #regex p{
+  margin: 0;
+  color: white;
+}
+
+.changePassword-el{
+  padding: 1rem;
+  border: 2px solid #101d80;
+  border-radius: 1rem;
+}
+
+.changeRepassword-el{
+  padding: 1rem;
+  border: 2px solid #101d80;
+  border-radius: 1rem;
+}
+
+.changePasswordBtn{
+  grid-area: changePasswordBtn;
+  padding: 1rem;
+  width: 30%;
+  border: 2px solid #101d80;
+  border-radius: 1rem;
+  margin: 0 auto;
+}
+
+
+.add-post-div form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-post-div h1{
+  margin-bottom: 2rem;
+}
+
+.add-post-div button{
+  padding: 1rem;
+  border: 1px solid #080f46;
+  border-radius: 0.5rem;
+}
+
+.add-post-div form > div{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: start;
+  margin-bottom: 2rem;
+  width: 70%;
+}
+
+.add-post-div form div input:not(#image-file-post), .add-post-div form div textarea{
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #080f46;
+}
+
+.add-post-div .fa-xmark{
+  position: absolute;
+  right: 3rem;
+  top: 3rem;
+  font-size: 2rem;
+}
+
+.add-post-post2{
+  display: flex;
+  flex-direction: row!important;
+  justify-content: space-between!important;
+}
+
+.add-post-post2 select{
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.add-post-post2 div{
+  display: flex;
+  flex-direction: column;
+}
+
+.add-post-div p{
+  padding: 0;
+}
+
+
+/*------------------------------------------------------ ARCADE ----------------------------------------------*/
+
+.arcade main{
+  background-color: black;
+}
+
+.arcade .main-roll{
+  padding: 2rem;
+  margin: 10rem 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  border-radius: 2rem;
+}
+
+.arcade .main-roll section{
+  max-width: 60rem;
+  margin: auto;
+}
+
+.arcade .main-roll .title{
+  font-family: "Vector Battle";
+}
+
+.arcade .main-roll .subtitle{
+  margin-top: 3.8rem;
+  text-align: center;
+}
+
+.arcade .main-roll{
+  font-family: "Atari Classic Smooth";
+}
+
+.arcade .main-roll h1{
+  text-align: center;
+  width: 100%;
+  font-size: 4.5rem;
+  font-weight: 800;
+  margin: 0.8rem;
+}
+
+.arcade .main-roll h2{
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0.8rem;
+}
+
+.arcade .main-roll h3{
+  text-align: center;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0.8rem;
+}
+
+.arcade .main-roll .download{
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3.5rem;
+  max-width: 100%;
+}
+
+.arcade .main-roll .download img{
+  width: 3.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.arcade #download{
+  scroll-margin-top: 14rem;
+}
+
+.arcade .main-roll a{
+  background-color: none;
+  color: white;
+  transition: 0.15s;
+}
+
+.arcade .main-roll a:hover{
+  background-color: white;
+  color: black;
+  transition: 0.15s;
+  text-decoration: none;
+}
+
+.arcade .main-roll .content img{
+  width: 100%;
+}
+
+.arcade .main-roll .content .desc p{
+  max-width: 32rem;
+}
+
+.arcade .main-roll a{
+  color: white;
+}
+
+.arcade p{
+  font-size: 0.75rem;
+}
+
+/*------------------------------------------------------ ARCADE ----------------------------------------------*/
+>>>>>>> Stashed changes
