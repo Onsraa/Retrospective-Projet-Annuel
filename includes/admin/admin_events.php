@@ -23,7 +23,7 @@ echo
                         ';
 include("includes/db.php");
 
-$q = 'SELECT id, title, description, start_date, end_date FROM event WHERE start_date <= NOW() AND end_date > NOW()';
+$q = 'SELECT id, title, description, start_date, end_date FROM EVENT WHERE start_date <= NOW() AND end_date > NOW()';
 $req = $bdd->query($q);
 $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
@@ -56,7 +56,7 @@ echo '
                     <tbody>
                         ';
 
-$q = 'SELECT id, title, description, start_date FROM event WHERE start_date > NOW()';
+$q = 'SELECT id, title, description, start_date FROM EVENT WHERE start_date > NOW()';
 $req = $bdd->query($q);
 $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
@@ -86,7 +86,7 @@ echo '
                     </thead>
                     <tbody>
                         ';
-$q = 'SELECT title, end_date FROM event WHERE end_date < NOW()';
+$q = 'SELECT title, end_date FROM EVENT WHERE end_date < NOW()';
 $req = $bdd->query($q);
 $result = $req->fetchAll(PDO::FETCH_ASSOC);
 
