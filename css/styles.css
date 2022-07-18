@@ -45,6 +45,15 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: 'Vector Battle';
+  src: url('../fonts/VectorBattle.woff2') format('woff2'),
+      url('../fonts/VectorBattle.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* --------------------------------------------FONTS-------------------------------------------- */
 
 /*---------------------------------------------HEADER & FOOTER---------------------------------------*/
@@ -1320,6 +1329,7 @@ footer {
 
 .add-post-div p{
   padding: 0;
+<<<<<<< HEAD
   font-family: 'Neon';
 }
 
@@ -1441,6 +1451,10 @@ footer {
     font-size: 2.5rem;
   }
 }
+=======
+}
+
+>>>>>>> e1c9f468e5b040f2546d5d8537e5381bf20990bc
 
 /*------------------------------------------------------ ARCADE ----------------------------------------------*/
 
@@ -1498,6 +1512,7 @@ footer {
   margin: 0.8rem;
 }
 
+<<<<<<< HEAD
 .arcade .main-roll a{
   background-color: none;
   color: white;
@@ -1511,6 +1526,8 @@ footer {
   text-decoration: none;
 }
 
+=======
+>>>>>>> e1c9f468e5b040f2546d5d8537e5381bf20990bc
 .arcade .main-roll .download{
   font-size: 2rem;
   display: flex;
@@ -1525,6 +1542,26 @@ footer {
   margin-bottom: 2.5rem;
 }
 
+<<<<<<< HEAD
+=======
+.arcade #download{
+  scroll-margin-top: 14rem;
+}
+
+.arcade .main-roll a{
+  background-color: none;
+  color: white;
+  transition: 0.15s;
+}
+
+.arcade .main-roll a:hover{
+  background-color: white;
+  color: black;
+  transition: 0.15s;
+  text-decoration: none;
+}
+
+>>>>>>> e1c9f468e5b040f2546d5d8537e5381bf20990bc
 .arcade .main-roll .content img{
   width: 100%;
 }
@@ -1541,4 +1578,9 @@ footer {
   font-size: 0.75rem;
 }
 
+<<<<<<< HEAD
 /*------------------------------------------------------ ARCADE ----------------------------------------------*/
+=======
+/*------------------------------------------------------ ARCADE ----------------------------------------------*/
+
+>>>>>>> e1c9f468e5b040f2546d5d8537e5381bf20990bc
