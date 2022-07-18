@@ -1,25 +1,29 @@
 <?php
 
+session_start();
+
 require_once("../functions/sorts.php");
 require_once("db.php");
 
-$number_of_post_per_page = 3;
+$number_of_post_per_page = 5;
 
 $mainQuery = 'SELECT 
-            post.id as id,
-            post.title as title, 
-            post.content as description, 
-            post.category as category, 
-            post.date as date, 
-            media_post.src as image,
-            (SELECT COUNT(user) FROM user_post_like WHERE user_post_like.post = post.id) as likes,
-            (SELECT COUNT(user) FROM user_post_dislike WHERE user_post_dislike.post = post.id) as dislikes,
-            (SELECT USERS.nickname FROM USERS WHERE USERS.id = post.user) as author
-            FROM post 
-            INNER JOIN media_post ON post.id = media_post.post';
+            POST.id as id,
+            POST.title as title,            
+            POST.content as description,    
+            POST.category as category, 
+            POST.date as date, 
+            POST.user as user_id,
+            MEDIA_POST.src as image,
+            (SELECT COUNT(id) FROM COMMENT WHERE COMMENT.post = POST.id) as comments,
+            (SELECT COUNT(user) FROM USER_POST_LIKE WHERE USER_POST_LIKE.post = POST.id) as likes,
+            (SELECT COUNT(user) FROM USER_POST_DISLIKE WHERE USER_POST_DISLIKE.post = POST.id) as dislikes,
+            (SELECT USERS.nickname FROM USERS WHERE USERS.id = POST.user) as author
+            FROM POST 
+            INNER JOIN MEDIA_POST ON POST.id = MEDIA_POST.post' . (!isset($_POST['category']) || isset($_POST['category']) && $_POST['category'] == 'all' ? ' ORDER BY POST.id DESC' : '');
 
 if(isset($_POST['category']) && !empty($_POST['category']) && $_POST['category'] !== 'all'){
-    $q = $mainQuery . ' WHERE post.category = ?';
+    $q = $mainQuery . ' WHERE POST.category = ? ORDER BY POST.id DESC';
     $res = $bdd -> prepare($q);
     $res -> execute([$_POST['category']]);
     $result = $res -> fetchAll(PDO::FETCH_ASSOC);

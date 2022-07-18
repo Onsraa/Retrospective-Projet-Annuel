@@ -46,7 +46,7 @@ if (empty($result)) {
     exit;
 }
 
-$q = 'SELECT id FROM USERS WHERE email = :email AND status = :status';
+$q = 'SELECT id, nickname FROM USERS WHERE email = :email AND status = :status';
 $req = $bdd->prepare($q);
 $req->execute(['email' => $_POST['email'],'status' => 'not_verified']);
 $result = $req->fetch(PDO::FETCH_ASSOC);
@@ -64,11 +64,10 @@ if (!empty($result)) {
         require_once('gmail.php');
 
         $subject = 'Retrospective verification code.';
-        $message = '<h1>Voici votre code de vérification : ' . $token . '</h1>';
-        $altMessage = 'Voici votre code de vérification : ' . $token;
+        $type = 'verification';
         $to = $_POST['email'];
 
-        sendMail($subject, $message, $altMessage, $to);
+        sendMail($subject, $type, $to, $result['nickname'], $token);
         header('location: ../index.php?message_connection=3&type_connection=alert-color&resend=1&email=' . $_POST['email']);
         exit;
     } else {

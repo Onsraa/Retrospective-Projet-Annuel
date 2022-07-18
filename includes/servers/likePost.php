@@ -21,13 +21,21 @@ if(isset($_SESSION['id'])){
         checkOther('like', $user_id, $post_id, $bdd);
     }
 
-    $q = 'SELECT (SELECT COUNT(user) FROM user_post_like WHERE user_post_like.post = ' . $post_id . ') as likes, (SELECT COUNT(user) FROM user_post_dislike WHERE user_post_dislike.post = ' . $post_id . ') as dislikes FROM post WHERE post.id = ' . $post_id;
+    $q = 'SELECT (SELECT COUNT(user) FROM USER_POST_LIKE WHERE USER_POST_LIKE.post = ' . $post_id . ') as likes, (SELECT COUNT(user) FROM USER_POST_DISLIKE WHERE USER_POST_DISLIKE.post = ' . $post_id . ') as dislikes FROM POST WHERE POST.id = ' . $post_id;
     $res = $bdd -> query($q);
     $result = $res -> fetch(PDO::FETCH_ASSOC);
 
-    echo '<i class="fa-solid fa-thumbs-up" onclick="likePost(likeCheck, \'like\',' . $post_id . ')"></i>';
+    echo '<i class="fa-solid fa-thumbs-up"';
+    if(isset($_SESSION['id'])){
+        echo 'onclick="likePost(likeCheck, \'like\',' . $post_id . ')"';
+    } 
+    echo '></i>';
     echo '<p id="count-like-' . $post_id  . '">' . $result['likes'] . '</p>';
-    echo '<i class="fa-solid fa-thumbs-down" onclick="likePost(likeCheck, \'dislike\',' . $post_id . ')"></i>';
+    echo '<i class="fa-solid fa-thumbs-down"';
+    if(isset($_SESSION['id'])){
+        echo 'onclick="likePost(likeCheck, \'dislike\',' . $post_id . ')"';
+    } 
+    echo '></i>';
     echo '<p id="count-dislike-' . $post_id . '">' . $result['dislikes'] . '</p>';
 }
 ?>

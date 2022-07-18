@@ -20,29 +20,29 @@
 
         if (isset($_GET['resend']) && !empty($_GET['resend']) && $_GET['resend'] == 1 && isset($_GET['email']) && !empty($_GET['email'])) {
 
-            $q = 'SELECT id FROM USERS WHERE email = ? AND token IS NOT NULL';
+            $q = 'SELECT id, nickname FROM USERS WHERE email = ? AND token IS NOT NULL';
             $req = $bdd->prepare($q);
             $req->execute([htmlspecialchars($_GET['email'])]);
-            $result = $req->fetchAll(PDO::FETCH_ASSOC);
+            $verify = $req->fetch(PDO::FETCH_ASSOC);
 
             $token = (string)(rand(222222, 999999));
 
-            if (!empty($result)) {
+            if (!empty($verify)) {
 
                 $q = 'UPDATE USERS SET token = ? WHERE email = ?';
                 $req = $bdd->prepare($q);
                 $result = $req->execute([$token, htmlspecialchars($_GET['email'])]);
 
                 if ($result) {
-                    require_once('gmail.php');
 
+                    require_once('gmail.php');
+                    
                     $subject = 'Retrospective verification code.';
-                    $message = '<h1>Voici votre code de vérification : ' . $token . '</h1>';
-                    $altMessage = 'Voici votre code de vérification : ' . $token;
+                    $type = 'verification';
                     $to = $_GET['email'];
 
                     echo '<div class="token-el">';
-                    sendMail($subject, $message, $altMessage, $to);
+                    sendMail($subject, $type, $to, $verify['nickname'], $token);
                 } else {
                     echo '<p>Le renvoi du code a échoué</p>';
                 }
@@ -66,7 +66,7 @@
                 if (empty($result)) {
                     echo '<p>Le code est incorrect.</p>';
                 } else {
-                    $q = 'UPDATE USERS SET status = "user", token = NULL WHERE email = ?'; //Si elles correspondent alors on change le status de l'utilisateur pour qu'il puisse avoir accès aux fonctionnalités.
+                    $q = 'UPDATE USERS SET status = "user", token = NULL, creation_date = NOW(), background_profile = "default.png" WHERE email = ?'; //Si elles correspondent alors on change le status de l'utilisateur pour qu'il puisse avoir accès aux fonctionnalités.
                     $req = $bdd->prepare($q);
                     $verify = $req->execute([htmlspecialchars($_GET['email'])]);
 
@@ -108,7 +108,7 @@
                         'token' => $token
                     ]);
 
-                    $stats = 'USERS';
+                    $stat = 'USERS';
                     include("../includes/stats.php");
                     
                     if (!$result) {
@@ -118,12 +118,13 @@
                         $q = 'SELECT id FROM USERS WHERE email = ?';
                         $req = $bdd->prepare($q);
                         $req->execute([$_POST['email']]);
-                        $result = $req->fetchAll(PDO::FETCH_ASSOC);
+                        $result = $req->fetch(PDO::FETCH_ASSOC);
+    
 
                         if (!empty($result)) {
-                            $q = 'INSERT into user_avatar(USERS, avatar_assets) VALUES (:id, :asset)';
+                            $q = 'INSERT into USER_AVATAR(users, avatar_assets) VALUES (:id, :asset)';
                             $req = $bdd->prepare($q);
-                            $result = $req->execute(['id' => $result[0]['id'], 'asset' => 1]);
+                            $result = $req->execute(['id' => $result['id'], 'asset' => 1]);
 
                             if (!$result) {
                                 header('location: ../index.php?message=La création du compte a échoué.');
@@ -136,12 +137,11 @@
                 require_once('gmail.php');
 
                 $subject = 'Retrospective verification code.';
-                $message = '<h1>Voici votre code de vérification : ' . $token . '</h1>';
-                $altMessage = 'Voici votre code de vérification : ' . $token;
+                $type = 'verification';
                 $to = $_POST['email'];
                 echo '<div class="token-el">';
 
-                sendMail($subject, $message, $altMessage, $to);
+                sendMail($subject, $type, $to, $_POST['nickname'], $token);
             }
 
             if (!isset($_POST['email']) && !isset($_GET['resend'])) {

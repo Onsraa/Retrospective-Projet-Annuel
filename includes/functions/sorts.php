@@ -4,7 +4,7 @@ function increase_Sort($unsorted, $column) {
     $sorted = $unsorted; 
     for ($i=0; $i < sizeof($sorted)-1; $i++) { 
       for ($j=0; $j <sizeof($sorted)-1-$i; $j++) 
-        if ($sorted[$j][$column] > $sorted[$j+1][$column]) { 
+        if ($sorted[$j][$column] > $sorted[$j+1][$column] || $sorted[$j][$column] == $sorted[$j+1][$column]) { 
           $tmp = $sorted[$j]; 
           $sorted[$j] = $sorted[$j+1]; 
           $sorted[$j+1] = $tmp; 
@@ -21,7 +21,7 @@ function decrease_Sort($unsorted, $column) {
           $tmp = $sorted[$j]; 
           $sorted[$j] = $sorted[$j+1]; 
           $sorted[$j+1] = $tmp; 
-        } 
+        }
     } 
     return $sorted; 
 }

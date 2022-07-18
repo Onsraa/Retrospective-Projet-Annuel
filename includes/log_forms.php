@@ -48,7 +48,7 @@
     <label class="email-label">Email</label>
     <input class="input-verification input-create-el email-el-create" name="email" type="email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : '' ?>" placeholder="sananes_champagne@esgi.fr" />
     <div class="verify-division">
-      <div id="board"></div>
+      <div id="board" class=""></div>
       <div id="regex">
         <p class="is_not_valid" id="constat_upper">
           <i class="fa-solid fa-xmark" id="constat_upper_status"></i> Une

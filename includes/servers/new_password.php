@@ -58,26 +58,31 @@ do{
     $q = 'SELECT id FROM USERS WHERE token = ?';
     $req = $bdd -> prepare($q);
     $req -> execute([$random_token]);
-    $result = $req -> fetchAll(PDO::FETCH_ASSOC);
+    $result = $req -> fetch(PDO::FETCH_ASSOC);
 
 }while(!empty($result));
+
 
 $q = 'UPDATE USERS SET token = ? WHERE email = ?';
 $req = $bdd -> prepare($q);
 $verify = $req -> execute([$random_token, $_POST['email']]);
 
+$q = 'SELECT nickname FROM USERS WHERE email = ?';
+$req = $bdd -> prepare($q);
+$req -> execute([$_POST['email']]);
+$result = $req -> fetch(PDO::FETCH_ASSOC);
+
 if($verify){
 
     require("../../verifications/gmail.php");
 
-    $generate_link = "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/change_password.php?q=" . $random_token;
-
     $subject = 'Retrospective change password link.';
-    $message = 'Voici votre lien pour changer de mot de passe : ' . $generate_link;
-    $altMessage = $message;
+    $type = 'password';
     $to = $_POST['email'];
 
-    sendMail($subject, $message, $altMessage, $to);
+    $generate_link = "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/change_password.php?q=" . $random_token;
+
+    sendMail($subject, $type, $to, $result['nickname'], $generate_link);
     echo '<p class="success-password">Courez chercher votre lien !</p>';
     exit;
 }else{

@@ -59,12 +59,12 @@ function createAccount() {
   inputsEl.forEach((e) => {
     e.value = "";
   });
+  cleanPuzzle();
+  generatePuzzle();
   verificationAll();
   loginAccountEl.removeAttribute("style");
   passwordAccountEl.removeAttribute("style");
   createAccountEl.style.display = "block";
-  cleanPuzzle();
-  generatePuzzle();
   has_right = false;
 }
 
@@ -80,78 +80,137 @@ function passwordAccount() {
 }
 
 function fermer() {
-  if(loginAccountEl !== null){
+  if (loginAccountEl !== null) {
     inputsEl.forEach((e) => {
-    e.value = "";
+      e.value = "";
     });
     verificationAll();
     loginAccountEl.removeAttribute("style");
     createAccountEl.removeAttribute("style");
-    passwordAccountEl.removeAttribute("style");  
+    passwordAccountEl.removeAttribute("style");
     cleanPuzzle();
   }
   blurEl.style.filter = "blur(0)";
 }
 
-if(loginAccountEl !== null){
+window.addEventListener('load', function(){
 
-  let connection_message = document.querySelector(".loginAccount-el .message-el");
-  let createAccount_message = document.querySelector(".createAccount-el .message-el");
+if (loginAccountEl !== null) {
 
   if (window.location.href.indexOf("?") != -1) {
-  let queryString = window.location.href.substr(
-    window.location.href.indexOf("?") + 1
-  );
 
-  let value = queryString.split("&")[0];
+    let queryString = window.location.href.substr(
+      window.location.href.indexOf("?") + 1
+    );
 
-  value = decodeURIComponent(value);
-  
-    if(connection_message !== null){
-      if (value == "message_connection=1"){
-          connection_message.innerHTML = "Le compte associé à cet email est banni.";
-          document.querySelector(".login-form").style.marginTop = "1.6rem";
-          login();
-          blurEl.style.filter = "blur(5px)";
-        }
-        else if (value == "message_connection=2"){
-          connection_message.innerHTML = "Identifiants incorrects.";
-          document.querySelector(".login-form").style.marginTop = "1.6rem";
-          login();
-          blurEl.style.filter = "blur(5px)";
-        }
-        else if (value == "message_connection=3"){
-          connection_message.innerHTML = "Le compte associé à cet email n\'a pas été vérifié, un code a été renvoyé.";
-          document.querySelector(".login-form").style.marginTop = "1.6rem";
-          login();
-          blurEl.style.filter = "blur(5px)";
-        }
-        else if (value == "message_connection=4"){
-          connection_message.innerHTML = "Le compte associé à cet email n\'a pas été vérifié, un code a été renvoyé.Le compte associé à cet email n\'a pas été vérifié, et un mail n\'a pas pu être renvoyé.";
-          document.querySelector(".login-form").style.marginTop = "1.6rem";
-          login();
-          blurEl.style.filter = "blur(5px)";
-        }
+    let value = queryString.split("&")[0];
+
+    value = decodeURIComponent(value);
+
+    const connection_message = document.querySelector(
+      ".loginAccount-el .message-el"
+    );
+
+    const createAccount_message = document.querySelector(
+      ".createAccount-el .message-el"
+    );
+
+    if (connection_message !== null) {
+      if (value == "message_connection=1") {
+        connection_message.innerHTML =
+          "Le compte associé à cet email est banni.";
+        document.querySelector(".login-form").style.marginTop = "1.6rem";
+        login();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_connection=2") {
+        connection_message.innerHTML = "Identifiants incorrects.";
+        document.querySelector(".login-form").style.marginTop = "1.6rem";
+        login();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_connection=3") {
+        connection_message.innerHTML =
+          "Le compte associé à cet email n'a pas été vérifié, un code a été renvoyé.";
+        document.querySelector(".loginAccount-el .message-el").style.marginTop = "3rem";
+        document.querySelector(".loginAccount-el .message-el").style.width = "60%";
+        login();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_connection=4") {
+        connection_message.innerHTML =
+          "Le compte associé à cet email n'a pas été vérifié, un code a été renvoyé.Le compte associé à cet email n'a pas été vérifié, et un mail n'a pas pu être renvoyé.";
+        document.querySelector(".loginAccount-el .message-el").style.marginTop = "2rem";
+        document.querySelector(".loginAccount-el .message-el").style.width = "60%";
+        login();
+        blurEl.style.filter = "blur(5px)";
+      }
+    } else if (createAccount_message !== null) {
+      if (value == "message_createAccount=1") {
+        createAccount_message.innerHTML = "Le compte associé est banni.";
+        document.querySelector(".createAccount-form").style.marginTop =
+          "1.5rem";
+        createAccount();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_createAccount=2") {
+        createAccount_message.innerHTML =
+          "Le mail est déjà associé à un utilisateur.";
+        document.querySelector(".createAccount-form").style.marginTop =
+          "1.5rem";
+        createAccount();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_createAccount=3") {
+        createAccount_message.innerHTML = "Le pseudo a déjà été pris.";
+        document.querySelector(".createAccount-form").style.marginTop =
+          "1.5rem";
+        createAccount();
+        blurEl.style.filter = "blur(5px)";
+      }
     }
-    else if(createAccount_message !== null){
-      if (value = "message_createAccount=1"){
-          createAccount_message.innerHTML = "Le compte associé est banni.";
-          document.querySelector(".createAccount-form").style.marginTop = "1.5rem";
-          createAccount();
-          blurEl.style.filter = "blur(5px)";
-        }
-        else if (value = "message_createAccount=2"){
-          createAccount_message.innerHTML = "Le mail est déjà associé à un utilisateur.";
-          document.querySelector(".createAccount-form").style.marginTop = "1.5rem";
-          createAccount();
-          blurEl.style.filter = "blur(5px)";
-        }
-        else if (value = "message_createAccount=3"){
-          createAccount_message.innerHTML = "Le pseudo a déjà été pris.";
-          document.querySelector(".createAccount-form").style.marginTop = "1.5rem";
-          createAccount();
-          blurEl.style.filter = "blur(5px)";
-        }
+  }
+}
+
+})
+
+
+if (addPostEl !== null) {
+  let addPost_message = document.querySelector(".add-post-div p");
+
+  if (window.location.href.indexOf("?") != -1) {
+    let queryString = window.location.href.substr(
+      window.location.href.indexOf("?") + 1
+    );
+
+    let value = queryString.split("&")[0];
+
+    value = decodeURIComponent(value);
+
+    if (addPost_message !== null) {
+      if (value == "message_post=1") {
+        addPost_message.innerHTML = "Veuillez remplir les champs obligatoires.";
+        addPost();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_post=2") {
+        addPost_message.innerHTML = "Erreur au niveau de la catégorie du post.";
+        addPost();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_post=3") {
+        addPost_message.innerHTML =
+          "Type de fichier incorrect (acceptés : png, jpeg).";
+        addPost();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_post=4") {
+        addPost_message.innerHTML = "Fichier trop lourd (2Mo max).";
+        addPost();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_post=5") {
+        addPost_message.innerHTML =
+          "Vous avez trop écrit.. au maximum 400 caractères, petit(e) bavard(e).";
+        addPost();
+        blurEl.style.filter = "blur(5px)";
+      } else if (value == "message_post=6") {
+        addPost_message.innerHTML =
+          "Une erreur a eu lieu lors de l'envoi, ressayez plus tard.";
+        addPost();
+        blurEl.style.filter = "blur(5px)";
+      }
     }
   }
 }
@@ -163,21 +222,26 @@ function shuffleArray(arr) {
   arr.sort(() => Math.random() - 0.5);
 }
 
-if (createAccountEl != null) {
+if (createAccountEl !== null) {
   cleanPuzzle();
   generatePuzzle();
 }
 
 function generatePuzzle() {
   let arrayPuzzle = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  let imagePuzzle = ["delon", "sananes", "guenaelle", "sebastian"];
+
   shuffleArray(arrayPuzzle);
+  shuffleArray(imagePuzzle);
 
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
       let tile = document.createElement("img");
       tile.id = i.toString() + "-" + j.toString();
-      tile.src = "puzzle/" + arrayPuzzle.shift() + ".png";
+      tile.src =
+        "puzzle/" + imagePuzzle[0] + "/" + arrayPuzzle.shift() + ".png";
       document.getElementById("board").appendChild(tile);
+      document.getElementById("board").setAttribute("class", imagePuzzle[0]);
 
       tile.addEventListener("dragstart", dragStart);
       tile.addEventListener("dragover", dragOver);
@@ -187,6 +251,8 @@ function generatePuzzle() {
       tile.addEventListener("dragend", dragEnd);
     }
   }
+
+  //temp_puzzle_destination = imagePuzzle;
 }
 
 function dragStart() {
@@ -229,9 +295,7 @@ function cleanPuzzle() {
 const mail_format =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const password_format =
-/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,}$/
-
-
+  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,}$/;
 
 function verificationAll() {
   if (loginAccountEl.hasAttribute("style")) {
@@ -303,26 +367,49 @@ inputsEl.forEach((e) => {
   e.addEventListener("keyup", verificationAll);
 });
 
+//let temp_puzzle_destination = [];
+
 function captchaVerification() {
+  let puzzle_destination = document
+    .getElementById("board")
+    .getAttribute("class");
   if (
     document.getElementById("0-0").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/1.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/" +
+        puzzle_destination +
+        "/1.png" &&
     document.getElementById("0-1").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/2.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/" +
+        puzzle_destination +
+        "/2.png" &&
     document.getElementById("0-2").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/3.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/" +
+        puzzle_destination +
+        "/3.png" &&
     document.getElementById("1-0").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/4.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/" +
+        puzzle_destination +
+        "/4.png" &&
     document.getElementById("1-1").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/5.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/" +
+        puzzle_destination +
+        "/5.png" &&
     document.getElementById("1-2").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/6.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/" +
+        puzzle_destination +
+        "/6.png" &&
     document.getElementById("2-0").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/7.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/" +
+        puzzle_destination +
+        "/7.png" &&
     document.getElementById("2-1").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/8.png" &&
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/" +
+        puzzle_destination +
+        "/8.png" &&
     document.getElementById("2-2").src ==
-      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/9.png"
+      "http://localhost/Projet%20annuel%20RETROSPECTIVE%20FULL/puzzle/" +
+        puzzle_destination +
+        "/9.png"
   ) {
     document.querySelector("#board").style.borderColor = "#3bac29";
     return true;
@@ -461,12 +548,12 @@ function verifyPassword(e) {
   if (document.querySelector(".password-el-create") !== null) {
     verifyIdenticalPassword();
   }
-  if(document.getElementById("changePassword") !== null) {
+  if (document.getElementById("changePassword") !== null) {
     verifyChangedRepassword();
   }
 }
 
-function verifyIdenticalPassword(){  
+function verifyIdenticalPassword() {
   if (
     document.querySelector(".password-el-create").value ==
       document.querySelector(".rePassword-el-create").value &&
@@ -479,7 +566,10 @@ function verifyIdenticalPassword(){
 }
 
 function verifyChangedRepassword() {
-  if (changedPassword.value == changedRepassword.value && changedPassword.Value !== "") {
+  if (
+    changedPassword.value == changedRepassword.value &&
+    changedPassword.Value !== ""
+  ) {
     is_valid("_identical");
   } else {
     is_not_valid("_identical");
@@ -490,13 +580,13 @@ function verifyChangedRepassword() {
 
 // ADD POST //
 
-function addPost(){
-  addPostEl.style.display="block";
+function addPost() {
+  addPostEl.style.display = "block";
   blurEl.style.filter = "blur(5px)";
 }
 
-function removeAddPost(){
-  addPostEl.style.display="none";
+function removeAddPost() {
+  addPostEl.style.display = "none";
   blurEl.style.filter = "blur(0)";
 }
 
@@ -735,7 +825,7 @@ function sendLinkPassword(cFunction, input) {
     if (this.readyState == 4 && this.status == 200) {
       cFunction(this);
     }
-  }
+  };
   xhttp.open("POST", "includes/servers/new_password.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send("email=" + email);
@@ -745,22 +835,30 @@ function sendLinkPasswordCheck(xhttp) {
   document.querySelector(".passwordAccount-status").innerHTML =
     xhttp.responseText;
   document.querySelector(".passwordAccountTitle-el").style.display = "none";
-  document.getElementById("submit-button-password").marginBottom ="4rem!important";
+  document.getElementById("submit-button-password").marginBottom =
+    "4rem!important";
 }
 
-function passwordChange(token, password, repassword){
+function passwordChange(token, password, repassword) {
   let xhttp;
   const passwordValue = document.getElementById(password).value;
   const repasswordValue = document.getElementById(repassword).value;
 
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
-    if(this.readyState == 4 && this.status == 200){
-      document.querySelector(".change-password-div").innerHTML = this.responseText;
+    if (this.readyState == 4 && this.status == 200) {
+      document.querySelector(".change-password-div").innerHTML =
+        this.responseText;
     }
-  }
+  };
   xhttp.open("POST", "verifications/change_password_verification.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("q=" + token + "&password=" + passwordValue + "&repassword=" + repasswordValue);
+  xhttp.send(
+    "q=" +
+      token +
+      "&password=" +
+      passwordValue +
+      "&repassword=" +
+      repasswordValue
+  );
 }
-

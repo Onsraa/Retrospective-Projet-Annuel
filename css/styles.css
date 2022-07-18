@@ -280,7 +280,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  margin: 10rem auto 4rem;
+  margin: 5.5rem auto 2rem;
   height: 30%;
   width: 50%;
 }
@@ -332,6 +332,7 @@ footer {
 
 .message-el {
  text-align: center;
+ margin: auto;
 }
 
 .email-label {
@@ -905,6 +906,22 @@ footer {
   justify-content: space-between;
 }
 
+.admin .users .delete{
+  position: absolute;
+  top: 10rem;
+  right: 0;
+}
+
+.admin .users .delete .form-control{
+  width: 4rem;
+  display: inline;
+}
+
+.admin .users .delete label{
+  display: block;
+  font-size: 0.8rem;
+}
+
 /*---------------------------------------------ADMINISTRATION---------------------------------------*/
 
 /*---------------------------------------------LOUNGE---------------------------------------*/
@@ -924,6 +941,7 @@ footer {
   padding: 2rem 4rem;
   border-radius: 1.5rem;
   font-size: 1.4rem;
+  font-family: 'Neon';
 }
 
 .sort-bar button{
@@ -937,6 +955,7 @@ footer {
 
 .user-post{
   margin: 3rem 0;
+  font-family: 'Neon';
 }
 
 .post-header{
@@ -991,7 +1010,7 @@ footer {
 }
 
 .post-body-description{
-  padding: 2rem;
+  padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -1013,6 +1032,11 @@ footer {
   margin: 0;
   margin-top: auto;
   align-self: flex-end;
+}
+
+.post-comments{
+  margin: 0;
+  margin-top: auto;
 }
 
 .pages-numbers-post{
@@ -1055,6 +1079,11 @@ footer {
   height: 50rem;
 }
 
+.post-information{
+  color: rgb(218, 218, 218);
+  text-align: center;
+  margin-top: 3rem;
+}
 
 /*------------------------------------------------------CONTACT US----------------------------------------------*/
 
@@ -1234,10 +1263,12 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Neon';
 }
 
 .add-post-div h1{
   margin-bottom: 2rem;
+  font-family: 'Neon';
 }
 
 .add-post-div button{
@@ -1253,6 +1284,7 @@ footer {
   text-align: start;
   margin-bottom: 2rem;
   width: 70%;
+  font-family: 'Neon';
 }
 
 .add-post-div form div input:not(#image-file-post), .add-post-div form div textarea{
@@ -1266,6 +1298,7 @@ footer {
   right: 3rem;
   top: 3rem;
   font-size: 2rem;
+  cursor: pointer;
 }
 
 .add-post-post2{
@@ -1282,8 +1315,230 @@ footer {
 .add-post-post2 div{
   display: flex;
   flex-direction: column;
+  font-family: 'Neon';
 }
 
 .add-post-div p{
   padding: 0;
+  font-family: 'Neon';
 }
+
+/* PROFILE */
+
+.background-profile{
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  height: 43rem;
+  position: relative;
+}
+
+.pfp-profile{
+  position: absolute;
+  left: 5rem;
+  bottom: 0;
+  border-radius: 2rem;
+}
+
+.pfp-profile img{
+  object-fit: cover;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 2rem;
+}
+
+.information-profile{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10rem;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  color: white;
+  font-size: 2rem;
+  font-family: 'Neon';
+  justify-content: flex-end;
+}
+
+.information-profile div:nth-child(1){
+  margin-right: 25rem;
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.information-profile div{
+  margin: auto 0  auto 4rem;
+}
+
+.section-profile{
+  background-color: rgba(72,72, 72, 0.5);
+  color: rgb(207, 207, 207);
+  font-size: 2rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-profile button{
+  padding: 0.5rem;
+  border-radius: 2rem;
+  border: none;
+  width: 5rem;
+  height: 5rem;
+  font-size: 2rem;
+  background-color: rgba(255,255,255,0.25);
+}
+
+.section-profile button i{
+  color: rgb(206, 206, 206);
+}
+
+.section-profile button:hover{
+  background-color: #3BAC29;
+  color: white;
+}
+
+
+.body-profile{
+  background-color: #070707;
+  font-family: 'Neon';
+}
+
+.separation-profile{
+  margin: 5rem auto;
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+  height: 1rem;
+  background-color: rgba(72,72, 72, 0.5);
+}
+
+.description-profile p{
+  margin: 0;
+}
+
+@media screen and (min-width: 1600px){
+  .body-profile{
+    padding : 5rem 10rem;
+  }
+  .section-profile{
+    padding: 3rem 5rem;
+  }
+  .information-profile{
+    padding: 0 10rem;
+  }
+  .pfp-profile{
+    left: 10rem;
+  }
+  .section-profile button{
+    padding: 1rem;
+    border-radius: 2rem;
+    border: none;
+    width: 6rem;
+    height: 6rem;
+    font-size: 2.5rem;
+  }
+}
+
+/*------------------------------------------------------ ARCADE ----------------------------------------------*/
+
+.arcade main{
+  background-color: black;
+}
+
+.arcade .main-roll{
+  padding: 2rem;
+  margin: 10rem 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  border-radius: 2rem;
+}
+
+.arcade .main-roll section{
+  max-width: 60rem;
+  margin: auto;
+}
+
+.arcade .main-roll .title{
+  font-family: "Vector Battle";
+}
+
+.arcade .main-roll .subtitle{
+  margin-top: 3.8rem;
+  text-align: center;
+}
+
+.arcade .main-roll{
+  font-family: "Atari Classic Smooth";
+}
+
+.arcade .main-roll h1{
+  text-align: center;
+  width: 100%;
+  font-size: 4.5rem;
+  font-weight: 800;
+  margin: 0.8rem;
+}
+
+.arcade .main-roll h2{
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0.8rem;
+}
+
+.arcade .main-roll h3{
+  text-align: center;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0.8rem;
+}
+
+.arcade .main-roll a{
+  background-color: none;
+  color: white;
+  transition: 0.15s;
+}
+
+.arcade .main-roll a:hover{
+  background-color: white;
+  color: black;
+  transition: 0.15s;
+  text-decoration: none;
+}
+
+.arcade .main-roll .download{
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3.5rem;
+  max-width: 100%;
+}
+
+.arcade .main-roll .download img{
+  width: 3.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.arcade .main-roll .content img{
+  width: 100%;
+}
+
+.arcade .main-roll .content .desc p{
+  max-width: 32rem;
+}
+
+.arcade .main-roll a{
+  color: white;
+}
+
+.arcade p{
+  font-size: 0.75rem;
+}
+
+/*------------------------------------------------------ ARCADE ----------------------------------------------*/
