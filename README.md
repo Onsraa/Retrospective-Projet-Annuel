@@ -23,7 +23,9 @@ TRUONG Teddy @<Onsraa>
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-
+MINHEA Sebastian @<MrSebi06>
+BULIGA Anamaria @<Anakaryna>
+TRUONG Teddy @<Onsraa>
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
