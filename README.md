@@ -14,7 +14,7 @@ URL : retrospective.website (obsolete since april 2022 ❌)
 
 ## Contributors
 
-<div style="display: flex; justify-content: center; flex-wrap: no-wrap;">
+<div style="display: flex; justify-content: center;">
   <div style="display: inline-block; margin: 10px; text-align: center;">
     <img src="https://avatars.githubusercontent.com/u/49305133?v=4" alt="Sebastian MIHNEA" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #333;" />
     <a href="https://github.com/MrSebi06" target="_blank" style="display: block; margin-top: 5px; text-decoration: none; font-weight: bold; color: #333;">MrSebi06</a>
