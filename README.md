@@ -14,19 +14,13 @@ URL : retrospective.website (obsolete since april 2022 ❌)
 
 ## Contributors
 
-<a href="https://github.com/Onsraa/Retrospective-website/graphs/contributors" >
-  <img src="https://avatars.githubusercontent.com/u/49305133?v=4" / style=style="width=200; height=200; borderRadius=50%">
-  <img src="https://avatars.githubusercontent.com/u/78374876?v=4" / style=style="width=200; height=200; borderRadius=50%">
-  <img src="https://avatars.githubusercontent.com/u/102239127?v=4" / style=style="width=200; height=200; borderRadius=50%">
-</a>
-
 <div style="display: inline-block; margin: 10px; text-align: center;">
-  <img src="[https://avatars.githubusercontent.com/u/12345678](https://avatars.githubusercontent.com/u/49305133?v=4)" alt="Sebastian MIHNEA" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #333;" />
+  <img src="https://avatars.githubusercontent.com/u/49305133?v=4" alt="Sebastian MIHNEA" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #333;" />
   <a href="https://github.com/MrSebi06" target="_blank" style="display: block; margin-top: 5px; text-decoration: none; font-weight: bold; color: #333;">username</a>
 </div>
 
 <div style="display: inline-block; margin: 10px; text-align: center;">
-  <img src="[https://avatars.githubusercontent.com/u/23456789](https://avatars.githubusercontent.com/u/78374876?v=4)" alt="Anamaria BULIGA" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #333;" />
+  <img src="https://avatars.githubusercontent.com/u/78374876?v=4" alt="Anamaria BULIGA" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #333;" />
   <a href="https://github.com/Anakaryna" target="_blank" style="display: block; margin-top: 5px; text-decoration: none; font-weight: bold; color: #333;">another_username</a>
 </div>
 
