@@ -12,12 +12,6 @@ It has an easter egg in the page representing our pedagogical director in charge
 
 URL : retrospective.website (obsolete since april 2022 ❌) 
 
-# Contributors 
-
-MINHEA Sebastian @<MrSebi06>
-BULIGA Anamaria @<Anakaryna>
-TRUONG Teddy @<Onsraa>
-
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -26,6 +20,8 @@ TRUONG Teddy @<Onsraa>
 MINHEA Sebastian @<MrSebi06>
 BULIGA Anamaria @<Anakaryna>
 TRUONG Teddy @<Onsraa>
+@all-contributors please add @<MrSebi06> for <contributions>
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
