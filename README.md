@@ -14,19 +14,9 @@ URL : retrospective.website (obsolete since april 2022 ❌)
 
 ## Contributors
 
-<a href="https://github.com/OWNER/REPO/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=OWNER/REPO" />
+<a href="https://github.com/Onsraa/Retrospective-website/graphs/contributors">
+  <img src="https://avatars.githubusercontent.com/u/49305133?v=4" />
+  <img src="https://avatars.githubusercontent.com/u/78374876?v=4" />
+  <img src="https://avatars.githubusercontent.com/u/102239127?v=4" />
 </a>
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-MINHEA Sebastian @<MrSebi06>
-BULIGA Anamaria @<Anakaryna>
-TRUONG Teddy @<Onsraa>
-@all-contributors please add @<MrSebi06> for <contributions>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
